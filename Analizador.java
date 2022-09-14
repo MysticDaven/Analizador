@@ -178,8 +178,14 @@
       case IGUALIGUAL:
         jj_consume_token(IGUALIGUAL);
         break;
+      case ESPACIO:
+        jj_consume_token(ESPACIO);
+        break;
       case DIFERENTEDE:
         jj_consume_token(DIFERENTEDE);
+        break;
+      case NUMERODECIMAL:
+        jj_consume_token(NUMERODECIMAL);
         break;
       default:
         jj_la1[0] = jj_gen;
@@ -212,6 +218,8 @@
       case SWITCH:
       case CASE:
       case BREAK:
+      case ESPACIO:
+      case NUMERODECIMAL:
       case ID:
       case NEGEX:
       case MODULO:
@@ -273,7 +281,7 @@
       jj_la1_init_2();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0xf3fffffe,0xf3fffffe,};
+      jj_la1_0 = new int[] {0xfffffffe,0xfffffffe,};
    }
    private static void jj_la1_init_1() {
       jj_la1_1 = new int[] {0xfffffff,0xfffffff,};
@@ -396,7 +404,7 @@
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[67];
+    boolean[] la1tokens = new boolean[71];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -416,7 +424,7 @@
         }
       }
     }
-    for (int i = 0; i < 67; i++) {
+    for (int i = 0; i < 71; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

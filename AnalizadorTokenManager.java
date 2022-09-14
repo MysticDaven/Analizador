@@ -46,6 +46,11 @@ private final int jjStopStringLiteralDfa_0(int pos, long active0, long active1)
    switch (pos)
    {
       case 0:
+         if ((active1 & 0x8L) != 0L)
+         {
+            jjmatchedKind = 26;
+            return 0;
+         }
          if ((active0 & 0x40000000000L) != 0L)
             return 8;
          if ((active0 & 0x2000000000000L) != 0L)
@@ -139,6 +144,8 @@ private int jjMoveStringLiteralDfa0_0()
 {
    switch(curChar)
    {
+      case 32:
+         return jjStartNfaWithStates_0(0, 26, 0);
       case 33:
          jjmatchedKind = 29;
          return jjMoveStringLiteralDfa1_0(0x800000000000000L);
@@ -920,7 +927,7 @@ null, null, null, null, null, null, null, null, null, null, null, null, null, nu
 null, null, "\41", "\45", null, null, "\73", "\54", null, "\173", "\175", "\50", 
 "\51", "\133", "\135", "\56", "\72", "\53", "\55", "\52", "\57", "\176", "\42", 
 "\76", "\74", "\75", "\174", "\46", "\134", "\74\75", "\76\75", "\75\75", "\41\75", 
-null, null, null, null, null, null, null, };
+null, null, null, null, null, null, null, null, null, null, null, };
 
 /** Lexer state names. */
 public static final String[] lexStateNames = {
@@ -933,13 +940,13 @@ public static final String[] lexStateNames = {
 public static final int[] jjnewLexState = {
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 2, -1, 0, 0, 
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 2, -1, 0, 0, -1, -1, -1, -1, 
 };
 static final long[] jjtoToken = {
    0xfffffffffffffffL, 0x0L, 
 };
 static final long[] jjtoSkip = {
-   0xf000000000000000L, 0x6L, 
+   0xf000000000000000L, 0x7eL, 
 };
 static final long[] jjtoSpecial = {
    0x3000000000000000L, 0x0L, 
@@ -1060,6 +1067,11 @@ public Token getNextToken()
      switch(curLexState)
      {
        case 0:
+         try { input_stream.backup(0);
+            while (curChar <= 13 && (0x2600L & (1L << curChar)) != 0L)
+               curChar = input_stream.BeginToken();
+         }
+         catch (java.io.IOException e1) { continue EOFLoop; }
          jjmatchedKind = 0x7fffffff;
          jjmatchedPos = 0;
          curPos = jjMoveStringLiteralDfa0_0();
@@ -1465,7 +1477,7 @@ void TokenLexicalActions(Token matchedToken)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[47]);
         lengthOfMatch = jjstrLiteralImages[47].length();
-                  System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);
+                  System.out.println(matchedToken.beginLine+". Encontre un operador division: "+image);
          break;
       case 48 :
         if (image == null)
@@ -1486,14 +1498,14 @@ void TokenLexicalActions(Token matchedToken)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[50]);
         lengthOfMatch = jjstrLiteralImages[50].length();
-                     System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);
+                     System.out.println(matchedToken.beginLine+". Encontre un operador logico: "+image);
          break;
       case 51 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[51]);
         lengthOfMatch = jjstrLiteralImages[51].length();
-                     System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);
+                     System.out.println(matchedToken.beginLine+". Encontre un operador logico: "+image);
          break;
       case 52 :
         if (image == null)

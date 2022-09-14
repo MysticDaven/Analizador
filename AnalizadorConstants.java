@@ -207,6 +207,10 @@ public interface AnalizadorConstants {
     "<token of kind 64>",
     "<token of kind 65>",
     "\"*/\"",
+    "\" \"",
+    "\"\\t\"",
+    "\"\\n\"",
+    "\"\\r\"",
   };
 
 }

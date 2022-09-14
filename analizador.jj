@@ -66,11 +66,11 @@ TOKEN:
     <MAS : "+">{System.out.println(matchedToken.beginLine+". Encontre un operador suma: "+image);} |
     <MENOS : "-">{System.out.println(matchedToken.beginLine+". Encontre un operador resta: "+image);} |
     <POR : "*">{System.out.println(matchedToken.beginLine+". Encontre un operador multiplicacion: "+image);} |
-    <ENTRE : "/">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <ENTRE : "/">{System.out.println(matchedToken.beginLine+". Encontre un operador division: "+image);} |
     <NEGAR : "~">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <COMILLAS : "\"">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);}|
-    <MAYORQUE : ">">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
-    <MENORQUE : "<">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <MAYORQUE : ">">{System.out.println(matchedToken.beginLine+". Encontre un operador logico: "+image);} |
+    <MENORQUE : "<">{System.out.println(matchedToken.beginLine+". Encontre un operador logico: "+image);} |
     <IGUAL : "=">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <OR : "|">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <AND : "&">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
@@ -108,6 +108,11 @@ SKIP:
     <"*/"> : DEFAULT
 }
 
+SKIP:
+{
+    " " | "\t" | "\n" | "\r"
+    
+}
 
 void unaExpresion() : {}
 {
@@ -116,6 +121,6 @@ void unaExpresion() : {}
     <NULL>  |<LENGTH> |<DO> |<SWITCH> |<CASE> |<BREAK> |<ID> |<NEGEX> |<MODULO> |
     <DENTROCOMENTARIO> |<NUMERO> |<FINLINEA> |<COMA> |<GUIONES> |<ABRIRLLA> |<CERRARLLA> |<ABRIRCOR> |<ABRIRPAR> 
     |<CERRARCOR> |<CERRARPAR> |<PUNTO> |<DOSPUNTOS> |<MAS> |<MENOS> |<POR> |<ENTRE> |<NEGAR> |
-    <COMILLAS> |<MAYORQUE> |<MENORQUE> |<IGUAL> |<OR> |<AND> |<ALGO> |<MENORIGUAL> |<MAYORIGUAL> |<IGUALIGUAL> |
-    <DIFERENTEDE> )+ <EOF>
+    <COMILLAS> |<MAYORQUE> |<MENORQUE> |<IGUAL> |<OR> |<AND> |<ALGO> |<MENORIGUAL> |<MAYORIGUAL> |<IGUALIGUAL> | <ESPACIO> |
+    <DIFERENTEDE> | <NUMERODECIMAL> )+ <EOF>
 }

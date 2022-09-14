@@ -1,0 +1,70 @@
+7. Encontre palabra reservada: int
+ 7. Encontre un identificador: gcd
+7. Encontre un simbolo: (
+7. Encontre palabra reservada: int
+ 7. Encontre un identificador: u
+7. Encontre un simbolo: ,
+ 7. Encontre palabra reservada: int
+ 7. Encontre un identificador: v
+7. Encontre un simbolo: )
+8. Encontre un simbolo: {
+9. Encontre palabra reservada: if
+9. Encontre un simbolo: (
+9. Encontre un identificador: v
+9. Encontre un simbolo: ==
+9. Encontre un numero: 0
+9. Encontre un simbolo: )
+ 9. Encontre palabra reservada: return
+ 9. Encontre un identificador: u
+9. Encontre un simbolo: ;
+10. Encontre palabra reservada: else
+ 10. Encontre palabra reservada: return
+ 10. Encontre un identificador: gcd
+10. Encontre un simbolo: (
+10. Encontre un identificador: v
+10. Encontre un simbolo: ,
+10. Encontre un identificador: u
+10. Encontre un operador resta: -
+10. Encontre un identificador: u
+10. Encontre un simbolo: /
+10. Encontre un identificador: v
+10. Encontre un operador multiplicacion: *
+10. Encontre un identificador: v
+10. Encontre un simbolo: )
+10. Encontre un simbolo: ;
+12. Encontre un simbolo: }
+14. Encontre palabra reservada: void
+ 14. Encontre palabra reservada: main
+14. Encontre un simbolo: (
+14. Encontre palabra reservada: void
+14. Encontre un simbolo: )
+15. Encontre un simbolo: {
+16. Encontre palabra reservada: int
+ 16. Encontre un identificador: x
+16. Encontre un simbolo: ;
+ 16. Encontre palabra reservada: int
+ 16. Encontre un identificador: y
+16. Encontre un simbolo: ;
+17. Encontre un identificador: x
+17. Encontre un simbolo: =
+17. Encontre un identificador: input
+17. Encontre un simbolo: (
+17. Encontre un simbolo: )
+17. Encontre un simbolo: ;
+17. Encontre un identificador: y
+17. Encontre un simbolo: =
+17. Encontre un identificador: input
+17. Encontre un simbolo: (
+17. Encontre un simbolo: )
+17. Encontre un simbolo: ;
+18. Encontre un identificador: output
+18. Encontre un simbolo: (
+18. Encontre un identificador: gcd
+18. Encontre un simbolo: (
+18. Encontre un identificador: x
+18. Encontre un simbolo: ,
+18. Encontre un identificador: y
+18. Encontre un simbolo: )
+18. Encontre un simbolo: )
+18. Encontre un simbolo: ;
+19. Encontre un simbolo: }
