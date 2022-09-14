@@ -15,87 +15,107 @@ PARSER_END (Analizador)
 
 TOKEN:
 {
-    <CLASS: "class"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <STATIC: "static"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <VOID: "void"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <MAIN: "main"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <STRING: "String"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <INT: "int"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <FLOAT: "float"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <CHAR: "char"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <INTEGER: "Integer"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <PARSEINT: "parseInt"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <IF: "if"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <FOR: "for"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <TRUE: "true"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <FALSE: "false"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <BOOLEAN: "boolean"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <ELSE: "else"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <WHILE: "while"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <RETURN: "return"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <IMPORT: "import"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <NULL: "null"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <ENTRECOM: ("\"") (["\u0000" - "\u0021", "\u0023" - "\uffdc"])* ("\"")> {System.out.print(image);} |
-    <LENGTH: "length"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <DO: "do"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <SWITCH: "switch"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <CASE: "case"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
-    <BREAK: "break"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "image);} |
+    <CLASS: "class"> {System.out.println(matchedToken.beginLine +". Encontre palabra reservada:  " + image);} |
+    <STATIC: "static"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <VOID: "void"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <MAIN: "main"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <STRING: "String"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <INT: "int"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <FLOAT: "float"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <CHAR: "char"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <INTEGER: "Integer"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <PARSEINT: "parseInt"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <IF: "if"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <FOR: "for"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <TRUE: "true"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <FALSE: "false"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <BOOLEAN: "boolean"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <ELSE: "else"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <WHILE: "while"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <RETURN: "return"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <IMPORT: "import"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <NULL: "null"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <LENGTH: "length"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <DO: "do"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <SWITCH: "switch"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <CASE: "case"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    <BREAK: "break"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     
     <ESPACIO: (" ")+> {System.out.print(" ");} |
-    <NUMEROS: (["0" - "9"])+> {System.out.print(image);}
-    <NUMERODECIMAL : (["0"-"9"])+(".")(["0"-"9"])+("f")?
+    <NUMERODECIMAL : (["0"-"9"])+(".")(["0"-"9"])+> {System.out.println(matchedToken.beginLine+". Encontre numero flotante: "+image);} 
 }
 
 TOKEN:
 {
-    <ID: ["a"-"z","A"-"Z"](["a"-"z","A"-"Z","0"-"9"])*>{System.out.prinln(image);} | 
-    <NEGEX : "!" > {System.out.println(image);} |
-    <MODULO : "%" > {System.out.println(image);} |
-    <DENTROCOMENTARIO : ("\"") (["\u0001"-"\u0021"] | ["\u0023"-"\uffdc"] | (""))+ ("\"") > {System.out.println(image);} |
-    <NUMERO : (["0"-"9"])+>{System.out.print(image);} |
-    <FINLINEA : ";">{System.out.print(image);} |
-    <COMA : ",">{System.out.print(image);} |
-    <GUIONES : ["_"]>{System.out.print(image);} |
-    <ABRIRLLA : "{">{System.out.print(image);} |
-    <CERRARLLA : "}">{System.out.print(image);} |
-    <ABRIRPAR : "(">{System.out.print(image);} |
-    <CERRARPAR : ")">{System.out.print(image);} |
-    <ABRIRCOR : "[">{System.out.print(image);} |
-    <CERRARCOR : "]">{System.out.print(image);} |
-    <PUNTO : ".">{System.out.print(image);} |
-    <DOSPUNTOS : ":">{System.out.print(image);} |
-    <MAS : "+">{System.out.print(image);} |
-    <MENOS : "-">{System.out.print(image);} |
-    <POR : "*">{System.out.print(image);} |
-    <ENTRE : "/">{System.out.print(image);} |
-    <NEGAR : "~">{System.out.print(image);} |
-    <COMILLAS : "\"">{System.out.print(image);}|
-    <MAYORQUE : ">">{System.out.print(image);} |
-    <MENORQUE : "<">{System.out.print(image);} |
-    <IGUAL : "=">{System.out.print(image);} |
-    <OR : "|">{System.out.print(image);} |
-    <AND : "&">{System.out.print(image);} |
-    <ALGO : "\\">{System.out.print(image);} |
-    <MENORIGUAL : "<=" > {System.out.println(image);} |
-    <MAYORIGUAL : ">=" > {System.out.println(image);} |
-    <IGUALIGUAL : > "==" > {System.out.println(image);} |
-    <DIFERENTEDE : > "!=" > {System.out.println(image);}
+    <ID: ["a"-"z","A"-"Z"](["a"-"z","A"-"Z","0"-"9", "_"])*> {System.out.println(matchedToken.beginLine+". Encontre un identificador: "+image);} | 
+    <NEGEX : "!" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <MODULO : "%" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <DENTROCOMENTARIO : ("\"") (["\u0001"-"\u0021"] | ["\u0023"-"\uffdc"] | (""))+ ("\"") > |
+    <NUMERO : (["0"-"9"])+>{System.out.println(matchedToken.beginLine+". Encontre un numero: "+image);} |
+    <FINLINEA : ";">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <COMA : ",">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <GUIONES : ["_"]>{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <ABRIRLLA : "{">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <CERRARLLA : "}">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} | 
+    <ABRIRPAR : "(">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <CERRARPAR : ")">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <ABRIRCOR : "[">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <CERRARCOR : "]">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <PUNTO : ".">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <DOSPUNTOS : ":">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <MAS : "+">{System.out.println(matchedToken.beginLine+". Encontre un operador suma: "+image);} |
+    <MENOS : "-">{System.out.println(matchedToken.beginLine+". Encontre un operador resta: "+image);} |
+    <POR : "*">{System.out.println(matchedToken.beginLine+". Encontre un operador multiplicacion: "+image);} |
+    <ENTRE : "/">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <NEGAR : "~">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <COMILLAS : "\"">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);}|
+    <MAYORQUE : ">">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <MENORQUE : "<">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <IGUAL : "=">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <OR : "|">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <AND : "&">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <ALGO : "\\">{System.out.println(matchedToken.beginLine+". Encontre un comentario: "+image);} |
+    <MENORIGUAL : "<=" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <MAYORIGUAL : ">=" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <IGUALIGUAL :  "==" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
+    <DIFERENTEDE :  "!=" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);}
 }
 
-TOKEN:
+SPECIAL_TOKEN:
 {
-<ERROR_DECIMAL: (["0"-"9"])+(".") | (".")(["0"-"9"])> {System.out.println(matchedToken.beginLine+". Error al escribir el numero decimal: "image);} 
-
+<ERROR_DECIMAL: (["0"-"9"])+(".") | (".")(["0"-"9"])+> {System.out.println("ERROR LEXICO: Numero decimal mal formulado, Linea "+matchedToken.beginLine+image+".");} |
+<ERROR_ID : (["0"-"9"])+(["a"-"z","A"-"Z","0"-"9"])+>  {System.out.println("ERROR LEXICO: Identificador no valido, Linea "+matchedToken.beginLine+image+"."); } 
 }
+
+SKIP:
+{
+    <"//" >: Comentario |
+    <"/*" >: ComentarioLineas
+}
+
+<Comentario , ComentarioLineas> MORE:
+{
+    <~[]>
+}
+
+<Comentario> SKIP:
+{
+    <"\n" | "\r" | "\r\n"> : DEFAULT
+}
+
+<ComentarioLineas> SKIP:
+{
+    <"*/"> : DEFAULT
+}
+
 
 void unaExpresion() : {}
 {
     (<CLASS> | <STATIC> | <VOID> | <MAIN> | <STRING> | <INT> |<CHAR> |<FLOAT> |<INTEGER> |
     <PARSEINT> |<IF> |<FOR> |<TRUE> |<FALSE> |<BOOLEAN> |<ELSE> |<WHILE> |<RETURN> |<IMPORT> |
-    <NULL> |<ENTRECOM> |<LENGTH> |<DO> |<SWITCH> |<CASE> |<BREAK> |<ID> |<NEGEX> |<MODULO> |
+    <NULL>  |<LENGTH> |<DO> |<SWITCH> |<CASE> |<BREAK> |<ID> |<NEGEX> |<MODULO> |
     <DENTROCOMENTARIO> |<NUMERO> |<FINLINEA> |<COMA> |<GUIONES> |<ABRIRLLA> |<CERRARLLA> |<ABRIRCOR> |<ABRIRPAR> 
-    |<CERRARCOR |<CERRARPAR> |<PUNTO> |<DOSPUNTOS> |<MAS> |<MENOS> |<POR> |<ENTRE> |<NEGAR> |
+    |<CERRARCOR> |<CERRARPAR> |<PUNTO> |<DOSPUNTOS> |<MAS> |<MENOS> |<POR> |<ENTRE> |<NEGAR> |
     <COMILLAS> |<MAYORQUE> |<MENORQUE> |<IGUAL> |<OR> |<AND> |<ALGO> |<MENORIGUAL> |<MAYORIGUAL> |<IGUALIGUAL> |
-    <DIFERENTEDE> > |)+ <EOF>
+    <DIFERENTEDE> )+ <EOF>
 }
