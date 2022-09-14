@@ -78,7 +78,24 @@ TOKEN:
     <AND : "&">{System.out.print(image);} |
     <ALGO : "\\">{System.out.print(image);} |
     <MENORIGUAL : "<=" > {System.out.println(image);} |
-    <MAYOR IGUAL : ">=" > {System.out.println(image);} |
+    <MAYORIGUAL : ">=" > {System.out.println(image);} |
     <IGUALIGUAL : > "==" > {System.out.println(image);} |
     <DIFERENTEDE : > "!=" > {System.out.println(image);}
+}
+
+TOKEN:
+{
+<ERROR_DECIMAL: (["0"-"9"])+(".") | (".")(["0"-"9"])> {System.out.println(matchedToken.beginLine+". Error al escribir el numero decimal: "image);} 
+
+}
+
+void unaExpresion() : {}
+{
+    (<CLASS> | <STATIC> | <VOID> | <MAIN> | <STRING> | <INT> |<CHAR> |<FLOAT> |<INTEGER> |
+    <PARSEINT> |<IF> |<FOR> |<TRUE> |<FALSE> |<BOOLEAN> |<ELSE> |<WHILE> |<RETURN> |<IMPORT> |
+    <NULL> |<ENTRECOM> |<LENGTH> |<DO> |<SWITCH> |<CASE> |<BREAK> |<ID> |<NEGEX> |<MODULO> |
+    <DENTROCOMENTARIO> |<NUMERO> |<FINLINEA> |<COMA> |<GUIONES> |<ABRIRLLA> |<CERRARLLA> |<ABRIRCOR> |<ABRIRPAR> 
+    |<CERRARCOR |<CERRARPAR> |<PUNTO> |<DOSPUNTOS> |<MAS> |<MENOS> |<POR> |<ENTRE> |<NEGAR> |
+    <COMILLAS> |<MAYORQUE> |<MENORQUE> |<IGUAL> |<OR> |<AND> |<ALGO> |<MENORIGUAL> |<MAYORIGUAL> |<IGUALIGUAL> |
+    <DIFERENTEDE> > |)+ <EOF>
 }
