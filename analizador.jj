@@ -110,8 +110,8 @@ SKIP:
 
 SPECIAL_TOKEN:
 {
-<ERROR_DECIMAL: (["0"-"9"])+(".") | (".")(["0"-"9"])+> {System.out.println("ERROR LEXICO: Numero decimal mal formulado, Linea "+matchedToken.beginLine+image+".");} |
-<ERROR_ID : (["0"-"9"])+(["a"-"z","A"-"Z","0"-"9"])+>  {System.out.println("ERROR LEXICO: Identificador no valido, Linea "+matchedToken.beginLine+image+"."); } |
+<ERROR_DECIMAL: (["0"-"9"])+(".") | (".")(["0"-"9"])+> {System.out.println("ERROR LEXICO: Numero decimal mal formulado, Linea "+matchedToken.beginLine+" "+image+".");} |
+<ERROR_ID : (["0"-"9"])+(["a"-"z","A"-"Z","0"-"9"])+>  {System.out.println("ERROR LEXICO: Identificador no valido, Linea "+matchedToken.beginLine+" "+image+"."); } |
 <ERROR_SIMBOLO: (~[])>{System.out.println("Error, SIMBOLO no valido (Linea: " + matchedToken.beginLine +"): " + image);}
 }
 

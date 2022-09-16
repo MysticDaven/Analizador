@@ -1175,13 +1175,13 @@ void SkipLexicalActions(Token matchedToken)
          if (image == null)
             image = new StringBuffer();
          image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-                                                        System.out.println("ERROR LEXICO: Numero decimal mal formulado, Linea "+matchedToken.beginLine+image+".");
+                                                        System.out.println("ERROR LEXICO: Numero decimal mal formulado, Linea "+matchedToken.beginLine+" "+image+".");
          break;
       case 70 :
          if (image == null)
             image = new StringBuffer();
          image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-                                                        System.out.println("ERROR LEXICO: Identificador no valido, Linea "+matchedToken.beginLine+image+".");
+                                                        System.out.println("ERROR LEXICO: Identificador no valido, Linea "+matchedToken.beginLine+" "+image+".");
          break;
       case 71 :
          if (image == null)
