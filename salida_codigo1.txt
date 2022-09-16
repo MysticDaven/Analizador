@@ -26,7 +26,7 @@
 10. Encontre un identificador: u
 10. Encontre un operador resta: -
 10. Encontre un identificador: u
-10. Encontre un simbolo: /
+10. Encontre un operador division: /
 10. Encontre un identificador: v
 10. Encontre un operador multiplicacion: *
 10. Encontre un identificador: v

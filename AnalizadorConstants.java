@@ -127,9 +127,11 @@ public interface AnalizadorConstants {
   /** RegularExpression Id. */
   int DIFERENTEDE = 59;
   /** RegularExpression Id. */
-  int ERROR_DECIMAL = 60;
+  int ERROR_DECIMAL = 69;
   /** RegularExpression Id. */
-  int ERROR_ID = 61;
+  int ERROR_ID = 70;
+  /** RegularExpression Id. */
+  int ERROR_SIMBOLO = 71;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -200,17 +202,18 @@ public interface AnalizadorConstants {
     "\">=\"",
     "\"==\"",
     "\"!=\"",
-    "<ERROR_DECIMAL>",
-    "<ERROR_ID>",
     "\"//\"",
     "\"/*\"",
-    "<token of kind 64>",
-    "<token of kind 65>",
+    "<token of kind 62>",
+    "<token of kind 63>",
     "\"*/\"",
     "\" \"",
     "\"\\t\"",
     "\"\\n\"",
     "\"\\r\"",
+    "<ERROR_DECIMAL>",
+    "<ERROR_ID>",
+    "<ERROR_SIMBOLO>",
   };
 
 }
