@@ -8,7 +8,7 @@ PARSER_BEGIN (Analizador)
     public class Analizador {
         public static void main(String[] args) throws ParseException{
             Analizador anLex = new Analizador (System.in);
-            anLex.unaExpresion();
+            anLex.inicio();
             }
     }
 PARSER_END (Analizador)
@@ -40,8 +40,6 @@ TOKEN:
     <SWITCH: "switch"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <CASE: "case"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <BREAK: "break"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
-    
-    <ESPACIO: (" ")+> {System.out.print(" ");} |
     <NUMERODECIMAL : (["0"-"9"])+(".")(["0"-"9"])+> {System.out.println(matchedToken.beginLine+". Encontre numero flotante: "+image);} 
 }
 
@@ -50,8 +48,8 @@ TOKEN:
     <ID: ["a"-"z","A"-"Z"](["a"-"z","A"-"Z","0"-"9", "_"])*> {System.out.println(matchedToken.beginLine+". Encontre un identificador: "+image);} | 
     <NEGEX : "!" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <MODULO : "%" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
-    <DENTROCOMENTARIO : ("\"") (["\u0001"-"\u0021"] | ["\u0023"-"\uffdc"] | (""))+ ("\"") > |
-    <NUMERO : (["0"-"9"])+>{System.out.println(matchedToken.beginLine+". Encontre un numero: "+image);} |
+    <TEXTO : ("\"") (["\u0001"-"\u0021"] | ["\u0023"-"\uffdc"] | (""))+ ("\"") > |
+    <NUMERO : (["0"-"9"])(["0"-"9"])*>{System.out.println(matchedToken.beginLine+". Encontre un numero: "+image);} |
     <FINLINEA : ";">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <COMA : ",">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <GUIONES : ["_"]>{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
@@ -115,13 +113,187 @@ SPECIAL_TOKEN:
 <ERROR_SIMBOLO: (~[])>{System.out.println("Error, SIMBOLO no valido (Linea: " + matchedToken.beginLine +"): " + image);}
 }
 
-void unaExpresion() : {}
+void inicio() : {}
 {
-    (<CLASS> | <STATIC> | <VOID> | <MAIN> | <STRING> | <INT> |<CHAR> |<FLOAT> |<INTEGER> |
-    <PARSEINT> |<IF> |<FOR> |<TRUE> |<FALSE> |<BOOLEAN> |<ELSE> |<WHILE> |<RETURN> |<IMPORT> |
-    <NULL>  |<LENGTH> |<DO> |<SWITCH> |<CASE> |<BREAK> |<ID> |<NEGEX> |<MODULO> |
-    <DENTROCOMENTARIO> |<NUMERO> |<FINLINEA> |<COMA> |<GUIONES> |<ABRIRLLA> |<CERRARLLA> |<ABRIRCOR> |<ABRIRPAR> 
-    |<CERRARCOR> |<CERRARPAR> |<PUNTO> |<DOSPUNTOS> |<MAS> |<MENOS> |<POR> |<ENTRE> |<NEGAR> |
-    <COMILLAS> |<MAYORQUE> |<MENORQUE> |<IGUAL> |<OR> |<AND> |<ALGO> |<MENORIGUAL> |<MAYORIGUAL> |<IGUALIGUAL> | <ESPACIO> |
-    <DIFERENTEDE> | <NUMERODECIMAL> )+ <EOF>
+    (Program())+ <EOF>
+}
+
+void Program() : {}
+{
+    declaration_List()
+}
+
+void declaration_List() : {}
+{
+    declaration() declaration_ListP()
+}
+
+void declaration_ListP() : {}
+{
+    (LOOKAHEAD(5) declaration() declaration_ListP())*
+}
+
+void declaration() : {}
+{
+    var_declaration() | fun_declaration()
+}
+
+void var_declaration() : {}
+{
+    type_Specifier()<ID><FINLINEA> | type_Specifier()<ID><ABRIRCOR><NUMERO><CERRARCOR><FINLINEA>
+}
+
+void type_Specifier() : {}
+{
+    <INT> | <FLOAT> | <CHAR> | <VOID>
+}
+
+void fun_declaration() : {}
+{
+    type_Specifier() <ID><ABRIRPAR>params()<CERRARPAR>compound_stms()
+}
+
+void params() : {}
+{
+    param_list() | <VOID>
+}
+
+void param_list() : {}
+{
+    param() param_listP()
+}
+
+void param_listP() : {}
+{
+    (LOOKAHEAD(5) <COMA> param() param_listP())*
+}
+
+void param() : {}
+{
+    type_Specifier()<ID> | type_Specifier()<ID><ABRIRCOR><CERRARCOR>
+}
+
+void compound_stms() : {}
+{
+    local_declarations() statement_list()
+}
+
+void local_declarations() : {}
+{
+    (LOOKAHEAD(5) local_declarationsP())*
+}
+
+void local_declarationsP() : {}
+{
+    (LOOKAHEAD(5) var_declaration() local_declarationsP())*
+}
+
+void statement_list() : {}
+{
+   (LOOKAHEAD(5)statement_listP())*
+}
+
+void statement_listP() : {}
+{
+   (LOOKAHEAD(5) statement() statement_listP())*
+}
+
+void statement() : {}
+{
+    expression_stmt() | compound_stms() | selection_stmt() | iteration_stmt() | return_stmt()
+}
+
+void expression_stmt() : {}
+{
+    expression()<FINLINEA> | <FINLINEA>
+}
+
+void selection_stmt() : {}
+{
+   <IF><ABRIRPAR>expression()<CERRARPAR>statement() | <IF><ABRIRPAR>expression()<CERRARPAR>statement()<ELSE>statement() 
+}
+
+void iteration_stmt() : {}
+{
+    <WHILE><ABRIRPAR>expression()<CERRARPAR>statement()
+}
+
+void return_stmt() : {}
+{
+    <RETURN><FINLINEA> | <RETURN>expression()<FINLINEA>
+}
+
+void expression() : {}
+{
+    var()<IGUAL>expression() | simple_expression
+}
+
+void var() : {}
+{
+    <ID> | <ID> <ABRIRCOR>expression<CERRARCOR>
+}
+
+void simple_expression() : {}
+{
+    additive_expression() relop() additive_expression() | additive_expression()
+}
+
+void relop() : {}
+{
+    <MENORQUE><IGUAL> | <MENORQUE> | <MAYORQUE> | <MAYORQUE><IGUAL> | <IGUAL><IGUAL> | <DIFERENTEDE> 
+}
+
+void additive_expression() : {}
+{
+    term() additive_expressionP()
+}
+
+void additive_expressionP() : {}
+{
+    (LOOKAHEAD(5) addop() term() additive_expressionP())*
+}
+
+void addop() : {}
+{
+    <MAS> | <MENOS> 
+}
+
+void term() : {}
+{
+    factor()termP() 
+}
+
+void termP() : {}
+{
+   mulop() factor() termP()
+}
+
+void mulop() : {}
+{
+    <POR> | <ENTRE> | <MODULO>
+}
+
+void factor() : {}
+{
+    <ABRIRPAR>expression()<CERRARPAR> | var() | call() | <NUMERO> | <NUMERODECIMAL> | <CHAR>
+}
+
+void call() : {}
+{
+    <ID><ABRIRPAR>args()<CERRARPAR> 
+}
+
+void args() : {}
+{
+    (LOOKAHEAD(5) args_list())*
+}
+
+void args_list() : {}
+{
+    expression() args_listP()
+}
+
+void args_listP() : {}
+{
+    (LOOKAHEAD(5) <COMA> expression() args_listP())*
 }
