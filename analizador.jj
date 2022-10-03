@@ -225,12 +225,12 @@ void return_stmt() : {}
 
 void expression() : {}
 {
-    var()<IGUAL>expression() | simple_expression
+    var()<IGUAL>expression() | simple_expression()
 }
 
 void var() : {}
 {
-    <ID> | <ID> <ABRIRCOR>expression<CERRARCOR>
+    <ID> | <ID> <ABRIRCOR>expression()<CERRARCOR>
 }
 
 void simple_expression() : {}
