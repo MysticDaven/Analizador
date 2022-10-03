@@ -59,79 +59,77 @@ public interface AnalizadorConstants {
   /** RegularExpression Id. */
   int BREAK = 25;
   /** RegularExpression Id. */
-  int ESPACIO = 26;
+  int NUMERODECIMAL = 26;
   /** RegularExpression Id. */
-  int NUMERODECIMAL = 27;
+  int ID = 27;
   /** RegularExpression Id. */
-  int ID = 28;
+  int NEGEX = 28;
   /** RegularExpression Id. */
-  int NEGEX = 29;
+  int MODULO = 29;
   /** RegularExpression Id. */
-  int MODULO = 30;
+  int TEXTO = 30;
   /** RegularExpression Id. */
-  int DENTROCOMENTARIO = 31;
+  int NUMERO = 31;
   /** RegularExpression Id. */
-  int NUMERO = 32;
+  int FINLINEA = 32;
   /** RegularExpression Id. */
-  int FINLINEA = 33;
+  int COMA = 33;
   /** RegularExpression Id. */
-  int COMA = 34;
+  int GUIONES = 34;
   /** RegularExpression Id. */
-  int GUIONES = 35;
+  int ABRIRLLA = 35;
   /** RegularExpression Id. */
-  int ABRIRLLA = 36;
+  int CERRARLLA = 36;
   /** RegularExpression Id. */
-  int CERRARLLA = 37;
+  int ABRIRPAR = 37;
   /** RegularExpression Id. */
-  int ABRIRPAR = 38;
+  int CERRARPAR = 38;
   /** RegularExpression Id. */
-  int CERRARPAR = 39;
+  int ABRIRCOR = 39;
   /** RegularExpression Id. */
-  int ABRIRCOR = 40;
+  int CERRARCOR = 40;
   /** RegularExpression Id. */
-  int CERRARCOR = 41;
+  int PUNTO = 41;
   /** RegularExpression Id. */
-  int PUNTO = 42;
+  int DOSPUNTOS = 42;
   /** RegularExpression Id. */
-  int DOSPUNTOS = 43;
+  int MAS = 43;
   /** RegularExpression Id. */
-  int MAS = 44;
+  int MENOS = 44;
   /** RegularExpression Id. */
-  int MENOS = 45;
+  int POR = 45;
   /** RegularExpression Id. */
-  int POR = 46;
+  int ENTRE = 46;
   /** RegularExpression Id. */
-  int ENTRE = 47;
+  int NEGAR = 47;
   /** RegularExpression Id. */
-  int NEGAR = 48;
+  int COMILLAS = 48;
   /** RegularExpression Id. */
-  int COMILLAS = 49;
+  int MAYORQUE = 49;
   /** RegularExpression Id. */
-  int MAYORQUE = 50;
+  int MENORQUE = 50;
   /** RegularExpression Id. */
-  int MENORQUE = 51;
+  int IGUAL = 51;
   /** RegularExpression Id. */
-  int IGUAL = 52;
+  int OR = 52;
   /** RegularExpression Id. */
-  int OR = 53;
+  int AND = 53;
   /** RegularExpression Id. */
-  int AND = 54;
+  int ALGO = 54;
   /** RegularExpression Id. */
-  int ALGO = 55;
+  int MENORIGUAL = 55;
   /** RegularExpression Id. */
-  int MENORIGUAL = 56;
+  int MAYORIGUAL = 56;
   /** RegularExpression Id. */
-  int MAYORIGUAL = 57;
+  int IGUALIGUAL = 57;
   /** RegularExpression Id. */
-  int IGUALIGUAL = 58;
+  int DIFERENTEDE = 58;
   /** RegularExpression Id. */
-  int DIFERENTEDE = 59;
+  int ERROR_DECIMAL = 68;
   /** RegularExpression Id. */
-  int ERROR_DECIMAL = 69;
+  int ERROR_ID = 69;
   /** RegularExpression Id. */
-  int ERROR_ID = 70;
-  /** RegularExpression Id. */
-  int ERROR_SIMBOLO = 71;
+  int ERROR_SIMBOLO = 70;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -168,12 +166,11 @@ public interface AnalizadorConstants {
     "\"switch\"",
     "\"case\"",
     "\"break\"",
-    "<ESPACIO>",
     "<NUMERODECIMAL>",
     "<ID>",
     "\"!\"",
     "\"%\"",
-    "<DENTROCOMENTARIO>",
+    "<TEXTO>",
     "<NUMERO>",
     "\";\"",
     "\",\"",
@@ -204,8 +201,8 @@ public interface AnalizadorConstants {
     "\"!=\"",
     "\"//\"",
     "\"/*\"",
+    "<token of kind 61>",
     "<token of kind 62>",
-    "<token of kind 63>",
     "\"*/\"",
     "\" \"",
     "\"\\t\"",

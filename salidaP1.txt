@@ -1,0 +1,117 @@
+1. Encontre palabra reservada: int
+ 1. Encontre un identificador: gcd
+1. Encontre un simbolo: (
+1. Encontre palabra reservada: int
+ 1. Encontre un identificador: v
+1. Encontre un simbolo: ,
+ 1. Encontre palabra reservada: int
+ 1. Encontre un identificador: h
+1. Encontre un simbolo: )
+2. Encontre un simbolo: {
+3. Encontre palabra reservada: if
+3. Encontre un simbolo: (
+3. Encontre un identificador: v
+3. Encontre un simbolo: ==
+3. Encontre un numero: 0
+3. Encontre un simbolo: )
+ 3. Encontre palabra reservada: return
+ 3. Encontre un identificador: u
+3. Encontre un simbolo: ;
+4. Encontre palabra reservada: else
+ 4. Encontre palabra reservada: return
+ 4. Encontre un identificador: gcd
+4. Encontre un simbolo: (
+4. Encontre un identificador: v
+4. Encontre un simbolo: ,
+4. Encontre un identificador: u
+4. Encontre un operador resta: -
+4. Encontre un identificador: u
+4. Encontre un operador division: /
+4. Encontre un identificador: v
+4. Encontre un operador multiplicacion: *
+4. Encontre un identificador: v
+4. Encontre un simbolo: )
+4. Encontre un simbolo: ;
+5. Encontre un simbolo: }
+13. Encontre palabra reservada: void
+ 13. Encontre palabra reservada: main
+13. Encontre un simbolo: (
+13. Encontre palabra reservada: void
+13. Encontre un simbolo: )
+14. Encontre un simbolo: {
+ 15. Encontre palabra reservada: float
+ ERROR LEXICO: Identificador no valido, Linea 15 8i.
+15. Encontre un simbolo: ;
+ 16. Encontre palabra reservada: int
+ 16. Encontre un identificador: h
+16. Encontre un simbolo: ;
+  17. Encontre palabra reservada: int
+ 17. Encontre un identificador: x
+17. Encontre un simbolo: [
+17. Encontre un numero: 10
+17. Encontre un simbolo: ]
+17. Encontre un simbolo: ;
+  19. Encontre un identificador: i
+ 19. Encontre un simbolo: =
+ ERROR LEXICO: Numero decimal mal formulado, Linea 19 58..
+19. Encontre un simbolo: ;
+ 20. Encontre palabra reservada: while
+ 20. Encontre un simbolo: (
+20. Encontre un identificador: i
+ 20. Encontre un operador logico: <
+ 20. Encontre un numero: 10
+20. Encontre un simbolo: )
+ 21. Encontre un simbolo: {
+22. Encontre un identificador: i
+ 22. Encontre un simbolo: =
+ 22. Encontre un identificador: i
+ 22. Encontre un operador suma: +
+ 22. Encontre numero flotante: 0.2
+22. Encontre un operador suma: +
+22. Encontre numero flotante: 0.3
+22. Encontre un operador suma: +
+ERROR LEXICO: Numero decimal mal formulado, Linea 22 .89.
+22. Encontre un simbolo: ;
+ 23. Encontre un identificador: h
+ 23. Encontre un simbolo: =
+ 23. Encontre un numero: 9
+23. Encontre un operador division: /
+23. Encontre un numero: 3
+23. Encontre un operador multiplicacion: *
+23. Encontre un identificador: h
+23. Encontre un operador suma: +
+23. Encontre un identificador: x
+23. Encontre un simbolo: [
+23. Encontre un numero: 4
+23. Encontre un simbolo: ]
+23. Encontre un simbolo: ;
+ 24. Encontre un simbolo: }
+ 25. Encontre un identificador: x
+25. Encontre un simbolo: [
+25. Encontre un numero: 6
+Error, SIMBOLO no valido (Linea: 25): @
+25. Encontre un simbolo: ]
+ 25. Encontre un simbolo: =
+ 25. Encontre un numero: 8
+25. Encontre un simbolo: ;
+ 26. Encontre un identificador: h
+26. Encontre un simbolo: =
+26. Encontre un numero: 7
+26. Encontre un simbolo: ;
+ 27. Encontre un identificador: h
+27. Encontre un simbolo: =
+27. Encontre un identificador: gcd
+27. Encontre un simbolo: (
+27. Encontre un numero: 5
+27. Encontre un simbolo: ,
+27. Encontre un numero: 6
+27. Encontre un simbolo: )
+27. Encontre un simbolo: ;
+ 28. Encontre un identificador: i
+28. Encontre un simbolo: =
+28. Encontre un identificador: suma
+28. Encontre un simbolo: (
+28. Encontre numero flotante: 9.3
+28. Encontre un simbolo: )
+28. Encontre un simbolo: ;
+  30. Encontre un simbolo: }

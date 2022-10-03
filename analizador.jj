@@ -1,6 +1,8 @@
 options {
-    IGNORE_CASE = true;
-    STATIC = false;
+Ignore_Case = false;
+STATIC=false;
+DEBUG_PARSER=true;
+DEBUG_LOOKAHEAD=true;
 }
 
 PARSER_BEGIN (Analizador)
@@ -135,7 +137,7 @@ void declaration_ListP() : {}
 
 void declaration() : {}
 {
-    var_declaration() | fun_declaration()
+   (LOOKAHEAD(5) var_declaration() | fun_declaration())
 }
 
 void var_declaration() : {}
@@ -175,12 +177,12 @@ void param() : {}
 
 void compound_stms() : {}
 {
-    local_declarations() statement_list()
+    <ABRIRLLA> local_declarations() statement_list() <CERRARLLA>
 }
 
 void local_declarations() : {}
 {
-    (LOOKAHEAD(5) local_declarationsP())*
+    local_declarationsP()
 }
 
 void local_declarationsP() : {}
@@ -190,7 +192,7 @@ void local_declarationsP() : {}
 
 void statement_list() : {}
 {
-   (LOOKAHEAD(5)statement_listP())*
+   statement_listP()
 }
 
 void statement_listP() : {}
