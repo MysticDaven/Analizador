@@ -142,7 +142,7 @@ void declaration() : {}
 
 void var_declaration() : {}
 {
-    type_Specifier()<ID><FINLINEA> | type_Specifier()<ID><ABRIRCOR><NUMERO><CERRARCOR><FINLINEA>
+    (LOOKAHEAD(5) type_Specifier()<ID><FINLINEA> | type_Specifier()<ID><ABRIRCOR><NUMERO><CERRARCOR><FINLINEA>)
 }
 
 void type_Specifier() : {}
@@ -172,7 +172,7 @@ void param_listP() : {}
 
 void param() : {}
 {
-    type_Specifier()<ID> | type_Specifier()<ID><ABRIRCOR><CERRARCOR>
+    (LOOKAHEAD(5) type_Specifier()<ID> | type_Specifier()<ID><ABRIRCOR><CERRARCOR>)
 }
 
 void compound_stms() : {}
@@ -212,7 +212,7 @@ void expression_stmt() : {}
 
 void selection_stmt() : {}
 {
-   <IF><ABRIRPAR>expression()<CERRARPAR>statement() | <IF><ABRIRPAR>expression()<CERRARPAR>statement()<ELSE>statement() 
+   (LOOKAHEAD(5) <IF><ABRIRPAR>expression()<CERRARPAR>statement() | <IF><ABRIRPAR>expression()<CERRARPAR>statement()<ELSE>statement() )
 }
 
 void iteration_stmt() : {}
@@ -222,7 +222,7 @@ void iteration_stmt() : {}
 
 void return_stmt() : {}
 {
-    <RETURN><FINLINEA> | <RETURN>expression()<FINLINEA>
+    (LOOKAHEAD(5) <RETURN><FINLINEA> | <RETURN>expression()<FINLINEA> )
 }
 
 void expression() : {}
@@ -232,17 +232,17 @@ void expression() : {}
 
 void var() : {}
 {
-    <ID> | <ID> <ABRIRCOR>expression()<CERRARCOR>
+    (LOOKAHEAD(3) <ID> | <ID> <ABRIRCOR>expression()<CERRARCOR>)
 }
 
 void simple_expression() : {}
 {
-    additive_expression() relop() additive_expression() | additive_expression()
+    (LOOKAHEAD(5) additive_expression() relop() additive_expression() | additive_expression())
 }
 
 void relop() : {}
 {
-    <MENORQUE><IGUAL> | <MENORQUE> | <MAYORQUE> | <MAYORQUE><IGUAL> | <IGUAL><IGUAL> | <DIFERENTEDE> 
+   (LOOKAHEAD(3) <MENORQUE><IGUAL> | <MENORQUE> | <MAYORQUE> | <MAYORQUE><IGUAL> | <IGUAL><IGUAL> | <DIFERENTEDE> )
 }
 
 void additive_expression() : {}
@@ -277,7 +277,7 @@ void mulop() : {}
 
 void factor() : {}
 {
-    <ABRIRPAR>expression()<CERRARPAR> | var() | call() | <NUMERO> | <NUMERODECIMAL> | <CHAR>
+    (LOOKAHEAD(3) <ABRIRPAR>expression()<CERRARPAR> | var() | call() | <NUMERO> | <NUMERODECIMAL> | <CHAR>)
 }
 
 void call() : {}
