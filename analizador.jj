@@ -135,6 +135,12 @@ void declaration_ListP() : {}
     (LOOKAHEAD(5)declaration() declaration_ListP())*
 }
 
+void fun_declaration() : {}
+{
+    type_specifier() <ID> <ABRIRPAR> params() <CERRARPAR> compound_stmt()
+}
+
+
 void declaration() : {}
 {
     var_declaration() | fun_declaration()
@@ -161,10 +167,6 @@ void type_specifier() : {}
     <INT> | <FLOAT> | <CHAR> | <VOID>
 }
 
-void fun_declaration() : {}
-{
-    type_specifier() <ID> <ABRIRPAR> params() <CERRARPAR> compound_stmt()
-}
 
 void params() : {}
 {
@@ -311,14 +313,14 @@ void mulop() : {}
     <POR> | <ENTRE> | <MODULO> 
 }
 
-void factor() : {}
-{
-    (LOOKAHEAD(5)<ABRIRPAR> expression() <CERRARPAR> | var() | call() | <NUMENT> | <NUMERODECIMAL> | <CHAR>)
-}
-
 void call() : {}
 {
     <ID><ABRIRPAR>args()<CERRARPAR>
+}
+
+void factor() : {}
+{
+    <ABRIRPAR> expression() <CERRARPAR> | var() | call() | <NUMENT> | <NUMERODECIMAL> | <CHAR>
 }
 
 void args() : {}
