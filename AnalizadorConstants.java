@@ -69,7 +69,7 @@ public interface AnalizadorConstants {
   /** RegularExpression Id. */
   int TEXTO = 30;
   /** RegularExpression Id. */
-  int NUMERO = 31;
+  int NUMENT = 31;
   /** RegularExpression Id. */
   int FINLINEA = 32;
   /** RegularExpression Id. */
@@ -171,7 +171,7 @@ public interface AnalizadorConstants {
     "\"!\"",
     "\"%\"",
     "<TEXTO>",
-    "<NUMERO>",
+    "<NUMENT>",
     "\";\"",
     "\",\"",
     "<GUIONES>",

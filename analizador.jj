@@ -51,7 +51,7 @@ TOKEN:
     <NEGEX : "!" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <MODULO : "%" > {System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <TEXTO : ("\"") (["\u0001"-"\u0021"] | ["\u0023"-"\uffdc"] | (""))+ ("\"") > |
-    <NUMERO : (["0"-"9"])(["0"-"9"])*>{System.out.println(matchedToken.beginLine+". Encontre un numero: "+image);} |
+    <NUMENT : (["0"-"9"])(["0"-"9"])*>{System.out.println(matchedToken.beginLine+". Encontre un numero: "+image);} |
     <FINLINEA : ";">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <COMA : ",">{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
     <GUIONES : ["_"]>{System.out.println(matchedToken.beginLine+". Encontre un simbolo: "+image);} |
@@ -128,56 +128,72 @@ void Program() : {}
 void declaration_List() : {}
 {
     declaration() declaration_ListP()
-}
+} 
 
 void declaration_ListP() : {}
 {
-    (LOOKAHEAD(5) declaration() declaration_ListP())*
+    (LOOKAHEAD(5)declaration() declaration_ListP())*
 }
 
 void declaration() : {}
 {
-   (LOOKAHEAD(5) var_declaration() | fun_declaration())
+    var_declaration() | fun_declaration()
 }
 
 void var_declaration() : {}
 {
-    (LOOKAHEAD(5) type_Specifier()<ID><FINLINEA> | type_Specifier()<ID><ABRIRCOR><NUMERO><CERRARCOR><FINLINEA>)
+     type_specifier() <ID> var_declaration2()
 }
 
-void type_Specifier() : {}
+void var_declaration2() : {}
+{
+    <FINLINEA> | <ABRIRCOR><NUMENT><CERRARCOR><FINLINEA> |  rec_id() <FINLINEA>
+}
+
+void rec_id() : {}
+{
+    (LOOKAHEAD(5) <COMA><ID> rec_id())*
+}
+
+
+void type_specifier() : {}
 {
     <INT> | <FLOAT> | <CHAR> | <VOID>
 }
 
 void fun_declaration() : {}
 {
-    type_Specifier() <ID><ABRIRPAR>params()<CERRARPAR>compound_stms()
+    type_specifier() <ID> <ABRIRPAR> params() <CERRARPAR> compound_stmt()
 }
 
 void params() : {}
 {
-    param_list() | <VOID>
+    (LOOKAHEAD(5) param_list() | <VOID>)
 }
 
 void param_list() : {}
 {
-    param() param_listP()
+    param() param_listP() 
 }
 
-void param_listP() : {}
+void param_listP() : {}     
 {
-    (LOOKAHEAD(5) <COMA> param() param_listP())*
+    (LOOKAHEAD(5)<COMA> param() param_listP())*
 }
 
 void param() : {}
 {
-    (LOOKAHEAD(5) type_Specifier()<ID> | type_Specifier()<ID><ABRIRCOR><CERRARCOR>)
+   type_specifier() <ID> param2()
 }
 
-void compound_stms() : {}
+void param2() : {}
 {
-    <ABRIRLLA> local_declarations() statement_list() <CERRARLLA>
+   (LOOKAHEAD(5) <ABRIRCOR><CERRARCOR>)*
+}
+
+void compound_stmt() : {}
+{
+    <ABRIRLLA> local_declarations()  statement_list() <CERRARLLA>
 }
 
 void local_declarations() : {}
@@ -187,115 +203,137 @@ void local_declarations() : {}
 
 void local_declarationsP() : {}
 {
-    (LOOKAHEAD(5) var_declaration() local_declarationsP())*
+    (LOOKAHEAD(5) var_declaration())*
 }
 
 void statement_list() : {}
 {
-   statement_listP()
+    statement_listP()
 }
 
 void statement_listP() : {}
 {
-   (LOOKAHEAD(5) statement() statement_listP())*
+    (LOOKAHEAD(5) statement())*
 }
 
 void statement() : {}
 {
-    expression_stmt() | compound_stms() | selection_stmt() | iteration_stmt() | return_stmt()
+    expression_stmt() | compound_stmt() | selection_stmt() | iteration_stmt() | return_stmt()
 }
 
 void expression_stmt() : {}
 {
-    expression()<FINLINEA> | <FINLINEA>
+    expression() <FINLINEA> | <FINLINEA>
 }
 
 void selection_stmt() : {}
 {
-   (LOOKAHEAD(5) <IF><ABRIRPAR>expression()<CERRARPAR>statement() | <IF><ABRIRPAR>expression()<CERRARPAR>statement()<ELSE>statement() )
+    <IF><ABRIRPAR>expression()<CERRARPAR> statement() selection_stmt2()
+}
+
+void selection_stmt2() : {}
+{
+    (LOOKAHEAD(5)<ELSE> statement())*
 }
 
 void iteration_stmt() : {}
 {
-    <WHILE><ABRIRPAR>expression()<CERRARPAR>statement()
+    <WHILE><ABRIRPAR>expression()<CERRARPAR>statement()   
 }
 
 void return_stmt() : {}
 {
-    (LOOKAHEAD(5) <RETURN><FINLINEA> | <RETURN>expression()<FINLINEA> )
+    <RETURN> return_stmt2() 
+}
+
+void return_stmt2() : {}
+{
+    <FINLINEA> |  expression() <FINLINEA>
 }
 
 void expression() : {}
 {
-    var()<IGUAL>expression() | simple_expression()
+   (LOOKAHEAD(5) var() <IGUAL> expression() | simple_expression())
 }
 
 void var() : {}
 {
-    (LOOKAHEAD(3) <ID> | <ID> <ABRIRCOR>expression()<CERRARCOR>)
+     <ID> var2()
+}
+
+void var2() : {}
+{
+    (LOOKAHEAD(5) <ABRIRCOR> expression() <CERRARCOR>)*
 }
 
 void simple_expression() : {}
 {
-    (LOOKAHEAD(5) additive_expression() relop() additive_expression() | additive_expression())
+    additive_expression() simple_expression2()
+}
+
+void simple_expression2() : {}
+{
+    (LOOKAHEAD(5) relop() additive_expression())*
 }
 
 void relop() : {}
 {
-   (LOOKAHEAD(3) <MENORQUE><IGUAL> | <MENORQUE> | <MAYORQUE> | <MAYORQUE><IGUAL> | <IGUAL><IGUAL> | <DIFERENTEDE> )
+    <MENORIGUAL> | <MENORQUE> | <MAYORQUE> | <MAYORIGUAL> | <IGUALIGUAL> | <DIFERENTEDE>
 }
 
 void additive_expression() : {}
 {
-    term() additive_expressionP()
+    term() additive_expressionP() 
 }
 
 void additive_expressionP() : {}
 {
-    (LOOKAHEAD(5) addop() term() additive_expressionP())*
+    (LOOKAHEAD(5)addop() term() additive_expressionP())*
 }
 
 void addop() : {}
 {
-    <MAS> | <MENOS> 
+    <MAS> | <MENOS>
 }
 
 void term() : {}
 {
-    factor()termP() 
+    factor() termP()
 }
 
 void termP() : {}
 {
-   mulop() factor() termP()
+    (LOOKAHEAD(5) mulop() factor() termP())*
 }
 
 void mulop() : {}
 {
-    <POR> | <ENTRE> | <MODULO>
+    <POR> | <ENTRE> | <MODULO> 
 }
 
 void factor() : {}
 {
-    (LOOKAHEAD(3) <ABRIRPAR>expression()<CERRARPAR> | var() | call() | <NUMERO> | <NUMERODECIMAL> | <CHAR>)
+    (LOOKAHEAD(5)<ABRIRPAR> expression() <CERRARPAR> | var() | call() | <NUMENT> | <NUMERODECIMAL> | <CHAR>)
 }
 
 void call() : {}
 {
-    <ID><ABRIRPAR>args()<CERRARPAR> 
+    <ID><ABRIRPAR>args()<CERRARPAR>
 }
 
 void args() : {}
 {
-    (LOOKAHEAD(5) args_list())*
+    (LOOKAHEAD(5)arg_list())*
 }
 
-void args_list() : {}
+void arg_list() : {}
 {
-    expression() args_listP()
+    expression() arg_listP()
 }
 
-void args_listP() : {}
+void arg_listP() : {}
 {
-    (LOOKAHEAD(5) <COMA> expression() args_listP())*
+    (LOOKAHEAD(5) <COMA> expression() arg_listP())*
 }
+
+
