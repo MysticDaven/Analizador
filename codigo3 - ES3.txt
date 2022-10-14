@@ -3,7 +3,7 @@ int gcd(int v, int h)
 	if(v==0) return u;
 	else return gcd(v,u-u/v*v);
 }
-float suma(float p)
+ suma(float p) //ES3 FALTA TIPO DE RETORNO EN FUNCIÓN
 {
 	if(p==0) return p;
 	else return p+8.5;

@@ -20,7 +20,7 @@ TOKEN:
     <CLASS: "class"> {System.out.println(matchedToken.beginLine +". Encontre palabra reservada:  " + image);} |
     <STATIC: "static"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <VOID: "void"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
-    <MAIN: "main"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
+    
     <STRING: "String"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <INT: "int"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <FLOAT: "float"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
@@ -185,7 +185,7 @@ void param_listP() : {}
 
 void param() : {}
 {
-   type_specifier() <ID> param2()
+    type_specifier() <ID> param2()
 }
 
 void param2() : {}
@@ -320,13 +320,10 @@ void call() : {}
 
 void factor() : {}
 {
-    <ABRIRPAR> expression() <CERRARPAR> | prueba() | <NUMENT> | <NUMERODECIMAL> | <CHAR>
+    LOOKAHEAD(20) <ABRIRPAR> expression() <CERRARPAR> | LOOKAHEAD(20) var() | LOOKAHEAD(20) call() | <NUMENT> | <NUMERODECIMAL> | <CHAR>
 }
 
-void prueba() : {}
-{
-    (LOOKAHEAD(3) var() | call())
-}
+
 
 void args() : {}
 {

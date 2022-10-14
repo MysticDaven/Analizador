@@ -3,7 +3,7 @@ int gcd(int v, int h)
 	if(v==0) return u;
 	else return gcd(v,u-u/v*v);
 }
-float suma(float p)
+ float suma(float p) 
 {
 	if(p==0) return p;
 	else return p+8.5;
@@ -16,7 +16,8 @@ void main(void)
     int x[10];
     
     i = 5;
-    while (i < 10)
+    while (i 10) //ES6 FALTA OPERADOR EN CONDICION
+
     {
 	i = i + 0.2+0.3+8.9;
         h = 9/3*h+x[4];

@@ -1,0 +1,676 @@
+Call:   inicio
+  Call:   Program
+    Call:   declaration_List
+      Call:   declaration
+        Call:   var_declaration(LOOKING AHEAD...)
+          Call:   type_specifier(LOOKING AHEAD...)
+7. Encontre palabra reservada: int
+            Visited token: <"int" at line 7 column 1>; Expected token: <"int">
+          Return: type_specifier(LOOKAHEAD SUCCEEDED)
+7. Encontre un identificador: gcd
+          Visited token: <<ID>: "gcd" at line 7 column 5>; Expected token: <<ID>>
+          Call:   var_declaration2(LOOKING AHEAD...)
+7. Encontre un simbolo: (
+            Visited token: <"(" at line 7 column 8>; Expected token: <";">
+            Visited token: <"(" at line 7 column 8>; Expected token: <"[">
+            Call:   rec_id(LOOKING AHEAD...)
+              Visited token: <"(" at line 7 column 8>; Expected token: <",">
+            Return: rec_id(LOOKAHEAD SUCCEEDED)
+            Visited token: <"(" at line 7 column 8>; Expected token: <";">
+          Return: var_declaration2(LOOKAHEAD FAILED)
+        Return: var_declaration(LOOKAHEAD FAILED)
+        Call:   fun_declaration
+          Call:   type_specifier
+            Consumed token: <"int" at line 7 column 1>
+          Return: type_specifier
+          Consumed token: <<ID>: "gcd" at line 7 column 5>
+          Consumed token: <"(" at line 7 column 8>
+          Call:   params
+            Call:   param_list(LOOKING AHEAD...)
+              Call:   param(LOOKING AHEAD...)
+                Call:   type_specifier(LOOKING AHEAD...)
+7. Encontre palabra reservada: int
+                  Visited token: <"int" at line 7 column 9>; Expected token: <"int">
+                Return: type_specifier(LOOKAHEAD SUCCEEDED)
+7. Encontre un identificador: u
+                Visited token: <<ID>: "u" at line 7 column 13>; Expected token: <<ID>>
+                Call:   param2(LOOKING AHEAD...)
+7. Encontre un simbolo: ,
+                  Visited token: <"," at line 7 column 14>; Expected token: <"[">
+                Return: param2(LOOKAHEAD SUCCEEDED)
+              Return: param(LOOKAHEAD SUCCEEDED)
+              Call:   param_listP(LOOKING AHEAD...)
+                Visited token: <"," at line 7 column 14>; Expected token: <",">
+                Call:   param(LOOKING AHEAD...)
+                  Call:   type_specifier(LOOKING AHEAD...)
+7. Encontre palabra reservada: int
+                    Visited token: <"int" at line 7 column 16>; Expected token: <"int">
+                  Return: type_specifier(LOOKAHEAD SUCCEEDED)
+7. Encontre un identificador: v
+                  Visited token: <<ID>: "v" at line 7 column 20>; Expected token: <<ID>>
+                  Call:   param_list
+                    Call:   param
+                      Call:   type_specifier
+                        Consumed token: <"int" at line 7 column 9>
+                      Return: type_specifier
+                      Consumed token: <<ID>: "u" at line 7 column 13>
+                      Call:   param2
+                        Visited token: <"," at line 7 column 14>; Expected token: <"[">
+                      Return: param2
+                    Return: param
+                    Call:   param_listP
+                      Visited token: <"," at line 7 column 14>; Expected token: <",">
+                      Call:   param(LOOKING AHEAD...)
+                        Call:   type_specifier(LOOKING AHEAD...)
+                          Visited token: <"int" at line 7 column 16>; Expected token: <"int">
+                        Return: type_specifier(LOOKAHEAD SUCCEEDED)
+                        Visited token: <<ID>: "v" at line 7 column 20>; Expected token: <<ID>>
+                        Call:   param2(LOOKING AHEAD...)
+7. Encontre un simbolo: )
+                          Visited token: <")" at line 7 column 21>; Expected token: <"[">
+                        Return: param2(LOOKAHEAD SUCCEEDED)
+                      Return: param(LOOKAHEAD SUCCEEDED)
+                      Call:   param_listP(LOOKING AHEAD...)
+                        Visited token: <")" at line 7 column 21>; Expected token: <",">
+                      Return: param_listP(LOOKAHEAD SUCCEEDED)
+                      Consumed token: <"," at line 7 column 14>
+                      Call:   param
+                        Call:   type_specifier
+                          Consumed token: <"int" at line 7 column 16>
+                        Return: type_specifier
+                        Consumed token: <<ID>: "v" at line 7 column 20>
+                        Call:   param2
+                          Visited token: <")" at line 7 column 21>; Expected token: <"[">
+                        Return: param2
+                      Return: param
+                      Call:   param_listP
+                        Visited token: <")" at line 7 column 21>; Expected token: <",">
+                      Return: param_listP
+                      Visited token: <")" at line 7 column 21>; Expected token: <",">
+                    Return: param_listP
+                  Return: param_list
+                Return: params
+                Consumed token: <")" at line 7 column 21>
+                Call:   compound_stmt
+8. Encontre un simbolo: {
+                  Consumed token: <"{" at line 8 column 1>
+                  Call:   local_declarations
+                    Call:   local_declarationsP
+                      Call:   var_declaration(LOOKING AHEAD...)
+                        Call:   type_specifier(LOOKING AHEAD...)
+9. Encontre palabra reservada: if
+                          Visited token: <"if" at line 9 column 9>; Expected token: <"int">
+                          Visited token: <"if" at line 9 column 9>; Expected token: <"float">
+                          Visited token: <"if" at line 9 column 9>; Expected token: <"char">
+                          Visited token: <"if" at line 9 column 9>; Expected token: <"void">
+                        Return: type_specifier(LOOKAHEAD FAILED)
+                      Return: var_declaration(LOOKAHEAD FAILED)
+                    Return: local_declarationsP
+                  Return: local_declarations
+                  Call:   statement_list
+                    Call:   statement_listP
+                      Call:   statement(LOOKING AHEAD...)
+                        Call:   expression_stmt(LOOKING AHEAD...)
+                          Call:   expression(LOOKING AHEAD...)
+                            Call:   var(LOOKING AHEAD...)
+                              Visited token: <"if" at line 9 column 9>; Expected token: <<ID>>
+                            Return: var(LOOKAHEAD FAILED)
+                            Call:   simple_expression(LOOKING AHEAD...)
+                              Call:   additive_expression(LOOKING AHEAD...)
+                                Call:   term(LOOKING AHEAD...)
+                                  Call:   factor(LOOKING AHEAD...)
+                                    Visited token: <"if" at line 9 column 9>; Expected token: <"(">
+                                    Call:   var(LOOKING AHEAD...)
+                                      Visited token: <"if" at line 9 column 9>; Expected token: <<ID>>
+                                    Return: var(LOOKAHEAD FAILED)
+                                    Call:   call(LOOKING AHEAD...)
+                                      Visited token: <"if" at line 9 column 9>; Expected token: <<ID>>
+                                    Return: call(LOOKAHEAD FAILED)
+                                    Visited token: <"if" at line 9 column 9>; Expected token: <<NUMENT>>
+                                    Visited token: <"if" at line 9 column 9>; Expected token: <<NUMERODECIMAL>>
+                                    Visited token: <"if" at line 9 column 9>; Expected token: <"char">
+                                  Return: factor(LOOKAHEAD FAILED)
+                                Return: term(LOOKAHEAD FAILED)
+                              Return: additive_expression(LOOKAHEAD FAILED)
+                            Return: simple_expression(LOOKAHEAD FAILED)
+                          Return: expression(LOOKAHEAD FAILED)
+                          Visited token: <"if" at line 9 column 9>; Expected token: <";">
+                        Return: expression_stmt(LOOKAHEAD FAILED)
+                        Call:   compound_stmt(LOOKING AHEAD...)
+                          Visited token: <"if" at line 9 column 9>; Expected token: <"{">
+                        Return: compound_stmt(LOOKAHEAD FAILED)
+                        Call:   selection_stmt(LOOKING AHEAD...)
+                          Visited token: <"if" at line 9 column 9>; Expected token: <"if">
+9. Encontre un simbolo: (
+                          Visited token: <"(" at line 9 column 11>; Expected token: <"(">
+                          Call:   expression(LOOKING AHEAD...)
+                            Call:   var(LOOKING AHEAD...)
+9. Encontre un identificador: v
+                              Visited token: <<ID>: "v" at line 9 column 12>; Expected token: <<ID>>
+                              Call:   var2(LOOKING AHEAD...)
+9. Encontre un simbolo: ==
+                                Visited token: <"==" at line 9 column 13>; Expected token: <"[">
+                              Return: var2(LOOKAHEAD SUCCEEDED)
+                            Return: var(LOOKAHEAD SUCCEEDED)
+                            Visited token: <"==" at line 9 column 13>; Expected token: <"=">
+                            Call:   simple_expression(LOOKING AHEAD...)
+                              Call:   additive_expression(LOOKING AHEAD...)
+                                Call:   term(LOOKING AHEAD...)
+                                  Call:   factor(LOOKING AHEAD...)
+                                    Visited token: <<ID>: "v" at line 9 column 12>; Expected token: <"(">
+                                    Call:   var(LOOKING AHEAD...)
+                                      Visited token: <<ID>: "v" at line 9 column 12>; Expected token: <<ID>>
+                                      Call:   var2(LOOKING AHEAD...)
+                                        Visited token: <"==" at line 9 column 13>; Expected token: <"[">
+                                      Return: var2(LOOKAHEAD SUCCEEDED)
+                                    Return: var(LOOKAHEAD SUCCEEDED)
+                                  Return: factor(LOOKAHEAD SUCCEEDED)
+                                  Call:   termP(LOOKING AHEAD...)
+                                    Call:   mulop(LOOKING AHEAD...)
+                                      Visited token: <"==" at line 9 column 13>; Expected token: <"*">
+                                      Visited token: <"==" at line 9 column 13>; Expected token: <"/">
+                                      Visited token: <"==" at line 9 column 13>; Expected token: <"%">
+                                    Return: mulop(LOOKAHEAD FAILED)
+                                  Return: termP(LOOKAHEAD SUCCEEDED)
+                                Return: term(LOOKAHEAD SUCCEEDED)
+                                Call:   additive_expressionP(LOOKING AHEAD...)
+                                  Call:   addop(LOOKING AHEAD...)
+                                    Visited token: <"==" at line 9 column 13>; Expected token: <"+">
+                                    Visited token: <"==" at line 9 column 13>; Expected token: <"-">
+                                  Return: addop(LOOKAHEAD FAILED)
+                                Return: additive_expressionP(LOOKAHEAD SUCCEEDED)
+                              Return: additive_expression(LOOKAHEAD SUCCEEDED)
+                              Call:   simple_expression2(LOOKING AHEAD...)
+                                Call:   relop(LOOKING AHEAD...)
+                                  Visited token: <"==" at line 9 column 13>; Expected token: <"<=">
+                                  Visited token: <"==" at line 9 column 13>; Expected token: <"<">
+                                  Visited token: <"==" at line 9 column 13>; Expected token: <">">
+                                  Visited token: <"==" at line 9 column 13>; Expected token: <">=">
+                                  Visited token: <"==" at line 9 column 13>; Expected token: <"==">
+                                Return: relop(LOOKAHEAD SUCCEEDED)
+                                Call:   additive_expression(LOOKING AHEAD...)
+                                  Call:   term(LOOKING AHEAD...)
+                                    Call:   factor(LOOKING AHEAD...)
+9. Encontre un numero: 0
+                                      Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <"(">
+                                      Call:   var(LOOKING AHEAD...)
+                                        Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<ID>>
+                                      Return: var(LOOKAHEAD FAILED)
+                                      Call:   call(LOOKING AHEAD...)
+                                        Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<ID>>
+                                      Return: call(LOOKAHEAD FAILED)
+                                      Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<NUMENT>>
+                                      Call:   statement
+                                        Call:   selection_stmt
+                                          Consumed token: <"if" at line 9 column 9>
+                                          Consumed token: <"(" at line 9 column 11>
+                                          Call:   expression
+                                            Call:   var(LOOKING AHEAD...)
+                                              Visited token: <<ID>: "v" at line 9 column 12>; Expected token: <<ID>>
+                                              Call:   var2(LOOKING AHEAD...)
+                                                Visited token: <"==" at line 9 column 13>; Expected token: <"[">
+                                              Return: var2(LOOKAHEAD SUCCEEDED)
+                                            Return: var(LOOKAHEAD SUCCEEDED)
+                                            Visited token: <"==" at line 9 column 13>; Expected token: <"=">
+                                            Call:   simple_expression
+                                              Call:   additive_expression
+                                                Call:   term
+                                                  Call:   factor
+                                                    Visited token: <<ID>: "v" at line 9 column 12>; Expected token: <"(">
+                                                    Call:   var(LOOKING AHEAD...)
+                                                      Visited token: <<ID>: "v" at line 9 column 12>; Expected token: <<ID>>
+                                                      Call:   var2(LOOKING AHEAD...)
+                                                        Visited token: <"==" at line 9 column 13>; Expected token: <"[">
+                                                      Return: var2(LOOKAHEAD SUCCEEDED)
+                                                    Return: var(LOOKAHEAD SUCCEEDED)
+                                                    Call:   var
+                                                      Consumed token: <<ID>: "v" at line 9 column 12>
+                                                      Call:   var2
+                                                        Visited token: <"==" at line 9 column 13>; Expected token: <"[">
+                                                      Return: var2
+                                                    Return: var
+                                                  Return: factor
+                                                  Call:   termP
+                                                    Call:   mulop(LOOKING AHEAD...)
+                                                      Visited token: <"==" at line 9 column 13>; Expected token: <"*">
+                                                      Visited token: <"==" at line 9 column 13>; Expected token: <"/">
+                                                      Visited token: <"==" at line 9 column 13>; Expected token: <"%">
+                                                    Return: mulop(LOOKAHEAD FAILED)
+                                                  Return: termP
+                                                Return: term
+                                                Call:   additive_expressionP
+                                                  Call:   addop(LOOKING AHEAD...)
+                                                    Visited token: <"==" at line 9 column 13>; Expected token: <"+">
+                                                    Visited token: <"==" at line 9 column 13>; Expected token: <"-">
+                                                  Return: addop(LOOKAHEAD FAILED)
+                                                Return: additive_expressionP
+                                              Return: additive_expression
+                                              Call:   simple_expression2
+                                                Call:   relop(LOOKING AHEAD...)
+                                                  Visited token: <"==" at line 9 column 13>; Expected token: <"<=">
+                                                  Visited token: <"==" at line 9 column 13>; Expected token: <"<">
+                                                  Visited token: <"==" at line 9 column 13>; Expected token: <">">
+                                                  Visited token: <"==" at line 9 column 13>; Expected token: <">=">
+                                                  Visited token: <"==" at line 9 column 13>; Expected token: <"==">
+                                                Return: relop(LOOKAHEAD SUCCEEDED)
+                                                Call:   additive_expression(LOOKING AHEAD...)
+                                                  Call:   term(LOOKING AHEAD...)
+                                                    Call:   factor(LOOKING AHEAD...)
+                                                      Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <"(">
+                                                      Call:   var(LOOKING AHEAD...)
+                                                        Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<ID>>
+                                                      Return: var(LOOKAHEAD FAILED)
+                                                      Call:   call(LOOKING AHEAD...)
+                                                        Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<ID>>
+                                                      Return: call(LOOKAHEAD FAILED)
+                                                      Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<NUMENT>>
+                                                    Return: factor(LOOKAHEAD SUCCEEDED)
+                                                    Call:   termP(LOOKING AHEAD...)
+                                                      Call:   mulop(LOOKING AHEAD...)
+9. Encontre un simbolo: )
+                                                        Visited token: <")" at line 9 column 16>; Expected token: <"*">
+                                                        Visited token: <")" at line 9 column 16>; Expected token: <"/">
+                                                        Visited token: <")" at line 9 column 16>; Expected token: <"%">
+                                                      Return: mulop(LOOKAHEAD FAILED)
+                                                    Return: termP(LOOKAHEAD SUCCEEDED)
+                                                  Return: term(LOOKAHEAD SUCCEEDED)
+                                                  Call:   additive_expressionP(LOOKING AHEAD...)
+                                                    Call:   addop(LOOKING AHEAD...)
+                                                      Visited token: <")" at line 9 column 16>; Expected token: <"+">
+                                                      Visited token: <")" at line 9 column 16>; Expected token: <"-">
+                                                    Return: addop(LOOKAHEAD FAILED)
+                                                  Return: additive_expressionP(LOOKAHEAD SUCCEEDED)
+                                                Return: additive_expression(LOOKAHEAD SUCCEEDED)
+                                                Call:   relop
+                                                  Consumed token: <"==" at line 9 column 13>
+                                                Return: relop
+                                                Call:   additive_expression
+                                                  Call:   term
+                                                    Call:   factor
+                                                      Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <"(">
+                                                      Call:   var(LOOKING AHEAD...)
+                                                        Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<ID>>
+                                                      Return: var(LOOKAHEAD FAILED)
+                                                      Call:   call(LOOKING AHEAD...)
+                                                        Visited token: <<NUMENT>: "0" at line 9 column 15>; Expected token: <<ID>>
+                                                      Return: call(LOOKAHEAD FAILED)
+                                                      Consumed token: <<NUMENT>: "0" at line 9 column 15>
+                                                    Return: factor
+                                                    Call:   termP
+                                                      Call:   mulop(LOOKING AHEAD...)
+                                                        Visited token: <")" at line 9 column 16>; Expected token: <"*">
+                                                        Visited token: <")" at line 9 column 16>; Expected token: <"/">
+                                                        Visited token: <")" at line 9 column 16>; Expected token: <"%">
+                                                      Return: mulop(LOOKAHEAD FAILED)
+                                                    Return: termP
+                                                  Return: term
+                                                  Call:   additive_expressionP
+                                                    Call:   addop(LOOKING AHEAD...)
+                                                      Visited token: <")" at line 9 column 16>; Expected token: <"+">
+                                                      Visited token: <")" at line 9 column 16>; Expected token: <"-">
+                                                    Return: addop(LOOKAHEAD FAILED)
+                                                  Return: additive_expressionP
+                                                Return: additive_expression
+                                                Call:   relop(LOOKING AHEAD...)
+                                                  Visited token: <")" at line 9 column 16>; Expected token: <"<=">
+                                                  Visited token: <")" at line 9 column 16>; Expected token: <"<">
+                                                  Visited token: <")" at line 9 column 16>; Expected token: <">">
+                                                  Visited token: <")" at line 9 column 16>; Expected token: <">=">
+                                                  Visited token: <")" at line 9 column 16>; Expected token: <"==">
+                                                  Visited token: <")" at line 9 column 16>; Expected token: <"!=">
+                                                Return: relop(LOOKAHEAD FAILED)
+                                              Return: simple_expression2
+                                            Return: simple_expression
+                                          Return: expression
+                                          Consumed token: <")" at line 9 column 16>
+                                          Call:   statement
+9. Encontre palabra reservada: return
+                                            Call:   return_stmt
+                                              Consumed token: <"return" at line 9 column 18>
+                                              Call:   return_stmt2
+9. Encontre un identificador: u
+                                                Call:   expression
+                                                  Call:   var(LOOKING AHEAD...)
+                                                    Visited token: <<ID>: "u" at line 9 column 25>; Expected token: <<ID>>
+                                                    Call:   var2(LOOKING AHEAD...)
+9. Encontre un simbolo: ;
+                                                      Visited token: <";" at line 9 column 26>; Expected token: <"[">
+                                                    Return: var2(LOOKAHEAD SUCCEEDED)
+                                                  Return: var(LOOKAHEAD SUCCEEDED)
+                                                  Visited token: <";" at line 9 column 26>; Expected token: <"=">
+                                                  Call:   simple_expression
+                                                    Call:   additive_expression
+                                                      Call:   term
+                                                        Call:   factor
+                                                          Visited token: <<ID>: "u" at line 9 column 25>; Expected token: <"(">
+                                                          Call:   var(LOOKING AHEAD...)
+                                                            Visited token: <<ID>: "u" at line 9 column 25>; Expected token: <<ID>>
+                                                            Call:   var2(LOOKING AHEAD...)
+                                                              Visited token: <";" at line 9 column 26>; Expected token: <"[">
+                                                            Return: var2(LOOKAHEAD SUCCEEDED)
+                                                          Return: var(LOOKAHEAD SUCCEEDED)
+                                                          Call:   var
+                                                            Consumed token: <<ID>: "u" at line 9 column 25>
+                                                            Call:   var2
+                                                              Visited token: <";" at line 9 column 26>; Expected token: <"[">
+                                                            Return: var2
+                                                          Return: var
+                                                        Return: factor
+                                                        Call:   termP
+                                                          Call:   mulop(LOOKING AHEAD...)
+                                                            Visited token: <";" at line 9 column 26>; Expected token: <"*">
+                                                            Visited token: <";" at line 9 column 26>; Expected token: <"/">
+                                                            Visited token: <";" at line 9 column 26>; Expected token: <"%">
+                                                          Return: mulop(LOOKAHEAD FAILED)
+                                                        Return: termP
+                                                      Return: term
+                                                      Call:   additive_expressionP
+                                                        Call:   addop(LOOKING AHEAD...)
+                                                          Visited token: <";" at line 9 column 26>; Expected token: <"+">
+                                                          Visited token: <";" at line 9 column 26>; Expected token: <"-">
+                                                        Return: addop(LOOKAHEAD FAILED)
+                                                      Return: additive_expressionP
+                                                    Return: additive_expression
+                                                    Call:   simple_expression2
+                                                      Call:   relop(LOOKING AHEAD...)
+                                                        Visited token: <";" at line 9 column 26>; Expected token: <"<=">
+                                                        Visited token: <";" at line 9 column 26>; Expected token: <"<">
+                                                        Visited token: <";" at line 9 column 26>; Expected token: <">">
+                                                        Visited token: <";" at line 9 column 26>; Expected token: <">=">
+                                                        Visited token: <";" at line 9 column 26>; Expected token: <"==">
+                                                        Visited token: <";" at line 9 column 26>; Expected token: <"!=">
+                                                      Return: relop(LOOKAHEAD FAILED)
+                                                    Return: simple_expression2
+                                                  Return: simple_expression
+                                                Return: expression
+                                                Consumed token: <";" at line 9 column 26>
+                                              Return: return_stmt2
+                                            Return: return_stmt
+                                          Return: statement
+                                          Call:   selection_stmt2
+12. Encontre un simbolo: }
+                                            Visited token: <"}" at line 12 column 1>; Expected token: <"else">
+                                          Return: selection_stmt2
+                                        Return: selection_stmt
+                                      Return: statement
+                                      Call:   statement(LOOKING AHEAD...)
+                                        Call:   expression_stmt(LOOKING AHEAD...)
+                                          Call:   expression(LOOKING AHEAD...)
+                                            Call:   var(LOOKING AHEAD...)
+                                              Visited token: <"}" at line 12 column 1>; Expected token: <<ID>>
+                                            Return: var(LOOKAHEAD FAILED)
+                                            Call:   simple_expression(LOOKING AHEAD...)
+                                              Call:   additive_expression(LOOKING AHEAD...)
+                                                Call:   term(LOOKING AHEAD...)
+                                                  Call:   factor(LOOKING AHEAD...)
+                                                    Visited token: <"}" at line 12 column 1>; Expected token: <"(">
+                                                    Call:   var(LOOKING AHEAD...)
+                                                      Visited token: <"}" at line 12 column 1>; Expected token: <<ID>>
+                                                    Return: var(LOOKAHEAD FAILED)
+                                                    Call:   call(LOOKING AHEAD...)
+                                                      Visited token: <"}" at line 12 column 1>; Expected token: <<ID>>
+                                                    Return: call(LOOKAHEAD FAILED)
+                                                    Visited token: <"}" at line 12 column 1>; Expected token: <<NUMENT>>
+                                                    Visited token: <"}" at line 12 column 1>; Expected token: <<NUMERODECIMAL>>
+                                                    Visited token: <"}" at line 12 column 1>; Expected token: <"char">
+                                                  Return: factor(LOOKAHEAD FAILED)
+                                                Return: term(LOOKAHEAD FAILED)
+                                              Return: additive_expression(LOOKAHEAD FAILED)
+                                            Return: simple_expression(LOOKAHEAD FAILED)
+                                          Return: expression(LOOKAHEAD FAILED)
+                                          Visited token: <"}" at line 12 column 1>; Expected token: <";">
+                                        Return: expression_stmt(LOOKAHEAD FAILED)
+                                        Call:   compound_stmt(LOOKING AHEAD...)
+                                          Visited token: <"}" at line 12 column 1>; Expected token: <"{">
+                                        Return: compound_stmt(LOOKAHEAD FAILED)
+                                        Call:   selection_stmt(LOOKING AHEAD...)
+                                          Visited token: <"}" at line 12 column 1>; Expected token: <"if">
+                                        Return: selection_stmt(LOOKAHEAD FAILED)
+                                        Call:   iteration_stmt(LOOKING AHEAD...)
+                                          Visited token: <"}" at line 12 column 1>; Expected token: <"while">
+                                        Return: iteration_stmt(LOOKAHEAD FAILED)
+                                        Call:   return_stmt(LOOKING AHEAD...)
+                                          Visited token: <"}" at line 12 column 1>; Expected token: <"return">
+                                        Return: return_stmt(LOOKAHEAD FAILED)
+                                      Return: statement(LOOKAHEAD FAILED)
+                                    Return: statement_listP
+                                  Return: statement_list
+                                  Consumed token: <"}" at line 12 column 1>
+                                Return: compound_stmt
+                              Return: fun_declaration
+                            Return: declaration
+                            Call:   declaration_ListP
+                              Call:   declaration(LOOKING AHEAD...)
+                                Call:   var_declaration(LOOKING AHEAD...)
+                                  Call:   type_specifier(LOOKING AHEAD...)
+14. Encontre palabra reservada: void
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"int">
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"float">
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"char">
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"void">
+                                  Return: type_specifier(LOOKAHEAD SUCCEEDED)
+14. Encontre un identificador: main
+                                  Visited token: <<ID>: "main" at line 14 column 6>; Expected token: <<ID>>
+                                  Call:   var_declaration2(LOOKING AHEAD...)
+14. Encontre un simbolo: (
+                                    Visited token: <"(" at line 14 column 10>; Expected token: <";">
+                                    Visited token: <"(" at line 14 column 10>; Expected token: <"[">
+                                    Call:   rec_id(LOOKING AHEAD...)
+                                      Visited token: <"(" at line 14 column 10>; Expected token: <",">
+                                    Return: rec_id(LOOKAHEAD SUCCEEDED)
+                                    Visited token: <"(" at line 14 column 10>; Expected token: <";">
+                                  Return: var_declaration2(LOOKAHEAD FAILED)
+                                Return: var_declaration(LOOKAHEAD FAILED)
+                                Call:   fun_declaration(LOOKING AHEAD...)
+                                  Call:   type_specifier(LOOKING AHEAD...)
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"int">
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"float">
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"char">
+                                    Visited token: <"void" at line 14 column 1>; Expected token: <"void">
+                                  Return: type_specifier(LOOKAHEAD SUCCEEDED)
+                                  Visited token: <<ID>: "main" at line 14 column 6>; Expected token: <<ID>>
+                                  Visited token: <"(" at line 14 column 10>; Expected token: <"(">
+                                  Call:   params(LOOKING AHEAD...)
+                                    Call:   param_list(LOOKING AHEAD...)
+                                      Call:   param(LOOKING AHEAD...)
+                                        Call:   type_specifier(LOOKING AHEAD...)
+14. Encontre palabra reservada: void
+                                          Visited token: <"void" at line 14 column 11>; Expected token: <"int">
+                                          Visited token: <"void" at line 14 column 11>; Expected token: <"float">
+                                          Visited token: <"void" at line 14 column 11>; Expected token: <"char">
+                                          Visited token: <"void" at line 14 column 11>; Expected token: <"void">
+                                        Return: type_specifier(LOOKAHEAD SUCCEEDED)
+14. Encontre un simbolo: )
+                                        Visited token: <")" at line 14 column 15>; Expected token: <<ID>>
+                                      Return: param(LOOKAHEAD FAILED)
+                                    Return: param_list(LOOKAHEAD FAILED)
+                                    Visited token: <"void" at line 14 column 11>; Expected token: <"void">
+                                  Return: params(LOOKAHEAD SUCCEEDED)
+                                  Visited token: <")" at line 14 column 15>; Expected token: <")">
+                                  Call:   declaration
+                                    Call:   var_declaration(LOOKING AHEAD...)
+                                      Call:   type_specifier(LOOKING AHEAD...)
+                                        Visited token: <"void" at line 14 column 1>; Expected token: <"int">
+                                        Visited token: <"void" at line 14 column 1>; Expected token: <"float">
+                                        Visited token: <"void" at line 14 column 1>; Expected token: <"char">
+                                        Visited token: <"void" at line 14 column 1>; Expected token: <"void">
+                                      Return: type_specifier(LOOKAHEAD SUCCEEDED)
+                                      Visited token: <<ID>: "main" at line 14 column 6>; Expected token: <<ID>>
+                                      Call:   var_declaration2(LOOKING AHEAD...)
+                                        Visited token: <"(" at line 14 column 10>; Expected token: <";">
+                                        Visited token: <"(" at line 14 column 10>; Expected token: <"[">
+                                        Call:   rec_id(LOOKING AHEAD...)
+                                          Visited token: <"(" at line 14 column 10>; Expected token: <",">
+                                        Return: rec_id(LOOKAHEAD SUCCEEDED)
+                                        Visited token: <"(" at line 14 column 10>; Expected token: <";">
+                                      Return: var_declaration2(LOOKAHEAD FAILED)
+                                    Return: var_declaration(LOOKAHEAD FAILED)
+                                    Call:   fun_declaration
+                                      Call:   type_specifier
+                                        Consumed token: <"void" at line 14 column 1>
+                                      Return: type_specifier
+                                      Consumed token: <<ID>: "main" at line 14 column 6>
+                                      Consumed token: <"(" at line 14 column 10>
+                                      Call:   params
+                                        Call:   param_list(LOOKING AHEAD...)
+                                          Call:   param(LOOKING AHEAD...)
+                                            Call:   type_specifier(LOOKING AHEAD...)
+                                              Visited token: <"void" at line 14 column 11>; Expected token: <"int">
+                                              Visited token: <"void" at line 14 column 11>; Expected token: <"float">
+                                              Visited token: <"void" at line 14 column 11>; Expected token: <"char">
+                                              Visited token: <"void" at line 14 column 11>; Expected token: <"void">
+                                            Return: type_specifier(LOOKAHEAD SUCCEEDED)
+                                            Visited token: <")" at line 14 column 15>; Expected token: <<ID>>
+                                          Return: param(LOOKAHEAD FAILED)
+                                        Return: param_list(LOOKAHEAD FAILED)
+                                        Consumed token: <"void" at line 14 column 11>
+                                      Return: params
+                                      Consumed token: <")" at line 14 column 15>
+                                      Call:   compound_stmt
+15. Encontre un simbolo: {
+                                        Consumed token: <"{" at line 15 column 1>
+                                        Call:   local_declarations
+                                          Call:   local_declarationsP
+                                            Call:   var_declaration(LOOKING AHEAD...)
+                                              Call:   type_specifier(LOOKING AHEAD...)
+16. Encontre palabra reservada: int
+                                                Visited token: <"int" at line 16 column 9>; Expected token: <"int">
+                                              Return: type_specifier(LOOKAHEAD SUCCEEDED)
+16. Encontre un identificador: x
+                                              Visited token: <<ID>: "x" at line 16 column 13>; Expected token: <<ID>>
+                                              Call:   var_declaration2(LOOKING AHEAD...)
+16. Encontre un simbolo: ;
+                                                Visited token: <";" at line 16 column 14>; Expected token: <";">
+                                              Return: var_declaration2(LOOKAHEAD SUCCEEDED)
+                                            Return: var_declaration(LOOKAHEAD SUCCEEDED)
+                                            Call:   var_declaration
+                                              Call:   type_specifier
+                                                Consumed token: <"int" at line 16 column 9>
+                                              Return: type_specifier
+                                              Consumed token: <<ID>: "x" at line 16 column 13>
+                                              Call:   var_declaration2
+                                                Visited token: <";" at line 16 column 14>; Expected token: <";">
+                                                Consumed token: <";" at line 16 column 14>
+                                              Return: var_declaration2
+                                            Return: var_declaration
+                                            Call:   var_declaration(LOOKING AHEAD...)
+                                              Call:   type_specifier(LOOKING AHEAD...)
+16. Encontre palabra reservada: int
+                                                Visited token: <"int" at line 16 column 16>; Expected token: <"int">
+                                              Return: type_specifier(LOOKAHEAD SUCCEEDED)
+16. Encontre un identificador: y
+                                              Visited token: <<ID>: "y" at line 16 column 20>; Expected token: <<ID>>
+                                              Call:   var_declaration2(LOOKING AHEAD...)
+16. Encontre un simbolo: ;
+                                                Visited token: <";" at line 16 column 21>; Expected token: <";">
+                                              Return: var_declaration2(LOOKAHEAD SUCCEEDED)
+                                            Return: var_declaration(LOOKAHEAD SUCCEEDED)
+                                            Call:   var_declaration
+                                              Call:   type_specifier
+                                                Consumed token: <"int" at line 16 column 16>
+                                              Return: type_specifier
+                                              Consumed token: <<ID>: "y" at line 16 column 20>
+                                              Call:   var_declaration2
+                                                Visited token: <";" at line 16 column 21>; Expected token: <";">
+                                                Consumed token: <";" at line 16 column 21>
+                                              Return: var_declaration2
+                                            Return: var_declaration
+                                            Call:   var_declaration(LOOKING AHEAD...)
+                                              Call:   type_specifier(LOOKING AHEAD...)
+17. Encontre un identificador: x
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"int">
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"float">
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"char">
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"void">
+                                              Return: type_specifier(LOOKAHEAD FAILED)
+                                            Return: var_declaration(LOOKAHEAD FAILED)
+                                          Return: local_declarationsP
+                                        Return: local_declarations
+                                        Call:   statement_list
+                                          Call:   statement_listP
+                                            Call:   statement(LOOKING AHEAD...)
+                                              Call:   expression_stmt(LOOKING AHEAD...)
+                                                Call:   expression(LOOKING AHEAD...)
+                                                  Call:   var(LOOKING AHEAD...)
+                                                    Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <<ID>>
+                                                    Call:   var2(LOOKING AHEAD...)
+17. Encontre un simbolo: =
+                                                      Visited token: <"=" at line 17 column 10>; Expected token: <"[">
+                                                    Return: var2(LOOKAHEAD SUCCEEDED)
+                                                  Return: var(LOOKAHEAD SUCCEEDED)
+                                                  Visited token: <"=" at line 17 column 10>; Expected token: <"=">
+                                                  Call:   expression(LOOKING AHEAD...)
+                                                    Call:   var(LOOKING AHEAD...)
+17. Encontre un identificador: input
+                                                      Visited token: <<ID>: "input" at line 17 column 11>; Expected token: <<ID>>
+                                                      Call:   var2(LOOKING AHEAD...)
+17. Encontre un simbolo: (
+                                                        Visited token: <"(" at line 17 column 16>; Expected token: <"[">
+                                                      Return: var2(LOOKAHEAD SUCCEEDED)
+                                                    Return: var(LOOKAHEAD SUCCEEDED)
+                                                    Visited token: <"(" at line 17 column 16>; Expected token: <"=">
+                                                    Call:   simple_expression(LOOKING AHEAD...)
+                                                      Call:   additive_expression(LOOKING AHEAD...)
+                                                        Call:   term(LOOKING AHEAD...)
+                                                          Call:   factor(LOOKING AHEAD...)
+                                                            Visited token: <<ID>: "input" at line 17 column 11>; Expected token: <"(">
+                                                            Call:   var(LOOKING AHEAD...)
+                                                              Visited token: <<ID>: "input" at line 17 column 11>; Expected token: <<ID>>
+                                                              Call:   var2(LOOKING AHEAD...)
+                                                                Visited token: <"(" at line 17 column 16>; Expected token: <"[">
+                                                              Return: var2(LOOKAHEAD SUCCEEDED)
+                                                            Return: var(LOOKAHEAD SUCCEEDED)
+                                                          Return: factor(LOOKAHEAD SUCCEEDED)
+                                                          Call:   termP(LOOKING AHEAD...)
+                                                            Call:   mulop(LOOKING AHEAD...)
+                                                              Visited token: <"(" at line 17 column 16>; Expected token: <"*">
+                                                              Visited token: <"(" at line 17 column 16>; Expected token: <"/">
+                                                              Visited token: <"(" at line 17 column 16>; Expected token: <"%">
+                                                            Return: mulop(LOOKAHEAD FAILED)
+                                                          Return: termP(LOOKAHEAD SUCCEEDED)
+                                                        Return: term(LOOKAHEAD SUCCEEDED)
+                                                        Call:   additive_expressionP(LOOKING AHEAD...)
+                                                          Call:   addop(LOOKING AHEAD...)
+                                                            Visited token: <"(" at line 17 column 16>; Expected token: <"+">
+                                                            Visited token: <"(" at line 17 column 16>; Expected token: <"-">
+                                                          Return: addop(LOOKAHEAD FAILED)
+                                                        Return: additive_expressionP(LOOKAHEAD SUCCEEDED)
+                                                      Return: additive_expression(LOOKAHEAD SUCCEEDED)
+                                                      Call:   simple_expression2(LOOKING AHEAD...)
+                                                        Call:   relop(LOOKING AHEAD...)
+                                                          Visited token: <"(" at line 17 column 16>; Expected token: <"<=">
+                                                          Visited token: <"(" at line 17 column 16>; Expected token: <"<">
+                                                          Visited token: <"(" at line 17 column 16>; Expected token: <">">
+                                                          Visited token: <"(" at line 17 column 16>; Expected token: <">=">
+                                                          Visited token: <"(" at line 17 column 16>; Expected token: <"==">
+                                                          Visited token: <"(" at line 17 column 16>; Expected token: <"!=">
+                                                        Return: relop(LOOKAHEAD FAILED)
+                                                      Return: simple_expression2(LOOKAHEAD SUCCEEDED)
+                                                    Return: simple_expression(LOOKAHEAD SUCCEEDED)
+                                                  Return: expression(LOOKAHEAD SUCCEEDED)
+                                                Return: expression(LOOKAHEAD SUCCEEDED)
+                                                Visited token: <"(" at line 17 column 16>; Expected token: <";">
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <";">
+                                              Return: expression_stmt(LOOKAHEAD FAILED)
+                                              Call:   compound_stmt(LOOKING AHEAD...)
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"{">
+                                              Return: compound_stmt(LOOKAHEAD FAILED)
+                                              Call:   selection_stmt(LOOKING AHEAD...)
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"if">
+                                              Return: selection_stmt(LOOKAHEAD FAILED)
+                                              Call:   iteration_stmt(LOOKING AHEAD...)
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"while">
+                                              Return: iteration_stmt(LOOKAHEAD FAILED)
+                                              Call:   return_stmt(LOOKING AHEAD...)
+                                                Visited token: <<ID>: "x" at line 17 column 9>; Expected token: <"return">
+                                              Return: return_stmt(LOOKAHEAD FAILED)
+                                            Return: statement(LOOKAHEAD FAILED)
+                                          Return: statement_listP
+                                        Return: statement_list
+                                      Return: compound_stmt
+                                    Return: fun_declaration
+                                  Return: declaration
+                                Return: declaration_ListP
+                              Return: declaration_List
+                            Return: Program
+                          Return: inicio

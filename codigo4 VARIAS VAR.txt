@@ -11,8 +11,8 @@ float suma(float p)
 
 void main(void)
 {
-    float i;
-    int h; 
+    float i,n2,n8;
+    int h,k,nueva; 
     int x[10];
     
     i = 5;
