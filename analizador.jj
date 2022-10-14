@@ -143,7 +143,7 @@ void fun_declaration() : {}
 
 void declaration() : {}
 {
-    (LOOKAHEAD(3) var_declaration() | fun_declaration() )
+    LOOKAHEAD(3) fun_declaration() | LOOKAHEAD(3) var_declaration()
 }
 
 void var_declaration() : {}
@@ -225,7 +225,7 @@ void statement() : {}
 
 void expression_stmt() : {}
 {
-    expression() <FINLINEA> | <FINLINEA>
+    LOOKAHEAD(5) var() <IGUAL> expression() | expression() <FINLINEA> | <FINLINEA>
 }
 
 void selection_stmt() : {}
@@ -255,7 +255,7 @@ void return_stmt2() : {}
 
 void expression() : {}
 {
-   (LOOKAHEAD(5) var() <IGUAL> expression() | simple_expression())
+   LOOKAHEAD(5) simple_expression() | LOOKAHEAD(5) var() <IGUAL> expression()
 }
 
 void var() : {}
@@ -320,19 +320,19 @@ void call() : {}
 
 void factor() : {}
 {
-    LOOKAHEAD(20) <ABRIRPAR> expression() <CERRARPAR> | LOOKAHEAD(20) var() | LOOKAHEAD(20) call() | <NUMENT> | <NUMERODECIMAL> | <CHAR>
+    LOOKAHEAD(20) <ABRIRPAR> expression() <CERRARPAR> | LOOKAHEAD(20) call() | LOOKAHEAD(20) var()  | <NUMENT> | <NUMERODECIMAL> | <CHAR>
 }
 
 
 
 void args() : {}
 {
-    (LOOKAHEAD(5)arg_list())*
+    arg_list()
 }
 
 void arg_list() : {}
 {
-    expression() arg_listP()
+    (LOOKAHEAD(5) expression() arg_listP())*
 }
 
 void arg_listP() : {}
