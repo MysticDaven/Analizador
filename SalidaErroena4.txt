@@ -1,0 +1,63 @@
+Call:   inicio
+  Call:   Program
+    Call:   declaration_List
+      Call:   declaration
+        Call:   fun_declaration(LOOKING AHEAD...)
+          Call:   type_specifier(LOOKING AHEAD...)
+4. Encontre palabra reservada: int
+            Visited token: <"int" at line 4 column 1>; Expected token: <"int">
+          Return: type_specifier(LOOKAHEAD SUCCEEDED)
+4. Encontre un identificador: x
+          Visited token: <<ID>: "x" at line 4 column 5>; Expected token: <<ID>>
+4. Encontre un simbolo: [
+          Visited token: <"[" at line 4 column 6>; Expected token: <"(">
+        Return: fun_declaration(LOOKAHEAD FAILED)
+        Call:   var_declaration(LOOKING AHEAD...)
+          Call:   type_specifier(LOOKING AHEAD...)
+            Visited token: <"int" at line 4 column 1>; Expected token: <"int">
+          Return: type_specifier(LOOKAHEAD SUCCEEDED)
+          Visited token: <<ID>: "x" at line 4 column 5>; Expected token: <<ID>>
+          Call:   var_declaration2(LOOKING AHEAD...)
+            Visited token: <"[" at line 4 column 6>; Expected token: <";">
+            Visited token: <"[" at line 4 column 6>; Expected token: <"[">
+            Call:   var_declaration
+              Call:   type_specifier
+                Consumed token: <"int" at line 4 column 1>
+              Return: type_specifier
+              Consumed token: <<ID>: "x" at line 4 column 5>
+              Call:   var_declaration2
+                Visited token: <"[" at line 4 column 6>; Expected token: <";">
+                Consumed token: <"[" at line 4 column 6>
+4. Encontre un numero: 10
+                Consumed token: <<NUMENT>: "10" at line 4 column 7>
+4. Encontre un simbolo: ]
+                Consumed token: <"]" at line 4 column 9>
+4. Encontre un simbolo: ;
+                Consumed token: <";" at line 4 column 10>
+              Return: var_declaration2
+            Return: var_declaration
+          Return: declaration
+          Call:   declaration_ListP
+            Call:   declaration(LOOKING AHEAD...)
+              Call:   fun_declaration(LOOKING AHEAD...)
+                Call:   type_specifier(LOOKING AHEAD...)
+6. Encontre palabra reservada: while
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"int">
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"float">
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"char">
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"void">
+                Return: type_specifier(LOOKAHEAD FAILED)
+              Return: fun_declaration(LOOKAHEAD FAILED)
+              Call:   var_declaration(LOOKING AHEAD...)
+                Call:   type_specifier(LOOKING AHEAD...)
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"int">
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"float">
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"char">
+                  Visited token: <"while" at line 6 column 1>; Expected token: <"void">
+                Return: type_specifier(LOOKAHEAD FAILED)
+              Return: var_declaration(LOOKAHEAD FAILED)
+            Return: declaration(LOOKAHEAD FAILED)
+          Return: declaration_ListP
+        Return: declaration_List
+      Return: Program
+    Return: inicio

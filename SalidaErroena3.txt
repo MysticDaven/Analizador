@@ -1,0 +1,74 @@
+Call:   inicio
+  Call:   Program
+    Call:   declaration_List
+      Call:   declaration
+        Call:   fun_declaration(LOOKING AHEAD...)
+          Call:   type_specifier(LOOKING AHEAD...)
+7. Encontre palabra reservada: int
+            Visited token: <"int" at line 7 column 1>; Expected token: <"int">
+          Return: type_specifier(LOOKAHEAD SUCCEEDED)
+7. Encontre un identificador: gcd
+          Visited token: <<ID>: "gcd" at line 7 column 5>; Expected token: <<ID>>
+7. Encontre un simbolo: (
+          Visited token: <"(" at line 7 column 8>; Expected token: <"(">
+          Call:   fun_declaration
+            Call:   type_specifier
+              Consumed token: <"int" at line 7 column 1>
+            Return: type_specifier
+            Consumed token: <<ID>: "gcd" at line 7 column 5>
+            Consumed token: <"(" at line 7 column 8>
+            Call:   params
+              Call:   param_list(LOOKING AHEAD...)
+                Call:   param(LOOKING AHEAD...)
+                  Call:   type_specifier(LOOKING AHEAD...)
+7. Encontre palabra reservada: int
+                    Visited token: <"int" at line 7 column 9>; Expected token: <"int">
+                  Return: type_specifier(LOOKAHEAD SUCCEEDED)
+7. Encontre un identificador: u
+                  Visited token: <<ID>: "u" at line 7 column 13>; Expected token: <<ID>>
+                  Call:   param2(LOOKING AHEAD...)
+7. Encontre un simbolo: ,
+                    Visited token: <"," at line 7 column 14>; Expected token: <"[">
+                  Return: param2(LOOKAHEAD SUCCEEDED)
+                Return: param(LOOKAHEAD SUCCEEDED)
+                Call:   param_listP(LOOKING AHEAD...)
+                  Visited token: <"," at line 7 column 14>; Expected token: <",">
+                  Call:   param(LOOKING AHEAD...)
+                    Call:   type_specifier(LOOKING AHEAD...)
+7. Encontre un identificador: v
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"int">
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"float">
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"char">
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"void">
+                    Return: type_specifier(LOOKAHEAD FAILED)
+                  Return: param(LOOKAHEAD FAILED)
+                Return: param_listP(LOOKAHEAD SUCCEEDED)
+              Return: param_list(LOOKAHEAD SUCCEEDED)
+              Call:   param_list
+                Call:   param
+                  Call:   type_specifier
+                    Consumed token: <"int" at line 7 column 9>
+                  Return: type_specifier
+                  Consumed token: <<ID>: "u" at line 7 column 13>
+                  Call:   param2
+                    Visited token: <"," at line 7 column 14>; Expected token: <"[">
+                  Return: param2
+                Return: param
+                Call:   param_listP
+                  Visited token: <"," at line 7 column 14>; Expected token: <",">
+                  Call:   param(LOOKING AHEAD...)
+                    Call:   type_specifier(LOOKING AHEAD...)
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"int">
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"float">
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"char">
+                      Visited token: <<ID>: "v" at line 7 column 16>; Expected token: <"void">
+                    Return: type_specifier(LOOKAHEAD FAILED)
+                  Return: param(LOOKAHEAD FAILED)
+                Return: param_listP
+              Return: param_list
+            Return: params
+          Return: fun_declaration
+        Return: declaration
+      Return: declaration_List
+    Return: Program
+  Return: inicio
