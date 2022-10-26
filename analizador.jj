@@ -7,11 +7,16 @@ DEBUG_LOOKAHEAD=true;
 
 PARSER_BEGIN (Analizador)
 /** Analizador */
+import Elemento;
     public class Analizador {
         public static void main(String[] args) throws ParseException{
             Analizador anLex = new Analizador (System.in);
+            Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
+            Elemento ele = new Elemento();
             anLex.inicio();
             }
+
+        public static void Agregar(String tipo, String ID)
     }
 PARSER_END (Analizador)
 
