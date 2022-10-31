@@ -8,6 +8,7 @@ DEBUG_LOOKAHEAD=true;
 PARSER_BEGIN (Analizador)
 /** Analizador */
 import Elemento;
+import java.util.*;
     public class Analizador {
         public static void main(String[] args) throws ParseException{
             Analizador anLex = new Analizador (System.in);
@@ -16,7 +17,9 @@ import Elemento;
             anLex.inicio();
             }
 
-        public static void Agregar(String tipo, String ID)
+        public static void Agregar(String ID, String tipo){
+
+        }
     }
 PARSER_END (Analizador)
 
@@ -142,7 +145,7 @@ void declaration_ListP() : {}
 
 void fun_declaration() : {}
 {
-    type_specifier() <ID> <ABRIRPAR> params() <CERRARPAR> compound_stmt()
+    type_specifier() <ID>{String x=token.image, tipo="Funcion";Agregar(x,tipo);} <ABRIRPAR> params() <CERRARPAR> compound_stmt()
 }
 
 
@@ -153,7 +156,7 @@ void declaration() : {}
 
 void var_declaration() : {}
 {
-     type_specifier() <ID> var_declaration2()
+     type_specifier() <ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} var_declaration2()
 }
 
 void var_declaration2() : {}
@@ -163,7 +166,7 @@ void var_declaration2() : {}
 
 void rec_id() : {}
 {
-    (LOOKAHEAD(5) <COMA><ID> rec_id())*
+    (LOOKAHEAD(5) <COMA><ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} rec_id())*
 }
 
 
