@@ -10,15 +10,19 @@ PARSER_BEGIN (Analizador)
 import Elemento;
 import java.util.*;
     public class Analizador {
+        static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
+        static int cont=0;
         public static void main(String[] args) throws ParseException{
-            Analizador anLex = new Analizador (System.in);
-            Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
-            Elemento ele = new Elemento();
+            Analizador anLex = new Analizador (System.in);      
             anLex.inicio();
             }
 
         public static void Agregar(String ID, String tipo){
-
+            Elemento ele = new Elemento();
+            ele.id=ID;
+            ele.tipo=tipo;
+            ts.put(cont,ele);
+            cont++;
         }
     }
 PARSER_END (Analizador)
