@@ -1,8 +1,8 @@
 options {
 Ignore_Case = false;
 STATIC=false;
-DEBUG_PARSER=true;
-DEBUG_LOOKAHEAD=true;
+DEBUG_PARSER=false;
+DEBUG_LOOKAHEAD=false;
 }
 
 PARSER_BEGIN (Analizador)
@@ -13,16 +13,20 @@ import java.util.*;
         static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
         static int cont=0;
         static  Elemento ele;
+
         public static void main(String[] args) throws ParseException{
             Analizador anLex = new Analizador (System.in);      
             anLex.inicio();
+            for(int i=0;i<cont;i++){
+                System.out.println("Tabla: "+i+", ID= "+ts.get("Var"+i).id+", Categoria: "+ts.get("Var"+i).categoria);
             }
+        }
 
         public static void Agregar(String ID, String tipo){
             ele = new Elemento(ID,tipo);
             ele.id=ID;
-            ele.tipo=tipo;
-            ts.put(ID,ele);
+            ele.categoria=tipo;
+            ts.put("Var"+cont,ele);
             cont++;
         }
     }
@@ -198,7 +202,7 @@ void param_listP() : {}
 
 void param() : {}
 {
-    type_specifier() <ID> param2()
+    type_specifier() <ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} param2()
 }
 
 void param2() : {}

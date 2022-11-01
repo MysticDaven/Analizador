@@ -7,9 +7,9 @@ public class Elemento {
     public Elemento() {
     }
 
-    public Elemento(String id, String tipo) {
+    public Elemento(String id, String categoria) {
         this.id = id;
-        this.tipo = tipo;
+        this.categoria = categoria;
     }
 
     public Elemento(String id, String categoria, String tipo, String size) {
