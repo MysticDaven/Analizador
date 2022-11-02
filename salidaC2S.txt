@@ -1,0 +1,258 @@
+4. Encontre palabra reservada: int
+4. Encontre un identificador: x
+4. Encontre un simbolo: [
+4. Encontre un numero: 10
+4. Encontre un simbolo: ]
+4. Encontre un simbolo: ;
+6. Encontre palabra reservada: int
+6. Encontre un identificador: minloc
+6. Encontre un simbolo: (
+6. Encontre palabra reservada: int
+6. Encontre un identificador: a
+6. Encontre un simbolo: [
+6. Encontre un simbolo: ]
+6. Encontre un simbolo: ,
+hola, tengo un a
+6. Encontre palabra reservada: int
+6. Encontre un identificador: low
+6. Encontre un simbolo: ,
+6. Encontre palabra reservada: int
+6. Encontre un identificador: high
+6. Encontre un simbolo: )
+7. Encontre un simbolo: {
+8. Encontre palabra reservada: int
+8. Encontre un identificador: i
+8. Encontre un simbolo: ;
+8. Encontre palabra reservada: int
+8. Encontre un identificador: x
+8. Encontre un simbolo: ;
+8. Encontre palabra reservada: int
+8. Encontre un identificador: k
+8. Encontre un simbolo: ;
+10. Encontre un identificador: k
+10. Encontre un simbolo: =
+10. Encontre un identificador: low
+10. Encontre un simbolo: ;
+11. Encontre un identificador: x
+11. Encontre un simbolo: =
+11. Encontre un identificador: a
+11. Encontre un simbolo: [
+11. Encontre un identificador: low
+11. Encontre un simbolo: ]
+11. Encontre un simbolo: ;
+12. Encontre un identificador: i
+12. Encontre un simbolo: =
+12. Encontre un identificador: low
+12. Encontre un operador suma: +
+12. Encontre un numero: 1
+12. Encontre un simbolo: ;
+14. Encontre palabra reservada: while
+14. Encontre un simbolo: (
+14. Encontre un identificador: i
+14. Encontre un operador logico: <
+14. Encontre un identificador: high
+14. Encontre un simbolo: )
+15. Encontre un simbolo: {
+16. Encontre palabra reservada: if
+16. Encontre un simbolo: (
+16. Encontre un identificador: a
+16. Encontre un simbolo: [
+16. Encontre un identificador: i
+16. Encontre un simbolo: ]
+16. Encontre un operador logico: <
+16. Encontre un identificador: x
+16. Encontre un simbolo: )
+17. Encontre un simbolo: {
+18. Encontre un identificador: x
+18. Encontre un simbolo: =
+18. Encontre un identificador: a
+18. Encontre un simbolo: [
+18. Encontre un identificador: i
+18. Encontre un simbolo: ]
+18. Encontre un simbolo: ;
+19. Encontre un identificador: k
+19. Encontre un simbolo: =
+19. Encontre un identificador: i
+19. Encontre un simbolo: ;
+20. Encontre un simbolo: }
+22. Encontre un identificador: i
+22. Encontre un simbolo: =
+22. Encontre un identificador: i
+22. Encontre un operador suma: +
+22. Encontre un numero: 1
+22. Encontre un simbolo: ;
+23. Encontre un simbolo: }
+25. Encontre palabra reservada: return
+25. Encontre un identificador: k
+25. Encontre un simbolo: ;
+26. Encontre un simbolo: }
+29. Encontre palabra reservada: void
+29. Encontre un identificador: sort
+29. Encontre un simbolo: (
+29. Encontre palabra reservada: int
+29. Encontre un identificador: a
+29. Encontre un simbolo: [
+29. Encontre un simbolo: ]
+29. Encontre un simbolo: ,
+hola, tengo un a
+29. Encontre palabra reservada: int
+29. Encontre un identificador: low
+29. Encontre un simbolo: ,
+29. Encontre palabra reservada: int
+29. Encontre un identificador: high
+29. Encontre un simbolo: )
+30. Encontre un simbolo: {
+31. Encontre palabra reservada: int
+31. Encontre un identificador: i
+31. Encontre un simbolo: ;
+32. Encontre palabra reservada: int
+32. Encontre un identificador: k
+32. Encontre un simbolo: ;
+34. Encontre un identificador: i
+34. Encontre un simbolo: =
+34. Encontre un identificador: low
+34. Encontre un simbolo: ;
+35. Encontre palabra reservada: while
+35. Encontre un simbolo: (
+35. Encontre un identificador: i
+35. Encontre un operador logico: <
+35. Encontre un identificador: high
+35. Encontre un operador resta: -
+35. Encontre un numero: 1
+35. Encontre un simbolo: )
+36. Encontre un simbolo: {
+37. Encontre palabra reservada: int
+37. Encontre un identificador: t
+37. Encontre un simbolo: ;
+38. Encontre un identificador: k
+38. Encontre un simbolo: =
+38. Encontre un identificador: minloc
+38. Encontre un simbolo: (
+38. Encontre un identificador: a
+38. Encontre un simbolo: ,
+38. Encontre un identificador: i
+38. Encontre un simbolo: ,
+38. Encontre un identificador: high
+38. Encontre un simbolo: )
+38. Encontre un simbolo: ;
+39. Encontre un identificador: t
+39. Encontre un simbolo: =
+39. Encontre un identificador: a
+39. Encontre un simbolo: [
+39. Encontre un identificador: k
+39. Encontre un simbolo: ]
+39. Encontre un simbolo: ;
+40. Encontre un identificador: a
+40. Encontre un simbolo: [
+40. Encontre un identificador: k
+40. Encontre un simbolo: ]
+40. Encontre un simbolo: =
+40. Encontre un identificador: a
+40. Encontre un simbolo: [
+40. Encontre un identificador: i
+40. Encontre un simbolo: ]
+40. Encontre un simbolo: ;
+41. Encontre un identificador: a
+41. Encontre un simbolo: [
+41. Encontre un identificador: i
+41. Encontre un simbolo: ]
+41. Encontre un simbolo: =
+41. Encontre un identificador: t
+41. Encontre un simbolo: ;
+42. Encontre un identificador: i
+42. Encontre un simbolo: =
+42. Encontre un identificador: i
+42. Encontre un operador suma: +
+42. Encontre un numero: 1
+42. Encontre un simbolo: ;
+43. Encontre un simbolo: }
+44. Encontre un simbolo: }
+47. Encontre palabra reservada: void
+47. Encontre un identificador: main
+47. Encontre un simbolo: (
+47. Encontre palabra reservada: void
+47. Encontre un simbolo: )
+48. Encontre un simbolo: {
+49. Encontre palabra reservada: int
+49. Encontre un identificador: i
+49. Encontre un simbolo: ;
+51. Encontre un identificador: i
+51. Encontre un simbolo: =
+51. Encontre un numero: 0
+51. Encontre un simbolo: ;
+52. Encontre palabra reservada: while
+52. Encontre un simbolo: (
+52. Encontre un identificador: i
+52. Encontre un operador logico: <
+52. Encontre un numero: 10
+52. Encontre un simbolo: )
+53. Encontre un simbolo: {
+54. Encontre un identificador: x
+54. Encontre un simbolo: [
+54. Encontre un identificador: i
+54. Encontre un simbolo: ]
+54. Encontre un simbolo: =
+54. Encontre un identificador: input
+54. Encontre un simbolo: (
+54. Encontre un simbolo: )
+54. Encontre un simbolo: ;
+55. Encontre un identificador: i
+55. Encontre un simbolo: =
+55. Encontre un identificador: i
+55. Encontre un operador suma: +
+55. Encontre un numero: 1
+55. Encontre un simbolo: ;
+56. Encontre un simbolo: }
+58. Encontre un identificador: sort
+58. Encontre un simbolo: (
+58. Encontre un identificador: x
+58. Encontre un simbolo: ,
+58. Encontre un numero: 0
+58. Encontre un simbolo: ,
+58. Encontre un numero: 10
+58. Encontre un simbolo: )
+58. Encontre un simbolo: ;
+60. Encontre un identificador: i
+60. Encontre un simbolo: =
+60. Encontre un numero: 0
+60. Encontre un simbolo: ;
+61. Encontre palabra reservada: while
+61. Encontre un simbolo: (
+61. Encontre un identificador: i
+61. Encontre un operador logico: <
+61. Encontre un numero: 10
+61. Encontre un simbolo: )
+62. Encontre un simbolo: {
+63. Encontre un identificador: output
+63. Encontre un simbolo: (
+63. Encontre un identificador: x
+63. Encontre un simbolo: [
+63. Encontre un identificador: i
+63. Encontre un simbolo: ]
+63. Encontre un simbolo: )
+63. Encontre un simbolo: ;
+64. Encontre un identificador: i
+64. Encontre un simbolo: =
+64. Encontre un identificador: i
+64. Encontre un operador suma: +
+64. Encontre un numero: 1
+64. Encontre un simbolo: ;
+65. Encontre un simbolo: }
+66. Encontre un simbolo: }
+Tabla: 0, ID= x, Categoria: Arreglo
+Tabla: 1, ID= minloc, Categoria: Funcion
+Tabla: 2, ID= a, Categoria: Arreglo
+Tabla: 3, ID= low, Categoria: Variable
+Tabla: 4, ID= high, Categoria: Variable
+Tabla: 5, ID= i, Categoria: Variable
+Tabla: 6, ID= x, Categoria: Variable
+Tabla: 7, ID= k, Categoria: Variable
+Tabla: 8, ID= sort, Categoria: Funcion
+Tabla: 9, ID= a, Categoria: Arreglo
+Tabla: 10, ID= low, Categoria: Variable
+Tabla: 11, ID= high, Categoria: Variable
+Tabla: 12, ID= i, Categoria: Variable
+Tabla: 13, ID= k, Categoria: Variable
+Tabla: 14, ID= t, Categoria: Variable
+Tabla: 15, ID= main, Categoria: Funcion
+Tabla: 16, ID= i, Categoria: Variable

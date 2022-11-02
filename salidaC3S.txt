@@ -1,0 +1,148 @@
+1. Encontre palabra reservada: int
+1. Encontre un identificador: gcd
+1. Encontre un simbolo: (
+1. Encontre palabra reservada: int
+1. Encontre un identificador: v
+1. Encontre un simbolo: ,
+1. Encontre palabra reservada: int
+1. Encontre un identificador: h
+1. Encontre un simbolo: )
+2. Encontre un simbolo: {
+3. Encontre palabra reservada: if
+3. Encontre un simbolo: (
+3. Encontre un identificador: v
+3. Encontre un simbolo: ==
+3. Encontre un numero: 0
+3. Encontre un simbolo: )
+3. Encontre palabra reservada: return
+3. Encontre un identificador: u
+3. Encontre un simbolo: ;
+4. Encontre palabra reservada: else
+4. Encontre palabra reservada: return
+4. Encontre un identificador: gcd
+4. Encontre un simbolo: (
+4. Encontre un identificador: v
+4. Encontre un simbolo: ,
+4. Encontre un identificador: u
+4. Encontre un operador resta: -
+4. Encontre un identificador: u
+4. Encontre un operador division: /
+4. Encontre un identificador: v
+4. Encontre un operador multiplicacion: *
+4. Encontre un identificador: v
+4. Encontre un simbolo: )
+4. Encontre un simbolo: ;
+5. Encontre un simbolo: }
+6. Encontre palabra reservada: float
+6. Encontre un identificador: suma
+6. Encontre un simbolo: (
+6. Encontre palabra reservada: float
+6. Encontre un identificador: p
+6. Encontre un simbolo: )
+7. Encontre un simbolo: {
+8. Encontre palabra reservada: if
+8. Encontre un simbolo: (
+8. Encontre un identificador: p
+8. Encontre un simbolo: ==
+8. Encontre un numero: 0
+8. Encontre un simbolo: )
+8. Encontre palabra reservada: return
+8. Encontre un identificador: p
+8. Encontre un simbolo: ;
+9. Encontre palabra reservada: else
+9. Encontre palabra reservada: return
+9. Encontre un identificador: p
+9. Encontre un operador suma: +
+9. Encontre numero flotante: 8.5
+9. Encontre un simbolo: ;
+10. Encontre un simbolo: }
+12. Encontre palabra reservada: void
+12. Encontre un identificador: main
+12. Encontre un simbolo: (
+12. Encontre palabra reservada: void
+12. Encontre un simbolo: )
+13. Encontre un simbolo: {
+14. Encontre palabra reservada: float
+14. Encontre un identificador: i
+14. Encontre un simbolo: ;
+15. Encontre palabra reservada: int
+15. Encontre un identificador: h
+15. Encontre un simbolo: ;
+16. Encontre palabra reservada: int
+16. Encontre un identificador: x
+16. Encontre un simbolo: [
+16. Encontre un numero: 10
+16. Encontre un simbolo: ]
+16. Encontre un simbolo: ;
+18. Encontre un identificador: i
+18. Encontre un simbolo: =
+18. Encontre un numero: 5
+18. Encontre un simbolo: ;
+19. Encontre palabra reservada: while
+19. Encontre un simbolo: (
+19. Encontre un identificador: i
+19. Encontre un operador logico: <
+19. Encontre un numero: 10
+19. Encontre un simbolo: )
+20. Encontre un simbolo: {
+21. Encontre un identificador: i
+21. Encontre un simbolo: =
+21. Encontre un identificador: i
+21. Encontre un operador suma: +
+21. Encontre numero flotante: 0.2
+21. Encontre un operador suma: +
+21. Encontre numero flotante: 0.3
+21. Encontre un operador suma: +
+21. Encontre numero flotante: 8.9
+21. Encontre un simbolo: ;
+22. Encontre un identificador: h
+22. Encontre un simbolo: =
+22. Encontre un numero: 9
+22. Encontre un operador division: /
+22. Encontre un numero: 3
+22. Encontre un operador multiplicacion: *
+22. Encontre un identificador: h
+22. Encontre un operador suma: +
+22. Encontre un identificador: x
+22. Encontre un simbolo: [
+22. Encontre un numero: 4
+22. Encontre un simbolo: ]
+22. Encontre un simbolo: ;
+23. Encontre un simbolo: }
+24. Encontre un identificador: x
+24. Encontre un simbolo: [
+24. Encontre un numero: 6
+24. Encontre un simbolo: ]
+24. Encontre un simbolo: =
+24. Encontre un numero: 8
+24. Encontre un simbolo: ;
+25. Encontre un identificador: h
+25. Encontre un simbolo: =
+25. Encontre un numero: 7
+25. Encontre un simbolo: ;
+26. Encontre un identificador: h
+26. Encontre un simbolo: =
+26. Encontre un identificador: gcd
+26. Encontre un simbolo: (
+26. Encontre un numero: 5
+26. Encontre un simbolo: ,
+26. Encontre un numero: 6
+26. Encontre un simbolo: )
+26. Encontre un simbolo: ;
+27. Encontre un identificador: i
+27. Encontre un simbolo: =
+27. Encontre un identificador: suma
+27. Encontre un simbolo: (
+27. Encontre numero flotante: 9.3
+27. Encontre un simbolo: )
+27. Encontre un simbolo: ;
+29. Encontre un simbolo: }
+Tabla: 0, ID= gcd, Categoria: Funcion
+Tabla: 1, ID= v, Categoria: Variable
+Tabla: 2, ID= h, Categoria: Variable
+Tabla: 3, ID= suma, Categoria: Funcion
+Tabla: 4, ID= p, Categoria: Variable
+Tabla: 5, ID= main, Categoria: Funcion
+Tabla: 6, ID= i, Categoria: Variable
+Tabla: 7, ID= h, Categoria: Variable
+Tabla: 8, ID= x, Categoria: Arreglo

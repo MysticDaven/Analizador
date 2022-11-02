@@ -13,6 +13,8 @@ import java.util.*;
         static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
         static int cont=0;
         static  Elemento ele;
+        static boolean comp = true;
+        static String vAux;
 
         public static void main(String[] args) throws ParseException{
             Analizador anLex = new Analizador (System.in);      
@@ -28,6 +30,43 @@ import java.util.*;
             ele.categoria=tipo;
             ts.put("Var"+cont,ele);
             cont++;
+        }
+
+        public static int buscar(String lex){
+            int pos = -1;
+            for(int i=0;i<cont;i++){
+                if(lex.equals(ts.get("Var"+i).id)){
+                    pos = i;
+                    return pos;
+                }
+            }
+            return pos;            
+        }
+
+        public static String obtAtributo(String lex, String atributo){
+            String res = "ERROR";
+            if(atributo.equals("id") || atributo.equals("categoria") || atributo.equals("tipo") || atributo.equals("size")){
+                int pos = buscar(lex);
+                if(pos > 0){
+                    if(atributo.equals("id")) return ts.get("Var" + pos).id;
+                    else if(atributo.equals("categoria")) return ts.get("Var" + pos).categoria;
+                    else if(atributo.equals("tipo")) return ts.get("Var" + pos).tipo;
+                    else  return ts.get("Var" + pos).size;                
+                }
+                else System.out.println("ERROR, no se encontro el lexema");               
+            }
+            else System.out.println("ERROR, atributo no existente");
+            return res;
+        }
+
+        public static int eliminar(String lex){
+            int pos = buscar(lex);
+            if(pos > 0){
+                ts.remove("Var" + pos);//Eliminar valor de tabla
+                return pos;
+            }
+            else System.out.println("ERROR, no se encontro el lexema a eliminar"); 
+            return -1;
         }
     }
 PARSER_END (Analizador)
@@ -165,17 +204,17 @@ void declaration() : {}
 
 void var_declaration() : {}
 {
-     type_specifier() <ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} var_declaration2()
+     type_specifier() <ID> var_declaration2()
 }
 
 void var_declaration2() : {}
 {
-    (LOOKAHEAD(3) <FINLINEA> | <ABRIRCOR><NUMENT><CERRARCOR><FINLINEA> |  rec_id() <FINLINEA> )
+    (LOOKAHEAD(3) {String x=token.image, tipo="Variable";Agregar(x,tipo);} <FINLINEA>  | {String x = token.image, tipo = "Arreglo"; Agregar(x, tipo);} <ABRIRCOR><NUMENT><CERRARCOR><FINLINEA> | {Agregar(token.image, "Variable");} rec_id() <FINLINEA> )
 }
 
 void rec_id() : {}
 {
-    (LOOKAHEAD(5) <COMA><ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} rec_id())*
+    (LOOKAHEAD(5)  <COMA><ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} rec_id())*
 }
 
 
@@ -202,12 +241,19 @@ void param_listP() : {}
 
 void param() : {}
 {
-    type_specifier() <ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} param2()
+    type_specifier() <ID> param2()
 }
 
 void param2() : {}
 {
-   (LOOKAHEAD(5) <ABRIRCOR><CERRARCOR>)*
+   (LOOKAHEAD(5) {vAux = token.image; System.out.println("hola, tengo un " + token.image );} <ABRIRCOR><CERRARCOR>{comp = false;})* 
+   {    
+        if(comp) Agregar(token.image,"Variable");
+        else{
+            Agregar(vAux,"Arreglo");
+            comp = true;
+        }
+   }
 }
 
 void compound_stmt() : {}
@@ -339,8 +385,6 @@ void factor() : {}
 {
     LOOKAHEAD(20) <ABRIRPAR> expression() <CERRARPAR> | LOOKAHEAD(20) call() | LOOKAHEAD(20) var()  | <NUMENT> | <NUMERODECIMAL> | <CHAR>
 }
-
-
 
 void args() : {}
 {
