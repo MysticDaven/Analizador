@@ -24,10 +24,8 @@ import java.util.*;
             }
         }
 
-        public static void Agregar(String ID, String tipo){
-            ele = new Elemento(ID,tipo);
-            ele.id=ID;
-            ele.categoria=tipo;
+        public static void Agregar(String id, String categoria, String tipo, String size){
+            ele = new Elemento(id, categoria, tipo, size);
             ts.put("Var"+cont,ele);
             cont++;
         }
@@ -202,14 +200,14 @@ void declaration() : {}
     LOOKAHEAD(3) fun_declaration() | LOOKAHEAD(3) var_declaration()
 }
 
-void var_declaration() : {}
+void var_declaration() : {int tipo;}
 {
-     type_specifier() <ID> var_declaration2()
+     {tipo=type_specifier()} <ID> var_declaration2(tipo)
 }
 
-void var_declaration2() : {}
+void var_declaration2(int tipo) : {String tipo2,size;}
 {
-    (LOOKAHEAD(3) {String x=token.image, tipo="Variable";Agregar(x,tipo);} <FINLINEA>  | {String x = token.image, tipo = "Arreglo"; Agregar(x, tipo);} <ABRIRCOR><NUMENT><CERRARCOR><FINLINEA> | {Agregar(token.image, "Variable");} rec_id() <FINLINEA> )
+    (LOOKAHEAD(3){if(tipo==1){tipo2="int"}else if(tipo2 == 2){}else if(tipo2 == 3){}else if(tipo2 == 4){}} {String id=token.image, categoria="Variable";Agregar(id,categoria,tipo,size);} <FINLINEA>  | {String  = token.image, categoria = "Arreglo"; Agregar(x,categoria,tipo,size);} <ABRIRCOR><NUMENT><CERRARCOR><FINLINEA> | {Agregar(token.image, "Variable");} rec_id() <FINLINEA> )
 }
 
 void rec_id() : {}
@@ -218,9 +216,9 @@ void rec_id() : {}
 }
 
 
-void type_specifier() : {}
+int type_specifier() : {}
 {
-    <INT> | <FLOAT> | <CHAR> | <VOID>
+    <INT> {return 1;}| <FLOAT>{return 2;} | <CHAR>{return 3;} | <VOID>{return 4;}
 }
 
 
