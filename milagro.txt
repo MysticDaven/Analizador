@@ -1,0 +1,109 @@
+7. Encontre palabra reservada: int
+7. Encontre un identificador: gcd
+7. Encontre un simbolo: (
+7. Encontre palabra reservada: int
+7. Encontre un identificador: u
+7. Encontre un simbolo: ,
+7. Encontre palabra reservada: int
+7. Encontre un identificador: v
+7. Encontre un simbolo: )
+8. Encontre un simbolo: {
+9. Encontre palabra reservada: if
+9. Encontre un simbolo: (
+9. Encontre un identificador: v
+9. Encontre un simbolo: ==
+9. Encontre un numero: 0
+9. Encontre un simbolo: )
+Si lo tiene v
+9. Encontre palabra reservada: return
+9. Encontre un identificador: u
+9. Encontre un simbolo: ;
+Si lo tiene u
+10. Encontre palabra reservada: else
+10. Encontre palabra reservada: return
+10. Encontre un identificador: gcd
+10. Encontre un simbolo: (
+10. Encontre un identificador: v
+10. Encontre un simbolo: ,
+10. Encontre un identificador: u
+10. Encontre un operador resta: -
+10. Encontre un identificador: u
+10. Encontre un operador division: /
+10. Encontre un identificador: v
+10. Encontre un operador multiplicacion: *
+10. Encontre un identificador: v
+10. Encontre un simbolo: )
+Si lo tiene gcd
+Si lo tiene v
+Si lo tiene u
+Si lo tiene u
+Si lo tiene v
+Si lo tiene v
+10. Encontre un simbolo: ;
+12. Encontre un simbolo: }
+14. Encontre palabra reservada: void
+14. Encontre un identificador: main
+14. Encontre un simbolo: (
+14. Encontre palabra reservada: void
+14. Encontre un simbolo: )
+15. Encontre un simbolo: {
+16. Encontre palabra reservada: int
+16. Encontre un identificador: x
+16. Encontre un simbolo: ;
+16. Encontre palabra reservada: int
+16. Encontre un identificador: y
+16. Encontre un simbolo: ;
+17. Encontre palabra reservada: int
+17. Encontre un identificador: i
+17. Encontre un simbolo: [
+17. Encontre un numero: 10
+17. Encontre un simbolo: ]
+17. Encontre un simbolo: ;
+18. Encontre un identificador: i
+18. Encontre un simbolo: [
+18. Encontre un numero: 11
+18. Encontre un simbolo: ]
+18. Encontre un simbolo: =
+Si lo tiene i
+Si lo tiene i
+Arreglo fuera de rango
+18. Encontre un numero: 8
+18. Encontre un simbolo: ;
+19. Encontre un identificador: x
+19. Encontre un simbolo: =
+19. Encontre un identificador: input
+19. Encontre un simbolo: (
+19. Encontre un simbolo: )
+Si lo tiene x
+19. Encontre un simbolo: ;
+No lo tieneinput
+19. Encontre un identificador: y
+19. Encontre un simbolo: =
+19. Encontre un identificador: input
+19. Encontre un simbolo: (
+19. Encontre un simbolo: )
+Si lo tiene y
+19. Encontre un simbolo: ;
+No lo tieneinput
+20. Encontre un identificador: output
+20. Encontre un simbolo: (
+20. Encontre un identificador: gcd
+20. Encontre un simbolo: (
+20. Encontre un identificador: x
+20. Encontre un simbolo: ,
+20. Encontre un identificador: y
+20. Encontre un simbolo: )
+20. Encontre un simbolo: )
+No lo tieneoutput
+Si lo tiene gcd
+Si lo tiene x
+Si lo tiene y
+20. Encontre un simbolo: ;
+21. Encontre un simbolo: }
+Tabla: 0, ID= u, Categoria: Variable, Tipo: int, size: 4
+Tabla: 1, ID= v, Categoria: Variable, Tipo: int, size: 4
+Tabla: 2, ID= gcd, Categoria: Funcion, Tipo: int, size: 2
+Tabla: 3, ID= main, Categoria: Funcion, Tipo: void, size: 0
+Tabla: 4, ID= x, Categoria: Variable, Tipo: int, size: 4
+Tabla: 5, ID= y, Categoria: Variable, Tipo: int, size: 4
+Tabla: 6, ID= i, Categoria: Arreglo, Tipo: int, size: 10

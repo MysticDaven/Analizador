@@ -1,6 +1,6 @@
 options {
 Ignore_Case = false;
-STATIC=false;
+STATIC=false;   
 DEBUG_PARSER=false;
 DEBUG_LOOKAHEAD=false;
 }
@@ -11,7 +11,7 @@ PARSER_BEGIN (Analizador)
 import java.util.*;
     public class Analizador {
         static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
-        static int cont=0;
+        static int cont=0, contParam=0;
         static  Elemento ele;
         static boolean comp = true;
         static String vAux;
@@ -20,7 +20,7 @@ import java.util.*;
             Analizador anLex = new Analizador (System.in);      
             anLex.inicio();
             for(int i=0;i<cont;i++){
-                System.out.println("Tabla: "+i+", ID= "+ts.get("Var"+i).id+", Categoria: "+ts.get("Var"+i).categoria);
+                System.out.println("Tabla: "+i+", ID= "+ts.get("Var"+i).id+", Categoria: "+ts.get("Var"+i).categoria+ ", Tipo: " + ts.get("Var"+i).tipo + ", size: "+ts.get("Var"+i).size);
             }
         }
 
@@ -30,15 +30,30 @@ import java.util.*;
             cont++;
         }
 
-        public static int buscar(String lex){
+        public static int buscar(String id){
             int pos = -1;
             for(int i=0;i<cont;i++){
-                if(lex.equals(ts.get("Var"+i).id)){
-                    pos = i;
+                if(id.equals(ts.get("Var"+i).id)){
+                    pos = i;               
+                    System.out.println("Si lo tiene "+ts.get("Var"+i).id);
                     return pos;
                 }
             }
+            if(pos==-1){
+                System.out.println("No lo tiene"+id);
+            }
             return pos;            
+        }
+
+        public static void validarArreglo(String id, String size){
+            int pos = buscar(id);
+            if(pos >= 0){
+                if(Integer.parseInt(size) < Integer.parseInt(ts.get("Var"+pos).size)){
+                    System.out.println("Arreglo dentro del rango");
+                }else{
+                    System.out.println("Arreglo fuera de rango");
+                }
+            }
         }
 
         public static String obtAtributo(String lex, String atributo){
@@ -189,9 +204,28 @@ void declaration_ListP() : {}
     (LOOKAHEAD(5)declaration() declaration_ListP())*
 }
 
-void fun_declaration() : {}
+void fun_declaration() : {int tipo; String id="",categoria="",tipo2="",size="";}
 {
-    type_specifier() <ID>{String x=token.image, tipo="Funcion";Agregar(x,tipo);} <ABRIRPAR> params() <CERRARPAR> compound_stmt()
+    tipo=type_specifier()
+      {
+        if(tipo==1){
+            tipo2="int";       
+        }else if(tipo == 2){
+            tipo2="float";    
+        }else if(tipo == 3){
+            tipo2="char";            
+        }else if(tipo == 4){
+            tipo2="void";  
+        }
+      }
+     <ID>{
+         id=token.image;
+         categoria="Funcion";   
+        }
+     <ABRIRPAR> params() <CERRARPAR>
+        { Agregar(id,categoria,tipo2, Integer.toString(contParam));
+        contParam=0;}
+      compound_stmt()
 }
 
 
@@ -202,17 +236,71 @@ void declaration() : {}
 
 void var_declaration() : {int tipo;}
 {
-     {tipo=type_specifier()} <ID> var_declaration2(tipo)
+     tipo=type_specifier() <ID> var_declaration2(tipo)
 }
 
-void var_declaration2(int tipo) : {String tipo2,size;}
+void var_declaration2(int tipo) : {String tipo2="",size="",id="",categoria="";}
 {
-    (LOOKAHEAD(3){if(tipo==1){tipo2="int"}else if(tipo2 == 2){}else if(tipo2 == 3){}else if(tipo2 == 4){}} {String id=token.image, categoria="Variable";Agregar(id,categoria,tipo,size);} <FINLINEA>  | {String  = token.image, categoria = "Arreglo"; Agregar(x,categoria,tipo,size);} <ABRIRCOR><NUMENT><CERRARCOR><FINLINEA> | {Agregar(token.image, "Variable");} rec_id() <FINLINEA> )
+    (LOOKAHEAD(3){
+        if(tipo==1){
+            tipo2="int"; 
+            size="4";
+        }else if(tipo == 2){
+            tipo2="float"; 
+            size="8";
+        }else if(tipo == 3){
+            tipo2="char";
+            size="12";
+        }else if(tipo == 4){
+            tipo2="void"; 
+            size="0";
+        }
+        id=token.image; 
+        categoria="Variable";
+        Agregar(id,categoria,tipo2,size);   
+    }
+     <FINLINEA>  |
+        {
+        if(tipo==1){
+            tipo2="int"; 
+            
+        }else if(tipo == 2){
+            tipo2="float"; 
+            
+        }else if(tipo == 3){
+            tipo2="char"; 
+        }else if(tipo == 4){
+            tipo2="void"; 
+           
+            }}
+        { id= token.image; 
+        categoria = "Arreglo"; 
+        } <ABRIRCOR><NUMENT>{size = token.image;}<CERRARCOR><FINLINEA> {Agregar(id,categoria,tipo2,size);} |
+
+        {
+        if(tipo==1){
+            tipo2="int"; 
+           size="8";
+        }else if(tipo == 2){
+            tipo2="float"; 
+            size="8";
+        }else if(tipo == 3){
+            tipo2="char"; 
+            size="12";}
+        else if(tipo == 4){
+            tipo2="void"; 
+            size="0";
+            }}
+        {Agregar(token.image, "Variable", tipo2, size);} rec_id(tipo2,size) <FINLINEA> )
 }
 
-void rec_id() : {}
+void rec_id(String tipo2, String size) : {}
 {
-    (LOOKAHEAD(5)  <COMA><ID>{String x=token.image, tipo="Variable";Agregar(x,tipo);} rec_id())*
+    (LOOKAHEAD(5)  <COMA><ID>
+    {
+        String id=token.image, categoria="Variable";
+        Agregar(id,categoria,tipo2,size);
+    } rec_id(tipo2, size))*
 }
 
 
@@ -229,26 +317,39 @@ void params() : {}
 
 void param_list() : {}
 {
-    param() param_listP() 
+    param(){contParam++;} param_listP() 
 }
 
 void param_listP() : {}     
 {
-    (LOOKAHEAD(5)<COMA> param() param_listP())*
+    (LOOKAHEAD(5) {contParam++;}<COMA> param() param_listP())*
 }
 
-void param() : {}
+void param() : {int tipo;}
 {
-    type_specifier() <ID> param2()
+    tipo = type_specifier() <ID> {param2(tipo);}
 }
 
-void param2() : {}
-{
-   (LOOKAHEAD(5) {vAux = token.image; System.out.println("hola, tengo un " + token.image );} <ABRIRCOR><CERRARCOR>{comp = false;})* 
-   {    
-        if(comp) Agregar(token.image,"Variable");
+void param2(int tipo) : {String tipo2="",size="",id="";}
+{   
+   (LOOKAHEAD(5) { id = token.image;} <ABRIRCOR><CERRARCOR>{comp = false;})* 
+   {      
+        if(tipo==1){
+            tipo2="int"; 
+            size="4";
+        }else if(tipo == 2){
+            tipo2="float"; 
+            size="8";
+        }else if(tipo == 3){
+            tipo2="char"; 
+            size="12";}
+        else if(tipo == 4){
+            tipo2="void"; 
+            size="0";
+        }       
+        if(comp) Agregar(token.image,"Variable", tipo2, size);
         else{
-            Agregar(vAux,"Arreglo");
+            Agregar(id,"Arreglo", tipo2, null);
             comp = true;
         }
    }
@@ -286,12 +387,12 @@ void statement() : {}
 
 void expression_stmt() : {}
 {
-    LOOKAHEAD(5) var() <IGUAL> expression() | expression() <FINLINEA> | <FINLINEA>
+    LOOKAHEAD(5) var() <IGUAL> expression("") | expression("") <FINLINEA> | <FINLINEA>
 }
 
 void selection_stmt() : {}
 {
-    <IF><ABRIRPAR>expression()<CERRARPAR> statement() selection_stmt2()
+    <IF><ABRIRPAR>expression("")<CERRARPAR> statement() selection_stmt2()
 }
 
 void selection_stmt2() : {}
@@ -301,7 +402,7 @@ void selection_stmt2() : {}
 
 void iteration_stmt() : {}
 {
-    <WHILE><ABRIRPAR>expression()<CERRARPAR>statement()   
+    <WHILE><ABRIRPAR>expression("")<CERRARPAR>statement()   
 }
 
 void return_stmt() : {}
@@ -311,32 +412,32 @@ void return_stmt() : {}
 
 void return_stmt2() : {}
 {
-    <FINLINEA> |  expression() <FINLINEA>
+    <FINLINEA> |  expression("") <FINLINEA>
 }
 
-void expression() : {}
+void expression(String id) : {}
 {
-   LOOKAHEAD(5) simple_expression() | LOOKAHEAD(5) var() <IGUAL> expression()
+   LOOKAHEAD(5) simple_expression(id) | LOOKAHEAD(5) var() <IGUAL> expression("")
 }
 
-void var() : {}
+void var() : {String id;}
 {
-     <ID> var2()
+     <ID>{id= token.image; buscar(id);} var2(id)
 }
 
-void var2() : {}
+void var2(String id) : {}
 {
-    (LOOKAHEAD(5) <ABRIRCOR> expression() <CERRARCOR>)*
+    (LOOKAHEAD(5) <ABRIRCOR> expression(id) <CERRARCOR>)*
 }
 
-void simple_expression() : {}
+void simple_expression(String id) : {}
 {
-    additive_expression() simple_expression2()
+    additive_expression(id) simple_expression2()
 }
 
 void simple_expression2() : {}
 {
-    (LOOKAHEAD(5) relop() additive_expression())*
+    (LOOKAHEAD(5) relop() additive_expression(""))*
 }
 
 void relop() : {}
@@ -344,14 +445,14 @@ void relop() : {}
     <MENORIGUAL> | <MENORQUE> | <MAYORQUE> | <MAYORIGUAL> | <IGUALIGUAL> | <DIFERENTEDE>
 }
 
-void additive_expression() : {}
+void additive_expression(String id) : {}
 {
-    term() additive_expressionP() 
+    term(id) additive_expressionP() 
 }
 
-void additive_expressionP() : {}
+void additive_expressionP() : {String relleno="";}
 {
-    (LOOKAHEAD(5)addop() term() additive_expressionP())*
+    (LOOKAHEAD(5)addop() term(relleno) additive_expressionP())*
 }
 
 void addop() : {}
@@ -359,14 +460,14 @@ void addop() : {}
     <MAS> | <MENOS>
 }
 
-void term() : {}
+void term(String id) : {}
 {
-    factor() termP()
+    factor(id) termP()
 }
 
-void termP() : {}
+void termP() : {String relleno="";}
 {
-    (LOOKAHEAD(5) mulop() factor() termP())*
+    (LOOKAHEAD(5) mulop() factor(relleno) termP())*
 }
 
 void mulop() : {}
@@ -376,12 +477,12 @@ void mulop() : {}
 
 void call() : {}
 {
-    <ID><ABRIRPAR>args()<CERRARPAR>
+    <ID>{String id= token.image; buscar(id);}<ABRIRPAR>args()<CERRARPAR>
 }
 
-void factor() : {}
+void factor(String id) : {}
 {
-    LOOKAHEAD(20) <ABRIRPAR> expression() <CERRARPAR> | LOOKAHEAD(20) call() | LOOKAHEAD(20) var()  | <NUMENT> | <NUMERODECIMAL> | <CHAR>
+    LOOKAHEAD(20) <ABRIRPAR> expression("") <CERRARPAR> | LOOKAHEAD(20) call() | LOOKAHEAD(20) var()  | <NUMENT>{String size=token.image; if(id!=""){validarArreglo(id,size);}} | <NUMERODECIMAL> | <CHAR>
 }
 
 void args() : {}
@@ -391,12 +492,12 @@ void args() : {}
 
 void arg_list() : {}
 {
-    (LOOKAHEAD(5) expression() arg_listP())*
+    (LOOKAHEAD(5) expression("") arg_listP())*
 }
 
 void arg_listP() : {}
 {
-    (LOOKAHEAD(5) <COMA> expression() arg_listP())*
+    (LOOKAHEAD(5) <COMA> expression("") arg_listP())*
 }
 
 
