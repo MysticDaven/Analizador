@@ -1,7 +1,7 @@
-int gcd(int v, int h)
+int gcd(int v, int h, int v)
 {
 	if(v==0) return u;
-	else return gcd(v,-uu/v*v);
+	else return gcd(v,u-u/v*v);
 }
 float suma(float p)
 {
@@ -11,6 +11,7 @@ float suma(float p)
 
 void main(void)
 {
+    int v;
     float i,n2,n8;
     int h,k,nueva; 
     int x[10];

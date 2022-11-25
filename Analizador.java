@@ -4,7 +4,7 @@
 import java.util.*;
     public class Analizador implements AnalizadorConstants {
         static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
-        static int cont=0, contParam=0;
+        static int cont=0, contParam=0, contParam2=0;
         static  Elemento ele;
         static boolean comp = true;
         static String vAux;
@@ -19,8 +19,14 @@ import java.util.*;
 
         public static void Agregar(String id, String categoria, String tipo, String size){
             ele = new Elemento(id, categoria, tipo, size);
-            ts.put("Var"+cont,ele);
-            cont++;
+            int res = buscar(id);
+            if(res < 0){
+                ts.put("Var"+cont,ele);
+                cont++;
+            }
+            else{
+                System.out.println("La variable " +id+ " ya fue declarada anteriormente");
+            }
         }
 
         public static int buscar(String id){
@@ -33,7 +39,7 @@ import java.util.*;
                 }
             }
             if(pos==-1){
-                System.out.println("No lo tiene"+id);
+                System.out.println("No lo tiene "+id);
             }
             return pos;
         }
@@ -44,8 +50,44 @@ import java.util.*;
                 if(Integer.parseInt(size) < Integer.parseInt(ts.get("Var"+pos).size)){
                     System.out.println("Arreglo dentro del rango");
                 }else{
-                    System.out.println("Arreglo fuera de rango");
+                    System.out.println("Arreglo"+ id +"fuera de rango");
                 }
+            }
+        }
+
+        public static void contarParametros(String id,int contParam2){
+            int pos = buscar(id);
+            if(pos >= 0){
+                if(contParam2 == Integer.parseInt(ts.get("Var"+pos).size)){
+                    System.out.println("Parametros correctos");
+                }else{
+                    System.out.println("Funcion: "+ id +" no tiene parametros correctos");
+                }
+            }
+        }
+
+        public static void verificarReturn(String idFun, String idRet){
+            System.out.println("HOLA ENTRAS AQUI? "+ idFun +"  "+idRet);
+            int posF = buscar(idFun);
+            boolean valid = false;
+            if(posF>=0){
+                if(idRet=="1"){ //entero
+                    if(ts.get("Var"+posF).tipo == "int") valid = true;
+                    else valid = false;
+                }else if(idRet=="2"){ //float
+                    if(ts.get("Var"+posF).tipo == "float") valid = true;
+                    else valid = false;
+                }else if(idRet=="3"){ //char
+                    if(ts.get("Var"+posF).tipo == "char") valid = true;
+                    else valid = false;
+                }else{ //var
+                    int posR = buscar(idRet);
+                    //if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
+                    if(ts.get("Var"+posF).tipo == "int") valid = true;
+                    else valid = false;
+                }
+                if(valid) System.out.println("Funcion: "+ idFun +" tiene return correcto");
+                else System.out.println("Funcion: "+ idFun +" No tiene return correcto");
             }
         }
 
@@ -136,7 +178,7 @@ import java.util.*;
     jj_consume_token(CERRARPAR);
           Agregar(id,categoria,tipo2, Integer.toString(contParam));
         contParam=0;
-    compound_stmt();
+    compound_stmt(id);
   }
 
   final public void declaration() throws ParseException {
@@ -348,10 +390,10 @@ import java.util.*;
         }
   }
 
-  final public void compound_stmt() throws ParseException {
+  final public void compound_stmt(String id) throws ParseException {
     jj_consume_token(ABRIRLLA);
     local_declarations();
-    statement_list();
+    statement_list(id);
     jj_consume_token(CERRARLLA);
   }
 
@@ -371,11 +413,11 @@ import java.util.*;
     }
   }
 
-  final public void statement_list() throws ParseException {
-    statement_listP();
+  final public void statement_list(String id) throws ParseException {
+    statement_listP(id);
   }
 
-  final public void statement_listP() throws ParseException {
+  final public void statement_listP(String id) throws ParseException {
     label_7:
     while (true) {
       if (jj_2_10(5)) {
@@ -383,11 +425,11 @@ import java.util.*;
       } else {
         break label_7;
       }
-      statement();
+      statement(id);
     }
   }
 
-  final public void statement() throws ParseException {
+  final public void statement(String id) throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case CHAR:
     case NUMERODECIMAL:
@@ -395,19 +437,19 @@ import java.util.*;
     case NUMENT:
     case FINLINEA:
     case ABRIRPAR:
-      expression_stmt();
+      expression_stmt(id);
       break;
     case ABRIRLLA:
-      compound_stmt();
+      compound_stmt(id);
       break;
     case IF:
-      selection_stmt();
+      selection_stmt(id);
       break;
     case WHILE:
-      iteration_stmt();
+      iteration_stmt(id);
       break;
     case RETURN:
-      return_stmt();
+      return_stmt(id);
       break;
     default:
       jj_la1[4] = jj_gen;
@@ -416,11 +458,11 @@ import java.util.*;
     }
   }
 
-  final public void expression_stmt() throws ParseException {
+  final public void expression_stmt(String id) throws ParseException {
     if (jj_2_11(5)) {
       var();
       jj_consume_token(IGUAL);
-      expression("");
+      expression(id);
     } else {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CHAR:
@@ -428,7 +470,7 @@ import java.util.*;
       case ID:
       case NUMENT:
       case ABRIRPAR:
-        expression("");
+        expression(id);
         jj_consume_token(FINLINEA);
         break;
       case FINLINEA:
@@ -442,16 +484,16 @@ import java.util.*;
     }
   }
 
-  final public void selection_stmt() throws ParseException {
+  final public void selection_stmt(String id) throws ParseException {
     jj_consume_token(IF);
     jj_consume_token(ABRIRPAR);
     expression("");
     jj_consume_token(CERRARPAR);
-    statement();
-    selection_stmt2();
+    statement(id);
+    selection_stmt2(id);
   }
 
-  final public void selection_stmt2() throws ParseException {
+  final public void selection_stmt2(String id) throws ParseException {
     label_8:
     while (true) {
       if (jj_2_12(5)) {
@@ -460,61 +502,74 @@ import java.util.*;
         break label_8;
       }
       jj_consume_token(ELSE);
-      statement();
+      statement(id);
     }
   }
 
-  final public void iteration_stmt() throws ParseException {
+  final public void iteration_stmt(String id) throws ParseException {
     jj_consume_token(WHILE);
     jj_consume_token(ABRIRPAR);
-    expression("");
+    expression(id);
     jj_consume_token(CERRARPAR);
-    statement();
+    statement("");
   }
 
-  final public void return_stmt() throws ParseException {
+  final public void return_stmt(String id) throws ParseException {
+                               String var;
     jj_consume_token(RETURN);
-    return_stmt2();
+    var = return_stmt2(id);
+                                   verificarReturn(id,var);
   }
 
-  final public void return_stmt2() throws ParseException {
+  final public String return_stmt2(String id) throws ParseException {
+                                  String rexpresion;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case FINLINEA:
       jj_consume_token(FINLINEA);
+                {if (true) return "";}
       break;
     case CHAR:
     case NUMERODECIMAL:
     case ID:
     case NUMENT:
     case ABRIRPAR:
-      expression("");
+      rexpresion = expression(id);
       jj_consume_token(FINLINEA);
+                                                                      {if (true) return rexpresion;}
       break;
     default:
       jj_la1[6] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
+    throw new Error("Missing return statement in function");
   }
 
-  final public void expression(String id) throws ParseException {
+  final public String expression(String id) throws ParseException {
+                                String rvar, rsimple;
     if (jj_2_13(5)) {
-      simple_expression(id);
+      rsimple = simple_expression(id);
+                                              {if (true) return rsimple;}
     } else if (jj_2_14(5)) {
-      var();
+      rvar = var();
       jj_consume_token(IGUAL);
-      expression("");
+      expression(id);
+                                                                                                                System.out.println("PUTA? "+ rvar);
+                                                                                                                                                      {if (true) return rvar;}
     } else {
       jj_consume_token(-1);
       throw new ParseException();
     }
+    throw new Error("Missing return statement in function");
   }
 
-  final public void var() throws ParseException {
-              String id;
+  final public String var() throws ParseException {
+                String id;
     jj_consume_token(ID);
           id= token.image; buscar(id);
     var2(id);
+                                                  {if (true) return id;}
+    throw new Error("Missing return statement in function");
   }
 
   final public void var2(String id) throws ParseException {
@@ -531,9 +586,12 @@ import java.util.*;
     }
   }
 
-  final public void simple_expression(String id) throws ParseException {
-    additive_expression(id);
+  final public String simple_expression(String id) throws ParseException {
+                                       String ret;
+    ret = additive_expression(id);
     simple_expression2();
+                                                      {if (true) return ret;}
+    throw new Error("Missing return statement in function");
   }
 
   final public void simple_expression2() throws ParseException {
@@ -576,9 +634,12 @@ import java.util.*;
     }
   }
 
-  final public void additive_expression(String id) throws ParseException {
-    term(id);
+  final public String additive_expression(String id) throws ParseException {
+                                         String rterm;
+    rterm = term(id);
     additive_expressionP();
+                                           {if (true) return rterm;}
+    throw new Error("Missing return statement in function");
   }
 
   final public void additive_expressionP() throws ParseException {
@@ -611,9 +672,12 @@ import java.util.*;
     }
   }
 
-  final public void term(String id) throws ParseException {
-    factor(id);
+  final public String term(String id) throws ParseException {
+                          String rfactor;
+    rfactor = factor(id);
     termP();
+                                {if (true) return rfactor;}
+    throw new Error("Missing return statement in function");
   }
 
   final public void termP() throws ParseException {
@@ -650,33 +714,42 @@ import java.util.*;
   }
 
   final public void call() throws ParseException {
+               String id;
     jj_consume_token(ID);
-         String id= token.image; buscar(id);
+         id= token.image; buscar(id);
     jj_consume_token(ABRIRPAR);
     args();
     jj_consume_token(CERRARPAR);
+                                                                   contarParametros(id,contParam2); contParam2=0;
   }
 
-  final public void factor(String id) throws ParseException {
+  final public String factor(String id) throws ParseException {
+                            String ret;
     if (jj_2_19(20)) {
       jj_consume_token(ABRIRPAR);
       expression("");
       jj_consume_token(CERRARPAR);
+                                                         {if (true) return "";}
     } else if (jj_2_20(20)) {
       call();
+                                                                                            {if (true) return "";}
     } else if (jj_2_21(20)) {
       var();
+                                                                                                                              {if (true) return "";}
     } else {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case NUMENT:
         jj_consume_token(NUMENT);
-                                                                                                                 String size=token.image; if(id!=""){validarArreglo(id,size);}
+                                                                                                                                                     String size=token.image; if(id!=""){validarArreglo(id,size);}
+                                                                                                                                                                                                                    {if (true) return ret = "1";}
         break;
       case NUMERODECIMAL:
         jj_consume_token(NUMERODECIMAL);
+                                                                                                                                                                                                                                                         {if (true) return ret = "2";}
         break;
       case CHAR:
         jj_consume_token(CHAR);
+                                                                                                                                                                                                                                                                                     {if (true) return ret = "3";}
         break;
       default:
         jj_la1[10] = jj_gen;
@@ -684,6 +757,7 @@ import java.util.*;
         throw new ParseException();
       }
     }
+    throw new Error("Missing return statement in function");
   }
 
   final public void args() throws ParseException {
@@ -699,6 +773,7 @@ import java.util.*;
         break label_13;
       }
       expression("");
+                                  contParam2++;
       arg_listP();
     }
   }
@@ -713,6 +788,7 @@ import java.util.*;
       }
       jj_consume_token(COMA);
       expression("");
+                                         contParam2++;
       arg_listP();
     }
   }
@@ -878,61 +954,8 @@ import java.util.*;
     finally { jj_save(22, xla); }
   }
 
-  private boolean jj_3R_63() {
-    if (jj_3R_66()) return true;
-    return false;
-  }
-
-  private boolean jj_3_9() {
-    if (jj_3R_18()) return true;
-    return false;
-  }
-
-  private boolean jj_3_21() {
-    if (jj_3R_24()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_65() {
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3_9()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_51() {
-    if (jj_scan_token(VOID)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_62() {
-    if (jj_3R_65()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_55() {
-    if (jj_scan_token(ABRIRLLA)) return true;
-    if (jj_3R_62()) return true;
-    if (jj_3R_63()) return true;
-    if (jj_scan_token(CERRARLLA)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_50() {
-    if (jj_scan_token(CHAR)) return true;
-    return false;
-  }
-
-  private boolean jj_3_20() {
-    if (jj_3R_35()) return true;
-    return false;
-  }
-
-  private boolean jj_3_8() {
-    if (jj_scan_token(ABRIRCOR)) return true;
-    if (jj_scan_token(CERRARCOR)) return true;
+  private boolean jj_3R_47() {
+    if (jj_scan_token(NUMERODECIMAL)) return true;
     return false;
   }
 
@@ -942,7 +965,7 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_49() {
+  private boolean jj_3R_51() {
     if (jj_scan_token(FLOAT)) return true;
     return false;
   }
@@ -974,7 +997,7 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_60() {
+  private boolean jj_3R_62() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3_6()) {
@@ -994,20 +1017,20 @@ import java.util.*;
   private boolean jj_3R_37() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_48()) {
-    jj_scanpos = xsp;
-    if (jj_3R_49()) {
-    jj_scanpos = xsp;
     if (jj_3R_50()) {
     jj_scanpos = xsp;
-    if (jj_3R_51()) return true;
+    if (jj_3R_51()) {
+    jj_scanpos = xsp;
+    if (jj_3R_52()) {
+    jj_scanpos = xsp;
+    if (jj_3R_53()) return true;
     }
     }
     }
     return false;
   }
 
-  private boolean jj_3R_48() {
+  private boolean jj_3R_50() {
     if (jj_scan_token(INT)) return true;
     return false;
   }
@@ -1027,7 +1050,7 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_59() {
+  private boolean jj_3R_61() {
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
@@ -1052,8 +1075,8 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_47() {
-    if (jj_3R_59()) return true;
+  private boolean jj_3R_49() {
+    if (jj_3R_61()) return true;
     return false;
   }
 
@@ -1075,26 +1098,33 @@ import java.util.*;
     jj_scanpos = xsp;
     if (jj_3R_46()) {
     jj_scanpos = xsp;
-    if (jj_scan_token(25)) {
+    if (jj_3R_47()) {
     jj_scanpos = xsp;
-    if (jj_scan_token(7)) return true;
+    if (jj_3R_48()) return true;
     }
     }
     }
     }
     }
+    return false;
+  }
+
+  private boolean jj_3_14() {
+    if (jj_3R_24()) return true;
+    if (jj_scan_token(IGUAL)) return true;
+    if (jj_3R_25()) return true;
     return false;
   }
 
   private boolean jj_3R_35() {
     if (jj_scan_token(ID)) return true;
     if (jj_scan_token(ABRIRPAR)) return true;
-    if (jj_3R_47()) return true;
+    if (jj_3R_49()) return true;
     if (jj_scan_token(CERRARPAR)) return true;
     return false;
   }
 
-  private boolean jj_3R_53() {
+  private boolean jj_3R_55() {
     if (jj_3R_19()) return true;
     if (jj_scan_token(FINLINEA)) return true;
     return false;
@@ -1129,14 +1159,14 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_30() {
-    if (jj_3R_33()) return true;
-    if (jj_3R_34()) return true;
+  private boolean jj_3R_43() {
+    if (jj_3R_60()) return true;
     return false;
   }
 
-  private boolean jj_3R_43() {
-    if (jj_3R_58()) return true;
+  private boolean jj_3R_30() {
+    if (jj_3R_33()) return true;
+    if (jj_3R_34()) return true;
     return false;
   }
 
@@ -1155,17 +1185,10 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_52() {
+  private boolean jj_3R_54() {
     if (jj_scan_token(ABRIRCOR)) return true;
     if (jj_scan_token(NUMENT)) return true;
     if (jj_scan_token(CERRARCOR)) return true;
-    return false;
-  }
-
-  private boolean jj_3_14() {
-    if (jj_3R_24()) return true;
-    if (jj_scan_token(IGUAL)) return true;
-    if (jj_3R_25()) return true;
     return false;
   }
 
@@ -1191,6 +1214,11 @@ import java.util.*;
     return false;
   }
 
+  private boolean jj_3R_42() {
+    if (jj_3R_59()) return true;
+    return false;
+  }
+
   private boolean jj_3R_27() {
     Token xsp;
     xsp = jj_scanpos;
@@ -1213,8 +1241,9 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_42() {
-    if (jj_3R_57()) return true;
+  private boolean jj_3R_70() {
+    if (jj_3R_25()) return true;
+    if (jj_scan_token(FINLINEA)) return true;
     return false;
   }
 
@@ -1243,9 +1272,9 @@ import java.util.*;
     xsp = jj_scanpos;
     if (jj_3_4()) {
     jj_scanpos = xsp;
-    if (jj_3R_52()) {
+    if (jj_3R_54()) {
     jj_scanpos = xsp;
-    if (jj_3R_53()) return true;
+    if (jj_3R_55()) return true;
     }
     }
     return false;
@@ -1257,7 +1286,7 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_61() {
+  private boolean jj_3R_63() {
     if (jj_3R_25()) return true;
     if (jj_scan_token(FINLINEA)) return true;
     return false;
@@ -1286,9 +1315,13 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_67() {
-    if (jj_3R_25()) return true;
-    if (jj_scan_token(FINLINEA)) return true;
+  private boolean jj_3R_46() {
+    if (jj_scan_token(NUMENT)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_41() {
+    if (jj_3R_58()) return true;
     return false;
   }
 
@@ -1313,11 +1346,6 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_41() {
-    if (jj_3R_56()) return true;
-    return false;
-  }
-
   private boolean jj_3R_25() {
     Token xsp;
     xsp = jj_scanpos;
@@ -1333,28 +1361,33 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_64() {
+  private boolean jj_3R_69() {
+    if (jj_scan_token(FINLINEA)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_66() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(31)) {
+    if (jj_3R_69()) {
     jj_scanpos = xsp;
-    if (jj_3R_67()) return true;
+    if (jj_3R_70()) return true;
     }
     return false;
   }
 
-  private boolean jj_3R_58() {
+  private boolean jj_3R_60() {
     if (jj_scan_token(RETURN)) return true;
-    if (jj_3R_64()) return true;
+    if (jj_3R_66()) return true;
     return false;
   }
 
   private boolean jj_3R_40() {
-    if (jj_3R_55()) return true;
+    if (jj_3R_57()) return true;
     return false;
   }
 
-  private boolean jj_3R_57() {
+  private boolean jj_3R_59() {
     if (jj_scan_token(WHILE)) return true;
     if (jj_scan_token(ABRIRPAR)) return true;
     if (jj_3R_25()) return true;
@@ -1373,7 +1406,7 @@ import java.util.*;
     if (jj_3R_37()) return true;
     if (jj_scan_token(ID)) return true;
     if (jj_scan_token(ABRIRPAR)) return true;
-    if (jj_3R_60()) return true;
+    if (jj_3R_62()) return true;
     if (jj_scan_token(CERRARPAR)) return true;
     return false;
   }
@@ -1381,6 +1414,20 @@ import java.util.*;
   private boolean jj_3_1() {
     if (jj_3R_15()) return true;
     if (jj_3R_16()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_58() {
+    if (jj_scan_token(IF)) return true;
+    if (jj_scan_token(ABRIRPAR)) return true;
+    if (jj_3R_25()) return true;
+    if (jj_scan_token(CERRARPAR)) return true;
+    if (jj_3R_23()) return true;
+    return false;
+  }
+
+  private boolean jj_3_21() {
+    if (jj_3R_24()) return true;
     return false;
   }
 
@@ -1393,20 +1440,6 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_56() {
-    if (jj_scan_token(IF)) return true;
-    if (jj_scan_token(ABRIRPAR)) return true;
-    if (jj_3R_25()) return true;
-    if (jj_scan_token(CERRARPAR)) return true;
-    if (jj_3R_23()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_46() {
-    if (jj_scan_token(NUMENT)) return true;
-    return false;
-  }
-
   private boolean jj_3_11() {
     if (jj_3R_24()) return true;
     if (jj_scan_token(IGUAL)) return true;
@@ -1414,12 +1447,12 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_54() {
+  private boolean jj_3R_56() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3_11()) {
     jj_scanpos = xsp;
-    if (jj_3R_61()) {
+    if (jj_3R_63()) {
     jj_scanpos = xsp;
     if (jj_scan_token(31)) return true;
     }
@@ -1447,7 +1480,7 @@ import java.util.*;
   }
 
   private boolean jj_3R_39() {
-    if (jj_3R_54()) return true;
+    if (jj_3R_56()) return true;
     return false;
   }
 
@@ -1456,12 +1489,70 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_66() {
+  private boolean jj_3R_68() {
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
       if (jj_3_10()) { jj_scanpos = xsp; break; }
     }
+    return false;
+  }
+
+  private boolean jj_3R_65() {
+    if (jj_3R_68()) return true;
+    return false;
+  }
+
+  private boolean jj_3_9() {
+    if (jj_3R_18()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_67() {
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3_9()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_53() {
+    if (jj_scan_token(VOID)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_48() {
+    if (jj_scan_token(CHAR)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_64() {
+    if (jj_3R_67()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_57() {
+    if (jj_scan_token(ABRIRLLA)) return true;
+    if (jj_3R_64()) return true;
+    if (jj_3R_65()) return true;
+    if (jj_scan_token(CERRARLLA)) return true;
+    return false;
+  }
+
+  private boolean jj_3_20() {
+    if (jj_3R_35()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_52() {
+    if (jj_scan_token(CHAR)) return true;
+    return false;
+  }
+
+  private boolean jj_3_8() {
+    if (jj_scan_token(ABRIRCOR)) return true;
+    if (jj_scan_token(CERRARCOR)) return true;
     return false;
   }
 

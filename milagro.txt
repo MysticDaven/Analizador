@@ -6,7 +6,10 @@
 7. Encontre un simbolo: ,
 7. Encontre palabra reservada: int
 7. Encontre un identificador: v
+No lo tiene u
 7. Encontre un simbolo: )
+No lo tiene v
+No lo tiene gcd
 8. Encontre un simbolo: {
 9. Encontre palabra reservada: if
 9. Encontre un simbolo: (
@@ -19,6 +22,10 @@ Si lo tiene v
 9. Encontre un identificador: u
 9. Encontre un simbolo: ;
 Si lo tiene u
+HOLA ENTRAS AQUI? gcd  
+Si lo tiene gcd
+No lo tiene 
+Funcion: gcd tiene return correcto
 10. Encontre palabra reservada: else
 10. Encontre palabra reservada: return
 10. Encontre un identificador: gcd
@@ -39,26 +46,36 @@ Si lo tiene u
 Si lo tiene u
 Si lo tiene v
 Si lo tiene v
+Si lo tiene gcd
+Parametros correctos
 10. Encontre un simbolo: ;
+HOLA ENTRAS AQUI? gcd  
+Si lo tiene gcd
+No lo tiene 
+Funcion: gcd tiene return correcto
 12. Encontre un simbolo: }
 14. Encontre palabra reservada: void
 14. Encontre un identificador: main
 14. Encontre un simbolo: (
 14. Encontre palabra reservada: void
 14. Encontre un simbolo: )
+No lo tiene main
 15. Encontre un simbolo: {
 16. Encontre palabra reservada: int
 16. Encontre un identificador: x
 16. Encontre un simbolo: ;
+No lo tiene x
 16. Encontre palabra reservada: int
 16. Encontre un identificador: y
 16. Encontre un simbolo: ;
+No lo tiene y
 17. Encontre palabra reservada: int
 17. Encontre un identificador: i
 17. Encontre un simbolo: [
 17. Encontre un numero: 10
 17. Encontre un simbolo: ]
 17. Encontre un simbolo: ;
+No lo tiene i
 18. Encontre un identificador: i
 18. Encontre un simbolo: [
 18. Encontre un numero: 11
@@ -66,9 +83,11 @@ Si lo tiene v
 18. Encontre un simbolo: =
 Si lo tiene i
 Si lo tiene i
-Arreglo fuera de rango
+Arregloifuera de rango
 18. Encontre un numero: 8
 18. Encontre un simbolo: ;
+Si lo tiene main
+Arreglomainfuera de rango
 19. Encontre un identificador: x
 19. Encontre un simbolo: =
 19. Encontre un identificador: input
@@ -76,7 +95,8 @@ Arreglo fuera de rango
 19. Encontre un simbolo: )
 Si lo tiene x
 19. Encontre un simbolo: ;
-No lo tieneinput
+No lo tiene input
+No lo tiene input
 19. Encontre un identificador: y
 19. Encontre un simbolo: =
 19. Encontre un identificador: input
@@ -84,7 +104,8 @@ No lo tieneinput
 19. Encontre un simbolo: )
 Si lo tiene y
 19. Encontre un simbolo: ;
-No lo tieneinput
+No lo tiene input
+No lo tiene input
 20. Encontre un identificador: output
 20. Encontre un simbolo: (
 20. Encontre un identificador: gcd
@@ -94,10 +115,13 @@ No lo tieneinput
 20. Encontre un identificador: y
 20. Encontre un simbolo: )
 20. Encontre un simbolo: )
-No lo tieneoutput
+No lo tiene output
 Si lo tiene gcd
 Si lo tiene x
 Si lo tiene y
+Si lo tiene gcd
+Parametros correctos
+No lo tiene output
 20. Encontre un simbolo: ;
 21. Encontre un simbolo: }
 Tabla: 0, ID= u, Categoria: Variable, Tipo: int, size: 4

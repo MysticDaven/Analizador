@@ -11,7 +11,7 @@ PARSER_BEGIN (Analizador)
 import java.util.*;
     public class Analizador {
         static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
-        static int cont=0, contParam=0;
+        static int cont=0, contParam=0, contParam2=0;
         static  Elemento ele;
         static boolean comp = true;
         static String vAux;
@@ -26,8 +26,14 @@ import java.util.*;
 
         public static void Agregar(String id, String categoria, String tipo, String size){
             ele = new Elemento(id, categoria, tipo, size);
-            ts.put("Var"+cont,ele);
-            cont++;
+            int res = buscar(id);
+            if(res < 0){
+                ts.put("Var"+cont,ele);
+                cont++;
+            }
+            else{
+                System.out.println("La variable " +id+ " ya fue declarada anteriormente");
+            }
         }
 
         public static int buscar(String id){
@@ -53,6 +59,42 @@ import java.util.*;
                 }else{
                     System.out.println("Arreglo"+ id +"fuera de rango");
                 }
+            }
+        }
+
+        public static void contarParametros(String id,int contParam2){
+            int pos = buscar(id);
+            if(pos >= 0){
+                if(contParam2 == Integer.parseInt(ts.get("Var"+pos).size)){
+                    System.out.println("Parametros correctos");
+                }else{
+                    System.out.println("Funcion: "+ id +" no tiene parametros correctos");
+                }
+            }
+        }
+
+        public static void verificarReturn(String idFun, String idRet){
+            System.out.println("HOLA ENTRAS AQUI? "+ idFun +"  "+idRet);
+            int posF = buscar(idFun);   
+            boolean valid = false;
+            if(posF>=0){
+                if(idRet=="1"){ //entero
+                    if(ts.get("Var"+posF).tipo == "int") valid = true;
+                    else valid = false;
+                }else if(idRet=="2"){ //float
+                    if(ts.get("Var"+posF).tipo == "float") valid = true;
+                    else valid = false;
+                }else if(idRet=="3"){ //char
+                    if(ts.get("Var"+posF).tipo == "char") valid = true;
+                    else valid = false;
+                }else{ //var
+                    int posR = buscar(idRet);
+                    //if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
+                    if(ts.get("Var"+posF).tipo == "int") valid = true;
+                    else valid = false;
+                }
+                if(valid) System.out.println("Funcion: "+ idFun +" tiene return correcto");
+                else System.out.println("Funcion: "+ idFun +" No tiene return correcto");
             }
         }
 
@@ -225,7 +267,8 @@ void fun_declaration() : {int tipo; String id="",categoria="",tipo2="",size="";}
      <ABRIRPAR> params() <CERRARPAR>
         { Agregar(id,categoria,tipo2, Integer.toString(contParam));
         contParam=0;}
-      compound_stmt()
+       
+      compound_stmt(id)
 }
 
 
@@ -355,9 +398,9 @@ void param2(int tipo) : {String tipo2="",size="",id="";}
    }
 }
 
-void compound_stmt() : {}
+void compound_stmt(String id) : {}
 {
-    <ABRIRLLA> local_declarations()  statement_list() <CERRARLLA>
+    <ABRIRLLA> local_declarations() statement_list(id) <CERRARLLA>
 }
 
 void local_declarations() : {}
@@ -370,59 +413,59 @@ void local_declarationsP() : {}
     (LOOKAHEAD(5) var_declaration())*
 }
 
-void statement_list() : {}
+void statement_list(String id) : {}
 {
-    statement_listP()
+    statement_listP(id) 
 }
 
-void statement_listP() : {}
+void statement_listP(String id) : {}
 {
-    (LOOKAHEAD(5) statement())*
+    (LOOKAHEAD(5) statement(id) )*
 }
 
-void statement() : {}
+void statement(String id) : {}
 {
-    expression_stmt() | compound_stmt() | selection_stmt() | iteration_stmt() | return_stmt()
+    expression_stmt(id) | compound_stmt(id) | selection_stmt(id) | iteration_stmt(id) | return_stmt(id)
 }
 
-void expression_stmt() : {}
+void expression_stmt(String id) : {}
 {
-    LOOKAHEAD(5) var() <IGUAL> expression("") | expression("") <FINLINEA> | <FINLINEA>
+    LOOKAHEAD(5) var() <IGUAL> expression(id) | expression(id) <FINLINEA> | <FINLINEA>
 }
 
-void selection_stmt() : {}
+void selection_stmt(String id) : {}
 {
-    <IF><ABRIRPAR>expression("")<CERRARPAR> statement() selection_stmt2()
+    <IF><ABRIRPAR>expression("")<CERRARPAR> statement(id) selection_stmt2(id)
 }
 
-void selection_stmt2() : {}
+void selection_stmt2(String id) : {}
 {
-    (LOOKAHEAD(5)<ELSE> statement())*
+    (LOOKAHEAD(5)<ELSE> statement(id))*
 }
 
-void iteration_stmt() : {}
+void iteration_stmt(String id) : {}
 {
-    <WHILE><ABRIRPAR>expression("")<CERRARPAR>statement()   
+    <WHILE><ABRIRPAR>expression(id)<CERRARPAR>statement("")   
 }
 
-void return_stmt() : {}
+void return_stmt(String id) : {String var;}
 {
-    <RETURN> return_stmt2() 
+    <RETURN> var=return_stmt2(id) {verificarReturn(id,var);} 
 }
 
-void return_stmt2() : {}
+String return_stmt2(String id) : {String rexpresion;}
 {
-    <FINLINEA> |  expression("") <FINLINEA>
+    <FINLINEA> {return "";}|  rexpresion = expression(id) <FINLINEA> {return rexpresion;}
 }
 
-void expression(String id) : {}
+String expression(String id) : {String rvar, rsimple;}
 {
-   LOOKAHEAD(5) simple_expression(id) | LOOKAHEAD(5) var() <IGUAL> expression("")
+   LOOKAHEAD(5) rsimple=simple_expression(id){return rsimple;} | LOOKAHEAD(5) rvar=var() <IGUAL> expression(id){System.out.println("PUTA? "+ rvar);} {return rvar;}
 }
 
-void var() : {String id;}
+String var() : {String id;}
 {
-     <ID>{id= token.image; buscar(id);} var2(id)
+     <ID>{id= token.image; buscar(id);} var2(id) {return id;}
 }
 
 void var2(String id) : {}
@@ -430,9 +473,9 @@ void var2(String id) : {}
     (LOOKAHEAD(5) <ABRIRCOR> expression(id) <CERRARCOR>)*
 }
 
-void simple_expression(String id) : {}
+String simple_expression(String id) : {String ret;}
 {
-    additive_expression(id) simple_expression2()
+    ret=additive_expression(id) simple_expression2() {return ret;}
 }
 
 void simple_expression2() : {}
@@ -445,9 +488,9 @@ void relop() : {}
     <MENORIGUAL> | <MENORQUE> | <MAYORQUE> | <MAYORIGUAL> | <IGUALIGUAL> | <DIFERENTEDE>
 }
 
-void additive_expression(String id) : {}
+String additive_expression(String id) : {String rterm;}
 {
-    term(id) additive_expressionP() 
+    rterm=term(id) additive_expressionP() {return rterm;}
 }
 
 void additive_expressionP() : {String relleno="";}
@@ -460,9 +503,9 @@ void addop() : {}
     <MAS> | <MENOS>
 }
 
-void term(String id) : {}
+String term(String id) : {String rfactor;}
 {
-    factor(id) termP()
+    rfactor=factor(id) termP() {return rfactor;}
 }
 
 void termP() : {String relleno="";}
@@ -475,14 +518,14 @@ void mulop() : {}
     <POR> | <ENTRE> | <MODULO> 
 }
 
-void call() : {}
+void call() : {String id;}
 {
-    <ID>{String id= token.image; buscar(id);}<ABRIRPAR>args()<CERRARPAR>
+    <ID>{id= token.image; buscar(id);}<ABRIRPAR>args()<CERRARPAR> {contarParametros(id,contParam2); contParam2=0;}
 }
 
-void factor(String id) : {}
+String factor(String id) : {String ret;}
 {
-    LOOKAHEAD(20) <ABRIRPAR> expression("") <CERRARPAR> | LOOKAHEAD(20) call() | LOOKAHEAD(20) var()  | <NUMENT>{String size=token.image; if(id!=""){validarArreglo(id,size);}} | <NUMERODECIMAL> | <CHAR>
+    LOOKAHEAD(20) <ABRIRPAR> expression("") <CERRARPAR> {return "";}| LOOKAHEAD(20) call() {return "";}| LOOKAHEAD(20) var() {return "";} | <NUMENT>{String size=token.image; if(id!=""){validarArreglo(id,size);}}{return ret = "1";} | <NUMERODECIMAL>{return ret = "2";} | <CHAR>{return ret = "3";}
 }
 
 void args() : {}
@@ -492,12 +535,12 @@ void args() : {}
 
 void arg_list() : {}
 {
-    (LOOKAHEAD(5) expression("") arg_listP())*
+    (LOOKAHEAD(5) expression("") {contParam2++;} arg_listP())*
 }
 
 void arg_listP() : {}
 {
-    (LOOKAHEAD(5) <COMA> expression("") arg_listP())*
+    (LOOKAHEAD(5) <COMA> expression("") {contParam2++;} arg_listP())*
 }
 
 
