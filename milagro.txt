@@ -86,8 +86,6 @@ Si lo tiene i
 Arregloifuera de rango
 18. Encontre un numero: 8
 18. Encontre un simbolo: ;
-Si lo tiene main
-Arreglomainfuera de rango
 19. Encontre un identificador: x
 19. Encontre un simbolo: =
 19. Encontre un identificador: input

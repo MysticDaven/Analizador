@@ -425,12 +425,12 @@ void statement_listP(String id) : {}
 
 void statement(String id) : {}
 {
-    expression_stmt(id) | compound_stmt(id) | selection_stmt(id) | iteration_stmt(id) | return_stmt(id)
+    expression_stmt() | compound_stmt(id) | selection_stmt(id) | iteration_stmt() | return_stmt(id)
 }
 
-void expression_stmt(String id) : {}
+void expression_stmt() : {}
 {
-    LOOKAHEAD(5) var() <IGUAL> expression(id) | expression(id) <FINLINEA> | <FINLINEA>
+    LOOKAHEAD(5) var() <IGUAL> expression("") | expression("") <FINLINEA> | <FINLINEA>
 }
 
 void selection_stmt(String id) : {}
@@ -443,9 +443,9 @@ void selection_stmt2(String id) : {}
     (LOOKAHEAD(5)<ELSE> statement(id))*
 }
 
-void iteration_stmt(String id) : {}
+void iteration_stmt() : {}
 {
-    <WHILE><ABRIRPAR>expression(id)<CERRARPAR>statement("")   
+    <WHILE><ABRIRPAR>expression("")<CERRARPAR>statement("")   
 }
 
 void return_stmt(String id) : {String var;}
@@ -460,7 +460,7 @@ String return_stmt2(String id) : {String rexpresion;}
 
 String expression(String id) : {String rvar, rsimple;}
 {
-   LOOKAHEAD(5) rsimple=simple_expression(id){return rsimple;} | LOOKAHEAD(5) rvar=var() <IGUAL> expression(id){System.out.println("PUTA? "+ rvar);} {return rvar;}
+   LOOKAHEAD(5) rsimple=simple_expression(id){return rsimple;} | LOOKAHEAD(5) rvar=var() <IGUAL> expression(id) {System.out.println("PUTA? "+ rvar);}{return rvar;}
 }
 
 String var() : {String id;}

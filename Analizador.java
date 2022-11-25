@@ -437,7 +437,7 @@ import java.util.*;
     case NUMENT:
     case FINLINEA:
     case ABRIRPAR:
-      expression_stmt(id);
+      expression_stmt();
       break;
     case ABRIRLLA:
       compound_stmt(id);
@@ -446,7 +446,7 @@ import java.util.*;
       selection_stmt(id);
       break;
     case WHILE:
-      iteration_stmt(id);
+      iteration_stmt();
       break;
     case RETURN:
       return_stmt(id);
@@ -458,11 +458,11 @@ import java.util.*;
     }
   }
 
-  final public void expression_stmt(String id) throws ParseException {
+  final public void expression_stmt() throws ParseException {
     if (jj_2_11(5)) {
       var();
       jj_consume_token(IGUAL);
-      expression(id);
+      expression("");
     } else {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CHAR:
@@ -470,7 +470,7 @@ import java.util.*;
       case ID:
       case NUMENT:
       case ABRIRPAR:
-        expression(id);
+        expression("");
         jj_consume_token(FINLINEA);
         break;
       case FINLINEA:
@@ -506,10 +506,10 @@ import java.util.*;
     }
   }
 
-  final public void iteration_stmt(String id) throws ParseException {
+  final public void iteration_stmt() throws ParseException {
     jj_consume_token(WHILE);
     jj_consume_token(ABRIRPAR);
-    expression(id);
+    expression("");
     jj_consume_token(CERRARPAR);
     statement("");
   }
@@ -554,7 +554,7 @@ import java.util.*;
       rvar = var();
       jj_consume_token(IGUAL);
       expression(id);
-                                                                                                                System.out.println("PUTA? "+ rvar);
+                                                                                                                 System.out.println("PUTA? "+ rvar);
                                                                                                                                                       {if (true) return rvar;}
     } else {
       jj_consume_token(-1);
@@ -1159,14 +1159,14 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_43() {
-    if (jj_3R_60()) return true;
-    return false;
-  }
-
   private boolean jj_3R_30() {
     if (jj_3R_33()) return true;
     if (jj_3R_34()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_43() {
+    if (jj_3R_60()) return true;
     return false;
   }
 
@@ -1320,11 +1320,6 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_41() {
-    if (jj_3R_58()) return true;
-    return false;
-  }
-
   private boolean jj_3R_24() {
     if (jj_scan_token(ID)) return true;
     if (jj_3R_44()) return true;
@@ -1343,6 +1338,11 @@ import java.util.*;
 
   private boolean jj_3_2() {
     if (jj_3R_17()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_41() {
+    if (jj_3R_58()) return true;
     return false;
   }
 
