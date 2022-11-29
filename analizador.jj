@@ -11,7 +11,7 @@ PARSER_BEGIN (Analizador)
 import java.util.*;
     public class Analizador {
         static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
-        static int cont=0, contParam=0, contParam2=0;
+        static int cont=0, contParam2=0;
         static  Elemento ele;
         static boolean comp = true;
         static String vAux;
@@ -264,9 +264,9 @@ void fun_declaration() : {int tipo; String id="",categoria="",tipo2="",size="";}
          id=token.image;
          categoria="Funcion";   
         }
-     <ABRIRPAR> params() <CERRARPAR>
-        { Agregar(id,categoria,tipo2, Integer.toString(contParam));
-        contParam=0;}
+     <ABRIRPAR> size=params() <CERRARPAR>
+        { Agregar(id,categoria,tipo2, size);
+        }
        
       compound_stmt(id)
 }
@@ -353,19 +353,19 @@ int type_specifier() : {}
 }
 
 
-void params() : {}
+String params() : {int contParam=0,cont=0;}
 {
-    (LOOKAHEAD(5) param_list() | <VOID>)
+    (LOOKAHEAD(5) cont=param_list(contParam) {return cont+"";}| <VOID>{return cont+"";})
 }
 
-void param_list() : {}
+int param_list(int contParam) : {int cont;}
 {
-    param(){contParam++;} param_listP() 
+    param(){contParam++;} cont=param_listP(contParam) {return cont;}
 }
 
-void param_listP() : {}     
+int param_listP(int contParam) : {}     
 {
-    (LOOKAHEAD(5) {contParam++;}<COMA> param() param_listP())*
+     <COMA> param(){contParam++;} param_listP(contParam) {return contParam;} | {} {return contParam;}
 }
 
 void param() : {int tipo;}
