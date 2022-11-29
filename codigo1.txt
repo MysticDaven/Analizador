@@ -4,7 +4,7 @@
 * the greates common denominator (GCD) of a pair of integers.
 */
 
-int gcd(int u, int v)
+int gcd(int u, int v, int h, int iy, int l)
 {
 	if(v==0) return u;
 	else return gcd(v,u-u/v*v);
@@ -13,9 +13,9 @@ int gcd(int u, int v)
 
 void main(void)
 {
-	int x; int y;
+	int x; int y,z;
 	int i[10];
 	i[11] = 8;
 	x=input();y=input();
-	output(gcd(x,y));
+	z = gcd(x,y);
 }

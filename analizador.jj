@@ -11,7 +11,7 @@ PARSER_BEGIN (Analizador)
 import java.util.*;
     public class Analizador {
         static Hashtable<String, Elemento> ts = new Hashtable<String, Elemento>();
-        static int cont=0, contParam2=0;
+        static int cont=0;
         static  Elemento ele;
         static boolean comp = true;
         static String vAux;
@@ -25,7 +25,8 @@ import java.util.*;
         }
 
         public static void Agregar(String id, String categoria, String tipo, String size){
-            ele = new Elemento(id, categoria, tipo, size);
+            if(size==null) ele = new Elemento(id, categoria, tipo, "0");
+            else ele = new Elemento(id, categoria, tipo, size);
             int res = buscar(id);
             if(res < 0){
                 ts.put("Var"+cont,ele);
@@ -41,12 +42,12 @@ import java.util.*;
             for(int i=0;i<cont;i++){
                 if(id.equals(ts.get("Var"+i).id)){
                     pos = i;               
-                    System.out.println("Si lo tiene "+ts.get("Var"+i).id);
+                    System.out.println("Si fue declarada "+ts.get("Var"+i).id);
                     return pos;
                 }
             }
             if(pos==-1){
-                System.out.println("No lo tiene "+id);
+                System.out.println("No fue declarada nunca "+id);
             }
             return pos;            
         }
@@ -73,28 +74,17 @@ import java.util.*;
             }
         }
 
-        public static void verificarReturn(String idFun, String idRet){
-            System.out.println("HOLA ENTRAS AQUI? "+ idFun +"  "+idRet);
+        public static void verificarReturn(String idVar, String idFun){
+            System.out.println("HOLA ENTRAS AQUI? idfun="+ idFun +"  idVar="+idVar);
             int posF = buscar(idFun);   
             boolean valid = false;
             if(posF>=0){
-                if(idRet=="1"){ //entero
-                    if(ts.get("Var"+posF).tipo == "int") valid = true;
-                    else valid = false;
-                }else if(idRet=="2"){ //float
-                    if(ts.get("Var"+posF).tipo == "float") valid = true;
-                    else valid = false;
-                }else if(idRet=="3"){ //char
-                    if(ts.get("Var"+posF).tipo == "char") valid = true;
-                    else valid = false;
-                }else{ //var
-                    int posR = buscar(idRet);
-                    //if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
-                    if(ts.get("Var"+posF).tipo == "int") valid = true;
-                    else valid = false;
-                }
-                if(valid) System.out.println("Funcion: "+ idFun +" tiene return correcto");
-                else System.out.println("Funcion: "+ idFun +" No tiene return correcto");
+                int posR = buscar(idVar);
+                if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
+                //if(ts.get("Var"+posF).tipo == "int") valid = true;
+                else valid = false;              
+            if(valid) System.out.println("Variable: "+ idFun +" tiene tipo de return correcto");
+            else System.out.println("Variable: "+ idFun +" no tiene tipo de return correcto");
             }
         }
 
@@ -360,12 +350,12 @@ String params() : {int contParam=0,cont=0;}
 
 int param_list(int contParam) : {int cont;}
 {
-    param(){contParam++;} cont=param_listP(contParam) {return cont;}
+    param(){contParam++; } cont=param_listP(contParam) {System.out.println("Contador1: "+(cont+1)); return cont+1;}
 }
 
-int param_listP(int contParam) : {}     
+int param_listP(int contParam) : {int cont=0;}     
 {
-     <COMA> param(){contParam++;} param_listP(contParam) {return contParam;} | {} {return contParam;}
+     <COMA> param(){contParam++;}  cont=param_listP(contParam) {System.out.println("Contador2: "+(cont+1));return cont+1;} | {} {System.out.println("Contador2: "+cont);return cont;}
 }
 
 void param() : {int tipo;}
@@ -428,9 +418,9 @@ void statement(String id) : {}
     expression_stmt() | compound_stmt(id) | selection_stmt(id) | iteration_stmt() | return_stmt(id)
 }
 
-void expression_stmt() : {}
+void expression_stmt() : {String varID,funID="";} //Estas variables se traen para poder obtener sus ids y comparar si son del mismo tipo, eso lo hace la funcion verificarReturn, el if esta para evitar que otras cosas sean mandadas
 {
-    LOOKAHEAD(5) var() <IGUAL> expression("") | expression("") <FINLINEA> | <FINLINEA>
+    LOOKAHEAD(5) varID=var() <IGUAL> funID=expression("") {if(funID!="")verificarReturn(varID,funID);} | expression("") <FINLINEA> | <FINLINEA>
 }
 
 void selection_stmt(String id) : {}
@@ -450,7 +440,7 @@ void iteration_stmt() : {}
 
 void return_stmt(String id) : {String var;}
 {
-    <RETURN> var=return_stmt2(id) {verificarReturn(id,var);} 
+    <RETURN> var=return_stmt2(id) 
 }
 
 String return_stmt2(String id) : {String rexpresion;}
@@ -470,7 +460,7 @@ String var() : {String id;}
 
 void var2(String id) : {}
 {
-    (LOOKAHEAD(5) <ABRIRCOR> expression(id) <CERRARCOR>)*
+     <ABRIRCOR> expression(id) <CERRARCOR> | {}
 }
 
 String simple_expression(String id) : {String ret;}
@@ -518,29 +508,29 @@ void mulop() : {}
     <POR> | <ENTRE> | <MODULO> 
 }
 
-void call() : {String id;}
+String call() : {String id; int parametros=0;}
 {
-    <ID>{id= token.image; buscar(id);}<ABRIRPAR>args()<CERRARPAR> {contarParametros(id,contParam2); contParam2=0;}
+    <ID>{id= token.image; buscar(id);}<ABRIRPAR>parametros=args()<CERRARPAR> {contarParametros(id,parametros); return id;}
 }
 
-String factor(String id) : {String ret;}
+String factor(String id) : {String ret, callr;} //callr lo que hace es regresar el ID de la funcion para verificar el tipo de retorno
 {
-    LOOKAHEAD(20) <ABRIRPAR> expression("") <CERRARPAR> {return "";}| LOOKAHEAD(20) call() {return "";}| LOOKAHEAD(20) var() {return "";} | <NUMENT>{String size=token.image; if(id!=""){validarArreglo(id,size);}}{return ret = "1";} | <NUMERODECIMAL>{return ret = "2";} | <CHAR>{return ret = "3";}
+    LOOKAHEAD(20) <ABRIRPAR> expression("") <CERRARPAR> {return "";}| LOOKAHEAD(20) callr=call() {return callr;}| LOOKAHEAD(20) var() {return "";} | <NUMENT>{String size=token.image; if(id!=""){validarArreglo(id,size);}}{return ret = "";} | <NUMERODECIMAL>{return ret = "2";} | <CHAR>{return ret = "3";}
 }
 
-void args() : {}
+int args() : {int cont=0,cont2=0;}
 {
-    arg_list()
+    cont2=arg_list(cont) {return cont2;}
 }
 
-void arg_list() : {}
+int arg_list(int cont) : {int cont2=0;}
 {
-    (LOOKAHEAD(5) expression("") {contParam2++;} arg_listP())*
+     expression("") {cont++;} cont2=arg_listP(cont) {return cont2;} | {} {return cont2;}
 }
 
-void arg_listP() : {}
+int arg_listP(int cont) : {}
 {
-    (LOOKAHEAD(5) <COMA> expression("") {contParam2++;} arg_listP())*
+    <COMA> expression("") {cont++;} arg_listP(cont) {return cont;} | {} {return cont;}
 }
 
 
