@@ -13,8 +13,15 @@ int gcd(int u, int v, int h, int iy, int l)
 
 void main(void)
 {
-	int x; int y,z;
+	int x; int y;
+	float p;
+	char z;
 	int i[10];
+	x = y;
+	z = x;
+	x = 12;
+	p = 12.3;
+	z = 'f';
 	i[11] = 8;
 	x=input();y=input();
 	z = gcd(x,y);

@@ -39,15 +39,17 @@ import java.util.*;
 
         public static int buscar(String id){
             int pos = -1;
+            if(id != "int" && id != "float" && id != "char"){
             for(int i=0;i<cont;i++){
-                if(id.equals(ts.get("Var"+i).id)){
-                    pos = i;               
-                    System.out.println("Si fue declarada "+ts.get("Var"+i).id);
-                    return pos;
+                    if(id.equals(ts.get("Var"+i).id)){
+                        pos = i;               
+                        System.out.println("Si fue declarada "+ts.get("Var"+i).id);
+                        return pos;
+                    }
                 }
-            }
-            if(pos==-1){
-                System.out.println("No fue declarada nunca "+id);
+                if(pos==-1){
+                    System.out.println("No fue declarada nunca "+id);
+                }                
             }
             return pos;            
         }
@@ -75,16 +77,27 @@ import java.util.*;
         }
 
         public static void verificarReturn(String idVar, String idFun){
-            System.out.println("HOLA ENTRAS AQUI? idfun="+ idFun +"  idVar="+idVar);
-            int posF = buscar(idFun);   
-            boolean valid = false;
-            if(posF>=0){
+            if(idFun != "int" && idFun != "float" && idFun != "char"){
+                System.out.println("HOLA ENTRAS AQUI? idfun="+ idFun +"  idVar="+idVar);
+                int posF = buscar(idFun);   
+                boolean valid = false;
+                if(posF>=0){
+                    int posR = buscar(idVar);
+                    if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
+                    //if(ts.get("Var"+posF).tipo == "int") valid = true;
+                    else valid = false;              
+                if(valid) System.out.println("Variable: "+ idVar +" y  " + idFun + " son del tipo correcto");
+                else System.out.println("Variable: "+ idVar +" y  " + idFun + " no son del tipo correcto");
+                }                
+            }
+            else{
                 int posR = buscar(idVar);
-                if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
-                //if(ts.get("Var"+posF).tipo == "int") valid = true;
-                else valid = false;              
-            if(valid) System.out.println("Variable: "+ idFun +" tiene tipo de return correcto");
-            else System.out.println("Variable: "+ idFun +" no tiene tipo de return correcto");
+                boolean valid = false;
+                if(posR >= 0){
+                    if(ts.get("Var"+posR).tipo == idFun) valid = true;
+                    if(valid) System.out.println("Variable: "+ idVar +" y  " + idFun + " son del tipo correcto");
+                    else System.out.println("Variable: "+ idVar +" y  " + idFun + " no son del tipo correcto");                    
+                }
             }
         }
 
@@ -121,7 +134,6 @@ TOKEN:
     <CLASS: "class"> {System.out.println(matchedToken.beginLine +". Encontre palabra reservada:  " + image);} |
     <STATIC: "static"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <VOID: "void"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
-    
     <STRING: "String"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <INT: "int"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <FLOAT: "float"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
@@ -143,7 +155,8 @@ TOKEN:
     <SWITCH: "switch"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <CASE: "case"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
     <BREAK: "break"> {System.out.println(matchedToken.beginLine+". Encontre palabra reservada: "+image);} |
-    <NUMERODECIMAL : (["0"-"9"])+(".")(["0"-"9"])+> {System.out.println(matchedToken.beginLine+". Encontre numero flotante: "+image);} 
+    <NUMERODECIMAL : (["0"-"9"])+(".")(["0"-"9"])+> {System.out.println(matchedToken.beginLine+". Encontre numero flotante: "+image);} |  
+    <CARACTER : (("'")+(["a"-"z","A"-"Z","0"-"9"])+("'")) > {System.out.println(matchedToken.beginLine+". Encontre un caracter: "+image);}
 }
 
 TOKEN:
@@ -420,7 +433,7 @@ void statement(String id) : {}
 
 void expression_stmt() : {String varID,funID="";} //Estas variables se traen para poder obtener sus ids y comparar si son del mismo tipo, eso lo hace la funcion verificarReturn, el if esta para evitar que otras cosas sean mandadas
 {
-    LOOKAHEAD(5) varID=var() <IGUAL> funID=expression("") {if(funID!="")verificarReturn(varID,funID);} | expression("") <FINLINEA> | <FINLINEA>
+    LOOKAHEAD(5) varID=var() <IGUAL> funID=expression("") {if(funID!="")verificarReturn(varID,funID); System.out.println("\n\n\nEste es varID: " + varID + " este es funID" + funID);} | expression("") <FINLINEA> | <FINLINEA>
 }
 
 void selection_stmt(String id) : {}
@@ -448,9 +461,9 @@ String return_stmt2(String id) : {String rexpresion;}
     <FINLINEA> {return "";}|  rexpresion = expression(id) <FINLINEA> {return rexpresion;}
 }
 
-String expression(String id) : {String rvar, rsimple;}
+String expression(String id) : {String rvar, rsimple, rExpression;}
 {
-   LOOKAHEAD(5) rsimple=simple_expression(id){return rsimple;} | LOOKAHEAD(5) rvar=var() <IGUAL> expression(id) {System.out.println("PUTA? "+ rvar);}{return rvar;}
+   LOOKAHEAD(5) rsimple=simple_expression(id){return rsimple;} | LOOKAHEAD(5) rvar=var() <IGUAL> rExpression = expression(id) {return rvar;}
 }
 
 String var() : {String id;}
@@ -513,9 +526,9 @@ String call() : {String id; int parametros=0;}
     <ID>{id= token.image; buscar(id);}<ABRIRPAR>parametros=args()<CERRARPAR> {contarParametros(id,parametros); return id;}
 }
 
-String factor(String id) : {String ret, callr;} //callr lo que hace es regresar el ID de la funcion para verificar el tipo de retorno
+String factor(String id) : {String ret, callr, idVar;} //callr lo que hace es regresar el ID de la funcion para verificar el tipo de retorno
 {
-    LOOKAHEAD(20) <ABRIRPAR> expression("") <CERRARPAR> {return "";}| LOOKAHEAD(20) callr=call() {return callr;}| LOOKAHEAD(20) var() {return "";} | <NUMENT>{String size=token.image; if(id!=""){validarArreglo(id,size);}}{return ret = "";} | <NUMERODECIMAL>{return ret = "2";} | <CHAR>{return ret = "3";}
+    LOOKAHEAD(20) <ABRIRPAR> expression("") <CERRARPAR> {return "";}| LOOKAHEAD(20) callr=call() {System.out.println("Valor de callr: "+ callr); return callr;}| LOOKAHEAD(20) idVar = var() {return idVar;} | <NUMENT>{String size=token.image; if(id!=""){validarArreglo(id,size);}}{return ret = "int";} | <NUMERODECIMAL>{return ret = "float";} | <CARACTER>{return ret = "char";}
 }
 
 int args() : {int cont=0,cont2=0;}

@@ -32,15 +32,17 @@ import java.util.*;
 
         public static int buscar(String id){
             int pos = -1;
+            if(id != "int" && id != "float" && id != "char"){
             for(int i=0;i<cont;i++){
-                if(id.equals(ts.get("Var"+i).id)){
-                    pos = i;
-                    System.out.println("Si fue declarada "+ts.get("Var"+i).id);
-                    return pos;
+                    if(id.equals(ts.get("Var"+i).id)){
+                        pos = i;
+                        System.out.println("Si fue declarada "+ts.get("Var"+i).id);
+                        return pos;
+                    }
                 }
-            }
-            if(pos==-1){
-                System.out.println("No fue declarada nunca "+id);
+                if(pos==-1){
+                    System.out.println("No fue declarada nunca "+id);
+                }
             }
             return pos;
         }
@@ -68,16 +70,27 @@ import java.util.*;
         }
 
         public static void verificarReturn(String idVar, String idFun){
-            System.out.println("HOLA ENTRAS AQUI? idfun="+ idFun +"  idVar="+idVar);
-            int posF = buscar(idFun);
-            boolean valid = false;
-            if(posF>=0){
+            if(idFun != "int" && idFun != "float" && idFun != "char"){
+                System.out.println("HOLA ENTRAS AQUI? idfun="+ idFun +"  idVar="+idVar);
+                int posF = buscar(idFun);
+                boolean valid = false;
+                if(posF>=0){
+                    int posR = buscar(idVar);
+                    if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
+                    //if(ts.get("Var"+posF).tipo == "int") valid = true;
+                    else valid = false;
+                if(valid) System.out.println("Variable: "+ idVar +" y  " + idFun + " son del tipo correcto");
+                else System.out.println("Variable: "+ idVar +" y  " + idFun + " no son del tipo correcto");
+                }
+            }
+            else{
                 int posR = buscar(idVar);
-                if(ts.get("Var"+posF).tipo == ts.get("Var"+posR).tipo) valid = true;
-                //if(ts.get("Var"+posF).tipo == "int") valid = true;
-                else valid = false;
-            if(valid) System.out.println("Variable: "+ idFun +" tiene tipo de return correcto");
-            else System.out.println("Variable: "+ idFun +" no tiene tipo de return correcto");
+                boolean valid = false;
+                if(posR >= 0){
+                    if(ts.get("Var"+posR).tipo == idFun) valid = true;
+                    if(valid) System.out.println("Variable: "+ idVar +" y  " + idFun + " son del tipo correcto");
+                    else System.out.println("Variable: "+ idVar +" y  " + idFun + " no son del tipo correcto");
+                }
             }
         }
 
@@ -430,8 +443,8 @@ import java.util.*;
 
   final public void statement(String id) throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case CHAR:
     case NUMERODECIMAL:
+    case CARACTER:
     case ID:
     case NUMENT:
     case FINLINEA:
@@ -463,11 +476,11 @@ import java.util.*;
       varID = var();
       jj_consume_token(IGUAL);
       funID = expression("");
-                                                           if(funID!="")verificarReturn(varID,funID);
+                                                           if(funID!="")verificarReturn(varID,funID); System.out.println("\n\n\nEste es varID: " + varID + " este es funID" + funID);
     } else {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case CHAR:
       case NUMERODECIMAL:
+      case CARACTER:
       case ID:
       case NUMENT:
       case ABRIRPAR:
@@ -528,8 +541,8 @@ import java.util.*;
       jj_consume_token(FINLINEA);
                 {if (true) return "";}
       break;
-    case CHAR:
     case NUMERODECIMAL:
+    case CARACTER:
     case ID:
     case NUMENT:
     case ABRIRPAR:
@@ -546,16 +559,15 @@ import java.util.*;
   }
 
   final public String expression(String id) throws ParseException {
-                                String rvar, rsimple;
+                                String rvar, rsimple, rExpression;
     if (jj_2_12(5)) {
       rsimple = simple_expression(id);
                                               {if (true) return rsimple;}
     } else if (jj_2_13(5)) {
       rvar = var();
       jj_consume_token(IGUAL);
-      expression(id);
-                                                                                                                 System.out.println("PUTA? "+ rvar);
-                                                                                                                                                      {if (true) return rvar;}
+      rExpression = expression(id);
+                                                                                                                               {if (true) return rvar;}
     } else {
       jj_consume_token(-1);
       throw new ParseException();
@@ -724,7 +736,7 @@ import java.util.*;
   }
 
   final public String factor(String id) throws ParseException {
-                            String ret, callr;
+                            String ret, callr, idVar;
     if (jj_2_17(20)) {
       jj_consume_token(ABRIRPAR);
       expression("");
@@ -732,24 +744,24 @@ import java.util.*;
                                                          {if (true) return "";}
     } else if (jj_2_18(20)) {
       callr = call();
-                                                                                                  {if (true) return callr;}
+                                                                                                  System.out.println("Valor de callr: "+ callr); {if (true) return callr;}
     } else if (jj_2_19(20)) {
-      var();
-                                                                                                                                       {if (true) return "";}
+      idVar = var();
+                                                                                                                                                                                              {if (true) return idVar;}
     } else {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case NUMENT:
         jj_consume_token(NUMENT);
-                                                                                                                                                              String size=token.image; if(id!=""){validarArreglo(id,size);}
-                                                                                                                                                                                                                             {if (true) return ret = "";}
+                                                                                                                                                                                                                        String size=token.image; if(id!=""){validarArreglo(id,size);}
+                                                                                                                                                                                                                                                                                       {if (true) return ret = "int";}
         break;
       case NUMERODECIMAL:
         jj_consume_token(NUMERODECIMAL);
-                                                                                                                                                                                                                                                                 {if (true) return ret = "2";}
+                                                                                                                                                                                                                                                                                                                              {if (true) return ret = "float";}
         break;
-      case CHAR:
-        jj_consume_token(CHAR);
-                                                                                                                                                                                                                                                                                             {if (true) return ret = "3";}
+      case CARACTER:
+        jj_consume_token(CARACTER);
+                                                                                                                                                                                                                                                                                                                                                                  {if (true) return ret = "char";}
         break;
       default:
         jj_la1[12] = jj_gen;
@@ -770,8 +782,8 @@ import java.util.*;
   final public int arg_list(int cont) throws ParseException {
                           int cont2=0;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case CHAR:
     case NUMERODECIMAL:
+    case CARACTER:
     case ID:
     case NUMENT:
     case ABRIRPAR:
@@ -938,17 +950,6 @@ import java.util.*;
     finally { jj_save(18, xla); }
   }
 
-  private boolean jj_3R_42() {
-    if (jj_scan_token(NUMERODECIMAL)) return true;
-    return false;
-  }
-
-  private boolean jj_3_7() {
-    if (jj_scan_token(ABRIRCOR)) return true;
-    if (jj_scan_token(CERRARCOR)) return true;
-    return false;
-  }
-
   private boolean jj_3R_32() {
     if (jj_3R_30()) return true;
     if (jj_scan_token(ID)) return true;
@@ -1035,6 +1036,11 @@ import java.util.*;
     return false;
   }
 
+  private boolean jj_3R_41() {
+    if (jj_scan_token(NUMENT)) return true;
+    return false;
+  }
+
   private boolean jj_3R_66() {
     if (jj_3R_19()) return true;
     if (jj_3R_73()) return true;
@@ -1055,12 +1061,6 @@ import java.util.*;
     if (jj_scan_token(COMA)) return true;
     if (jj_scan_token(ID)) return true;
     if (jj_3R_15()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_62() {
-    if (jj_3R_19()) return true;
-    if (jj_scan_token(FINLINEA)) return true;
     return false;
   }
 
@@ -1131,11 +1131,11 @@ import java.util.*;
   private boolean jj_3R_26() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(44)) {
-    jj_scanpos = xsp;
     if (jj_scan_token(45)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(28)) return true;
+    if (jj_scan_token(46)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(29)) return true;
     }
     }
     return false;
@@ -1175,9 +1175,9 @@ import java.util.*;
   private boolean jj_3R_23() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(42)) {
+    if (jj_scan_token(43)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(43)) return true;
+    if (jj_scan_token(44)) return true;
     }
     return false;
   }
@@ -1210,6 +1210,11 @@ import java.util.*;
     return false;
   }
 
+  private boolean jj_3_19() {
+    if (jj_3R_18()) return true;
+    return false;
+  }
+
   private boolean jj_3R_22() {
     if (jj_3R_24()) return true;
     if (jj_3R_25()) return true;
@@ -1228,22 +1233,27 @@ import java.util.*;
   private boolean jj_3R_21() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(54)) {
+    if (jj_scan_token(55)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(50)) {
     jj_scanpos = xsp;
     if (jj_scan_token(49)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(48)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(55)) {
-    jj_scanpos = xsp;
     if (jj_scan_token(56)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(57)) return true;
+    if (jj_scan_token(57)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(58)) return true;
     }
     }
     }
     }
     }
+    return false;
+  }
+
+  private boolean jj_3R_43() {
+    if (jj_scan_token(CARACTER)) return true;
     return false;
   }
 
@@ -1265,11 +1275,6 @@ import java.util.*;
       xsp = jj_scanpos;
       if (jj_3_14()) { jj_scanpos = xsp; break; }
     }
-    return false;
-  }
-
-  private boolean jj_3R_41() {
-    if (jj_scan_token(NUMENT)) return true;
     return false;
   }
 
@@ -1397,14 +1402,14 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3_19() {
-    if (jj_3R_18()) return true;
-    return false;
-  }
-
   private boolean jj_3_11() {
     if (jj_scan_token(ELSE)) return true;
     if (jj_3R_17()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_42() {
+    if (jj_scan_token(NUMERODECIMAL)) return true;
     return false;
   }
 
@@ -1455,7 +1460,7 @@ import java.util.*;
     jj_scanpos = xsp;
     if (jj_3R_62()) {
     jj_scanpos = xsp;
-    if (jj_scan_token(31)) return true;
+    if (jj_scan_token(32)) return true;
     }
     }
     return false;
@@ -1499,8 +1504,9 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_43() {
-    if (jj_scan_token(CHAR)) return true;
+  private boolean jj_3R_62() {
+    if (jj_3R_19()) return true;
+    if (jj_scan_token(FINLINEA)) return true;
     return false;
   }
 
@@ -1564,6 +1570,12 @@ import java.util.*;
     return false;
   }
 
+  private boolean jj_3_7() {
+    if (jj_scan_token(ABRIRCOR)) return true;
+    if (jj_scan_token(CERRARCOR)) return true;
+    return false;
+  }
+
   /** Generated Token Manager. */
   public AnalizadorTokenManager token_source;
   SimpleCharStream jj_input_stream;
@@ -1588,10 +1600,10 @@ import java.util.*;
       jj_la1_init_2();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0xe8,0x80000000,0xe8,0x8,0x0,0xc6030480,0xc6000080,0xc6000080,0x0,0x0,0x0,0x10000000,0x42000080,0x46000080,0x0,};
+      jj_la1_0 = new int[] {0xe8,0x0,0xe8,0x8,0x0,0x8e030400,0x8e000000,0x8e000000,0x0,0x0,0x0,0x20000000,0x86000000,0x8e000000,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x41,0x0,0x0,0x1,0x14,0x10,0x10,0x40,0x3c30000,0xc00,0x3000,0x0,0x10,0x1,};
+      jj_la1_1 = new int[] {0x0,0x83,0x0,0x0,0x2,0x29,0x21,0x21,0x80,0x7860000,0x1800,0x6000,0x0,0x20,0x2,};
    }
    private static void jj_la1_init_2() {
       jj_la1_2 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
@@ -1783,7 +1795,7 @@ import java.util.*;
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[70];
+    boolean[] la1tokens = new boolean[71];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -1803,7 +1815,7 @@ import java.util.*;
         }
       }
     }
-    for (int i = 0; i < 70; i++) {
+    for (int i = 0; i < 71; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
