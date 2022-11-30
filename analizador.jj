@@ -538,12 +538,12 @@ int args() : {int cont=0,cont2=0;}
 
 int arg_list(int cont) : {int cont2=0;}
 {
-     expression("") {cont++;} cont2=arg_listP(cont) {return cont2;} | {} {return cont2;}
+     expression("") {cont++;} cont2=arg_listP(cont) {return cont2+1;} | {} {return cont2+1;}
 }
 
-int arg_listP(int cont) : {}
+int arg_listP(int cont) : {int cont1 = 0;}
 {
-    <COMA> expression("") {cont++;} arg_listP(cont) {return cont;} | {} {return cont;}
+    <COMA> expression("") {cont++;} cont1 = arg_listP(cont) {return cont1+1;} | {} {return cont1;}
 }
 
 

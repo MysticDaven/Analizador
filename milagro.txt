@@ -1,184 +1,389 @@
-7. Encontre palabra reservada: int
-7. Encontre un identificador: gcd
-7. Encontre un simbolo: (
-7. Encontre palabra reservada: int
-7. Encontre un identificador: u
-7. Encontre un simbolo: ,
-7. Encontre palabra reservada: int
-7. Encontre un identificador: v
-No fue declarada nunca u
-7. Encontre un simbolo: ,
-No fue declarada nunca v
-7. Encontre palabra reservada: int
-7. Encontre un identificador: h
-7. Encontre un simbolo: ,
-No fue declarada nunca h
-7. Encontre palabra reservada: int
-7. Encontre un identificador: iy
-7. Encontre un simbolo: ,
-No fue declarada nunca iy
-7. Encontre palabra reservada: int
-7. Encontre un identificador: l
-7. Encontre un simbolo: )
-No fue declarada nunca l
+4. Encontre palabra reservada: int
+4. Encontre un identificador: x
+4. Encontre un simbolo: [
+4. Encontre un numero: 10
+4. Encontre un simbolo: ]
+4. Encontre un simbolo: ;
+No fue declarada nunca x
+6. Encontre palabra reservada: int
+6. Encontre un identificador: minloc
+6. Encontre un simbolo: (
+6. Encontre palabra reservada: int
+6. Encontre un identificador: a
+6. Encontre un simbolo: [
+6. Encontre un simbolo: ]
+6. Encontre un simbolo: ,
+No fue declarada nunca a
+6. Encontre palabra reservada: int
+6. Encontre un identificador: low
+6. Encontre un simbolo: ,
+No fue declarada nunca low
+6. Encontre palabra reservada: int
+6. Encontre un identificador: high
+6. Encontre un simbolo: ,
+No fue declarada nunca high
+6. Encontre palabra reservada: int
+6. Encontre un identificador: f
+6. Encontre un simbolo: )
+No fue declarada nunca f
 Contador2: 0
 Contador2: 1
 Contador2: 2
 Contador2: 3
-Contador2: 4
-Contador1: 5
-No fue declarada nunca gcd
-8. Encontre un simbolo: {
-9. Encontre palabra reservada: if
-9. Encontre un simbolo: (
-9. Encontre un identificador: v
-9. Encontre un simbolo: ==
-9. Encontre un numero: 0
-9. Encontre un simbolo: )
-Si fue declarada v
-9. Encontre palabra reservada: return
-9. Encontre un identificador: u
-9. Encontre un simbolo: ;
-Si fue declarada u
-10. Encontre palabra reservada: else
-10. Encontre palabra reservada: return
-10. Encontre un identificador: gcd
-10. Encontre un simbolo: (
-10. Encontre un identificador: v
-10. Encontre un simbolo: ,
-10. Encontre un identificador: u
-10. Encontre un operador resta: -
-10. Encontre un identificador: u
-10. Encontre un operador division: /
-10. Encontre un identificador: v
-10. Encontre un operador multiplicacion: *
-10. Encontre un identificador: v
-10. Encontre un simbolo: )
-Si fue declarada gcd
-Si fue declarada v
-Si fue declarada u
-Si fue declarada u
-Si fue declarada v
-Si fue declarada v
-Si fue declarada gcd
-Funcion: gcd no tiene parametros correctos
-Valor de callr: gcd
-10. Encontre un simbolo: ;
-12. Encontre un simbolo: }
-14. Encontre palabra reservada: void
-14. Encontre un identificador: main
-14. Encontre un simbolo: (
-14. Encontre palabra reservada: void
-14. Encontre un simbolo: )
-No fue declarada nunca main
-15. Encontre un simbolo: {
-16. Encontre palabra reservada: int
-16. Encontre un identificador: x
-16. Encontre un simbolo: ;
-No fue declarada nunca x
-16. Encontre palabra reservada: int
-16. Encontre un identificador: y
-16. Encontre un simbolo: ;
-No fue declarada nunca y
-17. Encontre palabra reservada: float
-17. Encontre un identificador: p
-17. Encontre un simbolo: ;
-No fue declarada nunca p
-18. Encontre palabra reservada: char
-18. Encontre un identificador: z
-18. Encontre un simbolo: ;
-No fue declarada nunca z
-19. Encontre palabra reservada: int
-19. Encontre un identificador: i
-19. Encontre un simbolo: [
-19. Encontre un numero: 10
-19. Encontre un simbolo: ]
-19. Encontre un simbolo: ;
+Contador1: 4
+No fue declarada nunca minloc
+7. Encontre un simbolo: {
+8. Encontre palabra reservada: int
+8. Encontre un identificador: i
+8. Encontre un simbolo: ;
 No fue declarada nunca i
-20. Encontre un identificador: x
-20. Encontre un simbolo: =
-20. Encontre un identificador: y
-20. Encontre un simbolo: ;
+8. Encontre palabra reservada: int
+8. Encontre un identificador: x
+8. Encontre un simbolo: ;
 Si fue declarada x
-Si fue declarada y
-HOLA ENTRAS AQUI? idfun=y  idVar=x
-Si fue declarada y
+La variable x ya fue declarada anteriormente
+8. Encontre palabra reservada: int
+8. Encontre un identificador: k
+8. Encontre un simbolo: ;
+No fue declarada nunca k
+10. Encontre un identificador: k
+10. Encontre un simbolo: =
+10. Encontre un identificador: low
+10. Encontre un simbolo: ;
+Si fue declarada k
+Si fue declarada low
+HOLA ENTRAS AQUI? idfun=low  idVar=k
+Si fue declarada low
+Si fue declarada k
+Variable: k y  low son del tipo correcto
+
+
+
+Este es varID: k este es funIDlow
+11. Encontre un identificador: x
+11. Encontre un simbolo: =
+11. Encontre un identificador: a
+11. Encontre un simbolo: [
+11. Encontre un identificador: low
 Si fue declarada x
-Variable: x y  y son del tipo correcto
-
-
-
-Este es varID: x este es funIDy
-21. Encontre un identificador: z
-21. Encontre un simbolo: =
-21. Encontre un identificador: x
-21. Encontre un simbolo: ;
-Si fue declarada z
+11. Encontre un simbolo: ]
+11. Encontre un simbolo: ;
+Si fue declarada a
+Si fue declarada low
+HOLA ENTRAS AQUI? idfun=a  idVar=x
+Si fue declarada a
 Si fue declarada x
-HOLA ENTRAS AQUI? idfun=x  idVar=z
+Variable: x y  a son del tipo correcto
+
+
+
+Este es varID: x este es funIDa
+12. Encontre un identificador: i
+12. Encontre un simbolo: =
+12. Encontre un identificador: low
+12. Encontre un operador suma: +
+12. Encontre un numero: 1
+Si fue declarada i
+12. Encontre un simbolo: ;
+Si fue declarada low
+HOLA ENTRAS AQUI? idfun=low  idVar=i
+Si fue declarada low
+Si fue declarada i
+Variable: i y  low son del tipo correcto
+
+
+
+Este es varID: i este es funIDlow
+14. Encontre palabra reservada: while
+14. Encontre un simbolo: (
+14. Encontre un identificador: i
+14. Encontre un operador logico: <
+14. Encontre un identificador: high
+14. Encontre un simbolo: )
+Si fue declarada i
+Si fue declarada high
+15. Encontre un simbolo: {
+16. Encontre palabra reservada: if
+16. Encontre un simbolo: (
+16. Encontre un identificador: a
+16. Encontre un simbolo: [
+16. Encontre un identificador: i
+16. Encontre un simbolo: ]
+16. Encontre un operador logico: <
+Si fue declarada a
+Si fue declarada i
+16. Encontre un identificador: x
+16. Encontre un simbolo: )
 Si fue declarada x
-Si fue declarada z
-Variable: z y  x no son del tipo correcto
+17. Encontre un simbolo: {
+18. Encontre un identificador: x
+18. Encontre un simbolo: =
+18. Encontre un identificador: a
+18. Encontre un simbolo: [
+18. Encontre un identificador: i
+Si fue declarada x
+18. Encontre un simbolo: ]
+18. Encontre un simbolo: ;
+Si fue declarada a
+Si fue declarada i
+HOLA ENTRAS AQUI? idfun=a  idVar=x
+Si fue declarada a
+Si fue declarada x
+Variable: x y  a son del tipo correcto
 
 
 
-Este es varID: z este es funIDx
-22. Encontre un identificador: x
+Este es varID: x este es funIDa
+19. Encontre un identificador: k
+19. Encontre un simbolo: =
+19. Encontre un identificador: i
+19. Encontre un simbolo: ;
+Si fue declarada k
+Si fue declarada i
+HOLA ENTRAS AQUI? idfun=i  idVar=k
+Si fue declarada i
+Si fue declarada k
+Variable: k y  i son del tipo correcto
+
+
+
+Este es varID: k este es funIDi
+20. Encontre un simbolo: }
+22. Encontre un identificador: i
 22. Encontre un simbolo: =
-22. Encontre un numero: 12
+22. Encontre un identificador: i
+22. Encontre un operador suma: +
+22. Encontre un numero: 1
+Si fue declarada i
 22. Encontre un simbolo: ;
-Si fue declarada x
-Si fue declarada x
-Variable: x y  int son del tipo correcto
-
-
-
-Este es varID: x este es funIDint
-23. Encontre un identificador: p
-23. Encontre un simbolo: =
-23. Encontre numero flotante: 12.3
-23. Encontre un simbolo: ;
-Si fue declarada p
-Si fue declarada p
-Variable: p y  float son del tipo correcto
-
-
-
-Este es varID: p este es funIDfloat
-24. Encontre un identificador: z
-24. Encontre un simbolo: =
-24. Encontre un caracter: 'f'
-24. Encontre un simbolo: ;
-Si fue declarada z
-Si fue declarada z
-Variable: z y  char son del tipo correcto
-
-
-
-Este es varID: z este es funIDchar
-25. Encontre un identificador: i
-25. Encontre un simbolo: [
-25. Encontre un numero: 11
-25. Encontre un simbolo: ]
-25. Encontre un simbolo: =
+Si fue declarada i
+HOLA ENTRAS AQUI? idfun=i  idVar=i
 Si fue declarada i
 Si fue declarada i
-Arregloifuera de rango
-25. Encontre un numero: 8
+Variable: i y  i son del tipo correcto
+
+
+
+Este es varID: i este es funIDi
+23. Encontre un simbolo: }
+25. Encontre palabra reservada: return
+25. Encontre un identificador: k
 25. Encontre un simbolo: ;
+Si fue declarada k
+26. Encontre un simbolo: }
+29. Encontre palabra reservada: void
+29. Encontre un identificador: sort
+29. Encontre un simbolo: (
+29. Encontre palabra reservada: int
+29. Encontre un identificador: a
+29. Encontre un simbolo: [
+29. Encontre un simbolo: ]
+29. Encontre un simbolo: ,
+Si fue declarada a
+La variable a ya fue declarada anteriormente
+29. Encontre palabra reservada: int
+29. Encontre un identificador: low
+29. Encontre un simbolo: ,
+Si fue declarada low
+La variable low ya fue declarada anteriormente
+29. Encontre palabra reservada: int
+29. Encontre un identificador: high
+29. Encontre un simbolo: )
+Si fue declarada high
+La variable high ya fue declarada anteriormente
+Contador2: 0
+Contador2: 1
+Contador2: 2
+Contador1: 3
+No fue declarada nunca sort
+30. Encontre un simbolo: {
+31. Encontre palabra reservada: int
+31. Encontre un identificador: i
+31. Encontre un simbolo: ;
+Si fue declarada i
+La variable i ya fue declarada anteriormente
+32. Encontre palabra reservada: int
+32. Encontre un identificador: k
+32. Encontre un simbolo: ;
+Si fue declarada k
+La variable k ya fue declarada anteriormente
+34. Encontre un identificador: i
+34. Encontre un simbolo: =
+34. Encontre un identificador: low
+34. Encontre un simbolo: ;
+Si fue declarada i
+Si fue declarada low
+HOLA ENTRAS AQUI? idfun=low  idVar=i
+Si fue declarada low
+Si fue declarada i
+Variable: i y  low son del tipo correcto
+
+
+
+Este es varID: i este es funIDlow
+35. Encontre palabra reservada: while
+35. Encontre un simbolo: (
+35. Encontre un identificador: i
+35. Encontre un operador logico: <
+35. Encontre un identificador: high
+35. Encontre un operador resta: -
+35. Encontre un numero: 1
+Si fue declarada i
+35. Encontre un simbolo: )
+Si fue declarada high
+36. Encontre un simbolo: {
+37. Encontre palabra reservada: int
+37. Encontre un identificador: t
+37. Encontre un simbolo: ;
+No fue declarada nunca t
+38. Encontre un identificador: k
+38. Encontre un simbolo: =
+38. Encontre un identificador: minloc
+38. Encontre un simbolo: (
+38. Encontre un identificador: a
+Si fue declarada k
+38. Encontre un simbolo: ,
+38. Encontre un identificador: i
+38. Encontre un simbolo: ,
+38. Encontre un identificador: high
+38. Encontre un simbolo: ,
+38. Encontre un identificador: f
+38. Encontre un simbolo: )
+Si fue declarada minloc
+Si fue declarada a
+Si fue declarada i
+Si fue declarada high
+Si fue declarada f
+Si fue declarada minloc
+Parametros correctos
+Valor de callr: minloc
+38. Encontre un simbolo: ;
+HOLA ENTRAS AQUI? idfun=minloc  idVar=k
+Si fue declarada minloc
+Si fue declarada k
+Variable: k y  minloc son del tipo correcto
+
+
+
+Este es varID: k este es funIDminloc
+39. Encontre un identificador: t
+39. Encontre un simbolo: =
+39. Encontre un identificador: a
+39. Encontre un simbolo: [
+39. Encontre un identificador: k
+Si fue declarada t
+39. Encontre un simbolo: ]
+39. Encontre un simbolo: ;
+Si fue declarada a
+Si fue declarada k
+HOLA ENTRAS AQUI? idfun=a  idVar=t
+Si fue declarada a
+Si fue declarada t
+Variable: t y  a son del tipo correcto
+
+
+
+Este es varID: t este es funIDa
+40. Encontre un identificador: a
+40. Encontre un simbolo: [
+40. Encontre un identificador: k
+40. Encontre un simbolo: ]
+40. Encontre un simbolo: =
+Si fue declarada a
+Si fue declarada k
+40. Encontre un identificador: a
+40. Encontre un simbolo: [
+40. Encontre un identificador: i
+40. Encontre un simbolo: ]
+40. Encontre un simbolo: ;
+Si fue declarada a
+Si fue declarada i
+HOLA ENTRAS AQUI? idfun=a  idVar=a
+Si fue declarada a
+Si fue declarada a
+Variable: a y  a son del tipo correcto
+
+
+
+Este es varID: a este es funIDa
+41. Encontre un identificador: a
+41. Encontre un simbolo: [
+41. Encontre un identificador: i
+41. Encontre un simbolo: ]
+41. Encontre un simbolo: =
+Si fue declarada a
+Si fue declarada i
+41. Encontre un identificador: t
+41. Encontre un simbolo: ;
+Si fue declarada t
+HOLA ENTRAS AQUI? idfun=t  idVar=a
+Si fue declarada t
+Si fue declarada a
+Variable: a y  t son del tipo correcto
+
+
+
+Este es varID: a este es funIDt
+42. Encontre un identificador: i
+42. Encontre un simbolo: =
+42. Encontre un identificador: i
+42. Encontre un operador suma: +
+42. Encontre un numero: 1
+Si fue declarada i
+42. Encontre un simbolo: ;
+Si fue declarada i
+HOLA ENTRAS AQUI? idfun=i  idVar=i
+Si fue declarada i
+Si fue declarada i
+Variable: i y  i son del tipo correcto
+
+
+
+Este es varID: i este es funIDi
+43. Encontre un simbolo: }
+44. Encontre un simbolo: }
+47. Encontre palabra reservada: void
+47. Encontre un identificador: main
+47. Encontre un simbolo: (
+47. Encontre palabra reservada: void
+47. Encontre un simbolo: )
+No fue declarada nunca main
+48. Encontre un simbolo: {
+49. Encontre palabra reservada: int
+49. Encontre un identificador: i
+49. Encontre un simbolo: ;
+Si fue declarada i
+La variable i ya fue declarada anteriormente
+51. Encontre un identificador: i
+51. Encontre un simbolo: =
+51. Encontre un numero: 0
+51. Encontre un simbolo: ;
+Si fue declarada i
 Si fue declarada i
 Variable: i y  int son del tipo correcto
 
 
 
 Este es varID: i este es funIDint
-26. Encontre un identificador: x
-26. Encontre un simbolo: =
-26. Encontre un identificador: input
-26. Encontre un simbolo: (
-26. Encontre un simbolo: )
+52. Encontre palabra reservada: while
+52. Encontre un simbolo: (
+52. Encontre un identificador: i
+52. Encontre un operador logico: <
+52. Encontre un numero: 10
+52. Encontre un simbolo: )
+Si fue declarada i
+53. Encontre un simbolo: {
+54. Encontre un identificador: x
+54. Encontre un simbolo: [
+54. Encontre un identificador: i
+54. Encontre un simbolo: ]
+54. Encontre un simbolo: =
 Si fue declarada x
-26. Encontre un simbolo: ;
+Si fue declarada i
+54. Encontre un identificador: input
+54. Encontre un simbolo: (
+54. Encontre un simbolo: )
+54. Encontre un simbolo: ;
 No fue declarada nunca input
 No fue declarada nunca input
 Valor de callr: input
@@ -188,56 +393,95 @@ No fue declarada nunca input
 
 
 Este es varID: x este es funIDinput
-26. Encontre un identificador: y
-26. Encontre un simbolo: =
-26. Encontre un identificador: input
-26. Encontre un simbolo: (
-26. Encontre un simbolo: )
-Si fue declarada y
-26. Encontre un simbolo: ;
-No fue declarada nunca input
-No fue declarada nunca input
-Valor de callr: input
-HOLA ENTRAS AQUI? idfun=input  idVar=y
-No fue declarada nunca input
+55. Encontre un identificador: i
+55. Encontre un simbolo: =
+55. Encontre un identificador: i
+55. Encontre un operador suma: +
+55. Encontre un numero: 1
+Si fue declarada i
+55. Encontre un simbolo: ;
+Si fue declarada i
+HOLA ENTRAS AQUI? idfun=i  idVar=i
+Si fue declarada i
+Si fue declarada i
+Variable: i y  i son del tipo correcto
 
 
 
-Este es varID: y este es funIDinput
-27. Encontre un identificador: z
-27. Encontre un simbolo: =
-27. Encontre un identificador: gcd
-27. Encontre un simbolo: (
-27. Encontre un identificador: x
-Si fue declarada z
-27. Encontre un simbolo: ,
-27. Encontre un identificador: y
-27. Encontre un simbolo: )
-Si fue declarada gcd
+Este es varID: i este es funIDi
+56. Encontre un simbolo: }
+58. Encontre un identificador: sort
+58. Encontre un simbolo: (
+58. Encontre un identificador: x
+58. Encontre un simbolo: ,
+58. Encontre un numero: 0
+58. Encontre un simbolo: ,
+58. Encontre un numero: 10
+58. Encontre un simbolo: )
+Si fue declarada sort
 Si fue declarada x
-Si fue declarada y
-Si fue declarada gcd
-Funcion: gcd no tiene parametros correctos
-Valor de callr: gcd
-27. Encontre un simbolo: ;
-HOLA ENTRAS AQUI? idfun=gcd  idVar=z
-Si fue declarada gcd
-Si fue declarada z
-Variable: z y  gcd no son del tipo correcto
+Si fue declarada sort
+Parametros correctos
+Valor de callr: sort
+58. Encontre un simbolo: ;
+60. Encontre un identificador: i
+60. Encontre un simbolo: =
+60. Encontre un numero: 0
+60. Encontre un simbolo: ;
+Si fue declarada i
+Si fue declarada i
+Variable: i y  int son del tipo correcto
 
 
 
-Este es varID: z este es funIDgcd
-28. Encontre un simbolo: }
-Tabla: 0, ID= u, Categoria: Variable, Tipo: int, size: 4
-Tabla: 1, ID= v, Categoria: Variable, Tipo: int, size: 4
-Tabla: 2, ID= h, Categoria: Variable, Tipo: int, size: 4
-Tabla: 3, ID= iy, Categoria: Variable, Tipo: int, size: 4
-Tabla: 4, ID= l, Categoria: Variable, Tipo: int, size: 4
-Tabla: 5, ID= gcd, Categoria: Funcion, Tipo: int, size: 5
-Tabla: 6, ID= main, Categoria: Funcion, Tipo: void, size: 0
-Tabla: 7, ID= x, Categoria: Variable, Tipo: int, size: 4
-Tabla: 8, ID= y, Categoria: Variable, Tipo: int, size: 4
-Tabla: 9, ID= p, Categoria: Variable, Tipo: float, size: 8
-Tabla: 10, ID= z, Categoria: Variable, Tipo: char, size: 12
-Tabla: 11, ID= i, Categoria: Arreglo, Tipo: int, size: 10
+Este es varID: i este es funIDint
+61. Encontre palabra reservada: while
+61. Encontre un simbolo: (
+61. Encontre un identificador: i
+61. Encontre un operador logico: <
+61. Encontre un numero: 10
+61. Encontre un simbolo: )
+Si fue declarada i
+62. Encontre un simbolo: {
+63. Encontre un identificador: output
+63. Encontre un simbolo: (
+63. Encontre un identificador: x
+63. Encontre un simbolo: [
+63. Encontre un identificador: i
+63. Encontre un simbolo: ]
+63. Encontre un simbolo: )
+No fue declarada nunca output
+Si fue declarada x
+Si fue declarada i
+No fue declarada nunca output
+Valor de callr: output
+63. Encontre un simbolo: ;
+64. Encontre un identificador: i
+64. Encontre un simbolo: =
+64. Encontre un identificador: i
+64. Encontre un operador suma: +
+64. Encontre un numero: 1
+Si fue declarada i
+64. Encontre un simbolo: ;
+Si fue declarada i
+HOLA ENTRAS AQUI? idfun=i  idVar=i
+Si fue declarada i
+Si fue declarada i
+Variable: i y  i son del tipo correcto
+
+
+
+Este es varID: i este es funIDi
+65. Encontre un simbolo: }
+66. Encontre un simbolo: }
+Tabla: 0, ID= x, Categoria: Arreglo, Tipo: int, size: 10
+Tabla: 1, ID= a, Categoria: Arreglo, Tipo: int, size: 0
+Tabla: 2, ID= low, Categoria: Variable, Tipo: int, size: 4
+Tabla: 3, ID= high, Categoria: Variable, Tipo: int, size: 4
+Tabla: 4, ID= f, Categoria: Variable, Tipo: int, size: 4
+Tabla: 5, ID= minloc, Categoria: Funcion, Tipo: int, size: 4
+Tabla: 6, ID= i, Categoria: Variable, Tipo: int, size: 4
+Tabla: 7, ID= k, Categoria: Variable, Tipo: int, size: 4
+Tabla: 8, ID= sort, Categoria: Funcion, Tipo: void, size: 3
+Tabla: 9, ID= t, Categoria: Variable, Tipo: int, size: 4
+Tabla: 10, ID= main, Categoria: Funcion, Tipo: void, size: 0

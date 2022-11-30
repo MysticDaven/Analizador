@@ -790,29 +790,30 @@ import java.util.*;
       expression("");
                      cont++;
       cont2 = arg_listP(cont);
-                                                     {if (true) return cont2;}
+                                                     {if (true) return cont2+1;}
       break;
     default:
       jj_la1[13] = jj_gen;
 
-                                                                          {if (true) return cont2;}
+                                                                            {if (true) return cont2+1;}
     }
     throw new Error("Missing return statement in function");
   }
 
   final public int arg_listP(int cont) throws ParseException {
+                           int cont1 = 0;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case COMA:
       jj_consume_token(COMA);
       expression("");
                            cont++;
-      arg_listP(cont);
-                                                     {if (true) return cont;}
+      cont1 = arg_listP(cont);
+                                                             {if (true) return cont1+1;}
       break;
     default:
       jj_la1[14] = jj_gen;
 
-                                                                         {if (true) return cont;}
+                                                                                    {if (true) return cont1;}
     }
     throw new Error("Missing return statement in function");
   }
@@ -1466,6 +1467,10 @@ import java.util.*;
     return false;
   }
 
+  private boolean jj_3R_75() {
+    return false;
+  }
+
   private boolean jj_3R_17() {
     Token xsp;
     xsp = jj_scanpos;
@@ -1520,7 +1525,7 @@ import java.util.*;
     return false;
   }
 
-  private boolean jj_3R_75() {
+  private boolean jj_3R_67() {
     return false;
   }
 
@@ -1535,10 +1540,6 @@ import java.util.*;
       xsp = jj_scanpos;
       if (jj_3_8()) { jj_scanpos = xsp; break; }
     }
-    return false;
-  }
-
-  private boolean jj_3R_67() {
     return false;
   }
 
