@@ -60,7 +60,7 @@ import java.util.*;
                 if(Integer.parseInt(size) < Integer.parseInt(ts.get("Var"+pos).size)){
                     System.out.println("Arreglo dentro del rango");
                 }else{
-                    System.out.println("Arreglo"+ id +"fuera de rango");
+                    System.out.println("Arreglo "+ id +" fuera de rango");
                 }
             }
         }

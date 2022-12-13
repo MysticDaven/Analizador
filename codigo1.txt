@@ -17,12 +17,13 @@ void main(void)
 	float p;
 	char z;
 	int i[10];
+	i[11] = 8;
 	x = y;
 	z = x;
 	x = 12;
 	p = 12.3;
 	z = 'f';
-	i[11] = 8;
+	
 	x=input();y=input();
 	z = gcd(x,y);
 }
